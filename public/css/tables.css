@@ -1,0 +1,94 @@
+﻿/************ Table ************/
+th {font-size:12px; font-weight:700; color:#5d6a7e;}
+td {font-size:13px; font-weight:400; color:#5d6a7e; line-height:normal;}
+td.bold {font-weight:500; color:#3c485b;}
+.table.blackTxt td {color:#152935;}
+td a {color:#152935;}
+
+.tblWrap {position:relative; overflow:auto;}
+.tblWrap:not(.smallTbl) {max-height:62vh;}
+.tblWrap.smallTbl {max-height:435px;}
+.tblWrap.mxvh-38 {max-height:38vh;}
+.tblWrap.mxh-460 {max-height:460px;}
+.tblWrap.hp240 {max-height:240px;}
+.tblWrap.hp-375 {max-height:375px;}
+.tblWrap.hp-400 {max-height:400px;}
+.headTtl ~ .tblWrap {max-height:55vh;}
+.actionMenu + .pageWrapper .dataTablesWrapper .tblWrap, .filterSpecial + .dataTablesWrapper .tblWrap {max-height:56vh;}
+.filterSpecial .title {border-right:1px solid #ccd4df; font-weight:500; line-height:25px;}
+.filterSpecial .title span {color:#152935;}
+.filterSpecial + .dataTablesWrapper .headTtl ~ .tblWrap {max-height:49vh;}
+.accordionBox .tblWrap {max-height:51vh;}
+.table {margin:0; padding:1px 0 0; background:#fff; border:0; color:#212121;}
+.table.transparent {background:transparent;}
+.tblFix {table-layout:fixed;}
+.table thead {position:sticky; top:0; width:100%; z-index:10;}
+.table th, .table td {padding:16px;}
+.table th:first-child, .table tr td:first-child {padding-left:24px;}
+.table thead th {position:relative; background:#f7f8fb; border:0; vertical-align:text-top; text-transform:uppercase;}
+.table thead th .thTtl {opacity:.7;}
+.table thead th .thTtl:hover, .table thead th .sortTxt, .table.blackTxt thead th .thTtl {opacity:1;}
+.table thead th .columnsBtns {position:absolute; right:0; top:0;}
+.table thead th .columnsBtns .btn {padding:5px 8px; background:#fff; box-shadow:0 3px 8px 0 rgba(0,0,0,.23);}
+.table-hover tbody tr:hover {background:#fafbfb;}
+.table-hover tbody tr.noHover:hover {background:none;}
+.table th.sorting, .table th.sorting_asc, .table th.sorting_desc {cursor:pointer;}
+.table th .sorting, .table th .sorting_asc, .table th .sorting_desc {display:inline-block; width:12px; height:12px; margin-top:2px; cursor:pointer;}
+.table th .sorting {background:url("../img/sprites/sort.svg") no-repeat;}
+.table th .sorting_asc {background:url("../img/sprites/sortTop.svg") no-repeat;}
+.table th .sorting_desc {background:url("../img/sprites/sortBottom.svg") no-repeat;}
+
+.addTbl .table td {vertical-align:middle; cursor:pointer;}
+.addTbl .table tr.selectedRow td, tr.selectedRow td {background-color:#e8f6f5;}
+
+.table.valignM td {vertical-align:middle;}
+.table .iconCol {width:40px;}
+.table .iconCol.twoIcons {width:94px;}
+.table .prioCell {width:80px;}
+.table td.iconCol {text-align:center;}
+.table .prodName {width:50%;}
+.table .supplier {width:20%;}
+.table .prodNo, .table .smallDate, .table .statusCell {width:110px;}
+.table .prodNo .thTtl {white-space:nowrap;}
+.table .prodNo.casNo {width:125px;}
+.table .prodNo.wp-150 {width:150px;}
+.table .consume .specialType {width:150px;}
+.table .dateCol {width:125px;}
+.table .dateCol.smallCell {width:100px;}
+.table td.dateCol {white-space:nowrap;}
+.table .wp-90 .dateInp.mx-datepicker-inline {width:90px;}
+.table .dateCol .form-control.dateInp {width:80px;}
+.table .fullDate {width:140px;}
+.table .mergedCell .prodName {width:calc(100% - 100px);}
+.table .phrases, .table symbols {width:150px;}
+.table td.symbols {padding:12px 16px;}
+.table .symbols {width:97px;}
+.table .symbols .symbolClass {padding:0 4px;}
+.table .symbols img {display:inline-block; width:28px; height:28px; margin:4px; vertical-align:middle;}
+.table .inactive {background-color:#f7f8fb;opacity: .6;}
+.table .inactive:hover {background-color:#f7f8fb;}
+.table thead .secondHead th {background:#fff;}
+.table thead .secondHead th:hover .thTtl {color:#5d6a7e;}
+.productRow td {background-color:#f7f8fb; border-top:2px solid #3596b3;}
+
+.prodLst.AmountRow + .prodLst.AmountRow {margin-top:7px;}
+
+ /* Empty states: No items found, Start searching, No results found */
+.emptyTxt {display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%;}
+
+/* Pagination */
+.dataTablesWrapper + .dataTablesWrapper {padding-top:3.25rem; border-top:1px solid #dee2e6;}
+.tabcontent .dataTablesWrapper {margin-bottom:0;}
+.modalCard .dataTablesWrapper {border:0;}
+.dataTablesWrapper .dataTables_paginate a {padding:8px 13px; border-radius:4px; font-size:12px; font-weight:700; text-decoration:none; color:#5d6a7e;}
+.dataTablesWrapper .dataTables_paginate a.disabled, .dataTablesWrapper .dataTables_paginate a.disabled:hover, .dataTablesWrapper .dataTables_paginate a.disabled:active {opacity:.5; cursor:default; pointer-events:none;}
+.dataTablesWrapper .dataTables_paginate a.disabled b {cursor:default;}
+.dataTablesWrapper .dataTables_paginate a:hover {background:#eff2f7; color:#5d6a7e;}
+.dataTablesWrapper .dataTables_paginate a.current {background:#165b64; color:#fff;}
+.dataTablesWrapper .dataTables_paginate a b {padding:0;}
+.dataTablesWrapper .dataTables_paginate a b, .dataTablesWrapper .dataTables_paginate a.arrows:hover {background:transparent;}
+
+.dataTablesWrapper .dataTables_paginate .paginate_button.arrows b {font-size:10px;}
+.dataTablesWrapper .dataTables_paginate .paginate_button.previous b, .dataTablesWrapper .dataTables_paginate .paginate_button.previous:hover b, .dataTablesWrapper .dataTables_paginate .paginate_button.previous:active b {-webkit-transform:rotate(270deg); -moz-transform:rotate(270deg); -ms-transform:rotate(270deg); -o-transform:rotate(270deg); transform:rotate(270deg);}
+.dataTablesWrapper .dataTables_paginate .paginate_button.first b, .dataTablesWrapper .dataTables_paginate .paginate_button.first:hover b, .dataTablesWrapper .dataTables_paginate .paginate_button.first:active b {-webkit-transform:rotate(180deg); -moz-transform:rotate(180deg); -ms-transform:rotate(180deg); -o-transform:rotate(180deg); transform:rotate(180deg);}
+.dataTablesWrapper .dataTables_paginate .paginate_button.next b, .dataTablesWrapper .dataTables_paginate .paginate_button.next:hover b, .dataTablesWrapper .dataTables_paginate .paginate_button.next:active b {-webkit-transform:rotate(90deg); -moz-transform:rotate(90deg); -ms-transform:rotate(90deg); -o-transform:rotate(90deg); transform:rotate(90deg);}

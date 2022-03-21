@@ -1,0 +1,146 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 2,
+    "pending": 1,
+    "failures": 0,
+    "start": "2022-03-21T16:44:38.929Z",
+    "end": "2022-03-21T16:44:56.730Z",
+    "duration": 17801,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 33.33333333333333,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "c97fe834-76e4-4f6b-9997-fa62590a1d3b",
+      "title": "",
+      "fullFile": "cypress/integration/5-Verify checkboxes/checkboxes.js",
+      "file": "cypress/integration/5-Verify checkboxes/checkboxes.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ab70a80d-7f19-46e4-94c4-9d590e6a1287",
+          "title": "Move, copy and delete product in chemsoft",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Check product and move it on desired department",
+              "fullTitle": "Move, copy and delete product in chemsoft Check product and move it on desired department",
+              "timedOut": null,
+              "duration": 8687,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"https://dev04/system/login/chemsofttest/?name=miljan&password=hirsl666\");\ncy.get('.nav-link').contains('Tools').click({\n  force: true\n});\ncy.get('[href=\"/system/chemicals/inventory\"]').click();\ncy.get('.d-flex > :nth-child(2) > .icons').click({\n  force: true\n});\ncy.get(':nth-child(2) > .d-flex > :nth-child(2) > .icons').click({\n  force: true\n});\ncy.get('.eqtree-children > :nth-child(2) > span > a').click({\n  force: true\n});\ncy.get('[title=\"OK\"]').click({\n  force: true\n}); //cy.get('.tickerWrap > :nth-child(2) > div').should('have.text', 'We\\'re sorry to inform you that something went wrong processing your request.'); - the bug is reproduced and catched\ncy.get('.title > span').should('have.text', 'Last modified:');\ncy.url().should('include', 'chemicals/inventory');",
+              "err": {},
+              "uuid": "95792f7f-84d5-4e49-977a-990005d9e45a",
+              "parentUUID": "ab70a80d-7f19-46e4-94c4-9d590e6a1287",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Check product and copy it on desired department",
+              "fullTitle": "Move, copy and delete product in chemsoft Check product and copy it on desired department",
+              "timedOut": null,
+              "duration": 7967,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"https://dev04/system/login/chemsofttest/?name=miljan&password=hirsl666\");\ncy.get('.nav-link').contains('Tools').click({\n  force: true\n});\ncy.get('[href=\"/system/chemicals/inventory\"]').click();\ncy.get('.d-flex > :nth-child(2) > .icons').click({\n  force: true\n});\ncy.get('.mainTtl > :nth-child(1) > .d-flex > :nth-child(2)').click({\n  force: true\n});\ncy.get('.eqtree-open > .eqtree-children > :nth-child(2) > span > a').click({\n  multiple: true\n});\ncy.get('[title=\"OK\"]').click({\n  force: true\n}); //cy.get('.tickerWrap > :nth-child(2) > div').should('not.have.text', 'We\\'re sorry to inform you that something went wrong processing your request.'); - the bug is reproduced and catched\ncy.get('.title > span').should('have.text', 'Last modified:');\ncy.url().should('include', 'chemicals/inventory');",
+              "err": {},
+              "uuid": "3dc67ea4-3456-4ff3-8be0-727104f490c0",
+              "parentUUID": "ab70a80d-7f19-46e4-94c4-9d590e6a1287",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Check frontEnd BUG",
+              "fullTitle": "Move, copy and delete product in chemsoft Check frontEnd BUG",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "c4d4e41e-f2b8-4059-9e0b-48fca8a52ada",
+              "parentUUID": "ab70a80d-7f19-46e4-94c4-9d590e6a1287",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "95792f7f-84d5-4e49-977a-990005d9e45a",
+            "3dc67ea4-3456-4ff3-8be0-727104f490c0"
+          ],
+          "failures": [],
+          "pending": [
+            "c4d4e41e-f2b8-4059-9e0b-48fca8a52ada"
+          ],
+          "skipped": [],
+          "duration": 16654,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.2"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/results/mochawesome",
+        "quite": "true",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.1.1"
+    }
+  }
+}

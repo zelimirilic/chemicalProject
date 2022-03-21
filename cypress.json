@@ -1,0 +1,8 @@
+{
+    "defaultCommandTimeout": 15000,
+    "projectId": "rq4wyv",
+    "reporter": "cypress-multi-reporters",
+    "reporterOptions": {
+        "configFile": "reporter-config.json"
+    }
+}

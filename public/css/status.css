@@ -1,0 +1,73 @@
+﻿/************ Status / Sprite icons ************/
+.status {display:inline-block; width:20px; height:20px; background-image:url("../img/sprites/sprite.png"); background-repeat:no-repeat; text-decoration:none; vertical-align:middle;}
+.status:hover, .status:focus, .spriteIcons:hover, .spriteIcons:focus {text-decoration:none;}
+.status {text-indent:-99999px;}
+
+.status.Done, .status.Approved {background-position:0 0;}
+.status.DoneOld {background-position:-25px 0;}
+.status.Keep {background-position:-50px 0;}
+.status.KeepOld {background-position:-75px 0;}
+.status.Ongoing, .status.Verdict, .status.Purchase {background-position:-100px 0;}
+.status.NotStarted, .status.Prehandling, .status.Review {background-position:-125px 0;}
+.status.Sign {background-position:-150px 0;}
+.status.SignOld {background-position:-175px 0;}
+.status.PhasingOut {background-position:-200px 0;}
+.status.Automated {background-position:-225px 0;}
+.status.In {background-position:-250px 0;}
+.status.Deleted {background-position:-275px 0;}
+.status.OwnProduct {background-position:-300px 0;}
+.status.GlobalActive {background-position:-325px 0;}
+.status.GlobalNotActive {background-position:-350px 0;}
+.spriteIcons.archive {background-position:-375px 0;}
+.status.Evaluate {background-position:-400px 0;}
+
+.status.Usage {background-position:0 -25px;}
+.status.Storage {background-position:-25px -25px;}
+.status.UseStore {background-position:-50px -25px;}
+.status.UsageOld {background-position:-75px -25px;}
+.status.StorageOld {background-position:-100px -25px;}
+.status.UseStoreOld {background-position:-125px -25px;}
+.status.Stop {background-position:-150px -25px;}
+.status.UseStoreStop {background-position:-175px -25px;}
+.status.Product {background-position:-200px -25px;}
+.status.Changed {background-position:-225px -25px;}
+.status.Out {background-position:-250px -25px;}
+.status.Unknown {background-position:-275px -25px;}
+.status.Rejected {background-position:-300px -25px;}
+.status.ApprovedWithReservations {background-position:-325px -25px;}
+.status.CompletedNotNeeded {background-position:-350px -25px;}
+.status.NotStartedUrgent {background-position:-375px -25px;}
+
+.status.Proposal {background-position:0 -50px;}
+.status.UnderInvestigation {background-position:-25px -50px;}
+.status.Outdated {background-position:-50px -50px;}
+.status.NoNormal {background-position:-75px -50px;}
+.status.NoOutdated {background-position:-100px -50px;}
+.status.NoVeryOutdated {background-position:-125px -50px;}
+
+.statusBox {display:block; padding:7px; border-radius:50%;}
+.statusBox.highRisk {background:#ff5252;}
+.statusBox.medRisk {background:#e9c96f;}
+.statusBox.lowRisk {background:#85bb75;}
+
+.statusLight {position:relative; display:inline-block; background:#f2f5f9; border:1px solid #627e98; border-radius:2px; overflow:hidden;}
+.statusLight.status_1, .statusLight.lowRisk {background:#d9f6ee; border:1px solid #00c48c;}
+.statusLight.status_2, .statusLight.status_4, .statusLight.medRisk {background:#fff3e4; border:1px solid #ffaf4a;}
+.statusLight.status_3, .statusLight.highRisk {background:#ffe9e4; border:1px solid #ff6d4a;}
+
+.statusLight .statusBgd {position:absolute; right:-32px; top:-8px; display:block; width:72px; height:72px; background:url(../img/trafficLights/bg-question.png) no-repeat;}
+.statusLight.status_1 .statusBgd, .statusLight.lowRisk .statusBgd {background:url(../img/trafficLights/bg-approve.png) no-repeat;}
+.statusLight.status_2 .statusBgd, .statusLight.status_4 .statusBgd, .statusLight.medRisk .statusBgd {background:url(../~master/new_style_images/trafficLights/bg-pending.png) no-repeat;}
+.statusLight.status_3 .statusBgd, .statusLight.highRisk .statusBgd {background:url(../~master/new_style_images/trafficLights/bg-stop.png) no-repeat;}
+
+.statusLight .icons {display:block; width:40px; height:40px; margin:8px auto; background:#627e98 url("../img/trafficLights/question.png") center center no-repeat; border-radius:4px; cursor:default;}
+.statusLight.status_1 .icons, .statusLight.lowRisk .icons {background:#00c48c url("../img/trafficLights/check.png") center center no-repeat;}
+.statusLight.status_2 .icons, .statusLight.status_4 .icons, .statusLight.medRisk .icons {background:#ffaf4a url("../img/trafficLights/monitoring.png") center center no-repeat;}
+.statusLight.status_3 .icons, .statusLight.highRisk .icons {background:#ff6d4a url("../imgs/trafficLights/stop.png") center center no-repeat;}
+
+.statusLight .statusTxt {margin:0; padding:5px 20px; background:#627e98; font-size:9px; font-weight:bold; text-align:center; text-transform:uppercase; color:#fff;}
+.statusLight.status_1 .statusTxt, .statusLight.lowRisk .statusTxt {background:#00c48c;}
+.statusLight.status_2 .statusTxt, .statusLight.status_4 .statusTxt, .statusLight.medRisk .statusTxt {background:#ffaf4a;}
+.statusLight.status_3 .statusTxt, .statusLight.highRisk .statusTxt {background:#ff6d4a;}
+
+.statusWrap {display:table; text-align:center;}

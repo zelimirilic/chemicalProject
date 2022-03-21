@@ -1,0 +1,84 @@
+﻿/****** Safety Sheet ******/
+.mainSS {margin:auto; background:#fff; font-weight:400; line-height:1.4; color:#000;}
+.mainSS table {width:100%; background:0; border:0; padding:0;}
+.mainSS table, .mainSS th, .mainSS td {font-weight:400; color:#000; line-height:1.4; vertical-align:top;}
+.mainSS table thead th, .mainSS table thead td {padding:0; background:0; border:0;}
+.mainSS table tr:hover td, .mainSS table tr td:hover {background:transparent;}
+.mainSS th, .mainSS td {word-wrap:break-word; -webkit-hyphens:auto; -moz-hyphens:auto; -ms-hyphens:auto; hyphens:auto; overflow-wrap:break-word;}
+.mainSS h1, .mainSS h2, .mainSS h3, .mainSS h4, .mainSS h5, .mainSS h6 {margin:0; padding:0; font-weight:400; color:#000; line-height:normal;}
+.mainSS h1 {font-weight:700;}
+.mainSS p {margin:0; color:#000;}
+.mainSS p.primaryTxt {color:#165b64;}
+.mainSS p.secondaryTxt {color:#3596b3;}
+.mainSS .borderRed {border:2px solid #f00;}
+.mainSS .symbolsBox img.iconPx48 {margin:0 !important;}
+.mainSS .italic {font-style:italic;}
+
+.mainSS header {clear:both; margin:0 auto;}
+.mainSS header h1 {margin-bottom:5px;}
+.mainSS header h2 {font-weight:700;}
+.mainSS header .prodDetails h6 + h6 {margin-top:2px;}
+.mainSS header .symbolsBox {flex-direction:row-reverse;}
+.mainSS header .rcodes {line-height:20px;}
+.mainSS header .rcodes {padding:8px 8px 0;}
+.mainSS footer {margin-top:24px;}
+
+.mainSS section {position:relative; padding:16px 0 0; page-break-inside:avoid; page-break-after:auto;}
+.mainSS section .header {background:#95a5b4;}
+.mainSS section.red .header {background:#c21f26;}
+.mainSS section.green .header {background:#00a068;}
+.mainSS section.blue .header {background:#2dadde;}
+.mainSS section.orange .header {background:#fa7e05;}
+.mainSS section h3 {display:flex; align-items:center; padding:5px 8px; font-weight:700; text-transform:uppercase; color:#fff; line-height:0;}
+.mainSS section h3 .icons {padding:0; background-color:transparent; text-align:center; color:#fff;}
+.mainSS section h4 {padding:15px 0 0; border-bottom:1px dotted rgba(149,165,180,.4); font-weight:400;}
+.mainSS section .symbolsBox {margin:10px 20px 0;}
+.mainSS section .titleTxt {flex-shrink:0; width:170px; padding:0 10px 0 0; font-weight:700;}
+.mainSS section .titleTxt:empty, .mainSS section .txtField:empty {display:none;}
+.mainSS section .subtitleTxt {display:table-cell; max-width:200px; width:140px; padding:0 10px 0 0; font-weight:700;}
+.mainSS section .txtField {-ms-word-break:break-all; word-break:break-word;}
+.mainSS section .txtField:empty {margin:0;}
+.mainSS section table {margin-top:15px; border:solid #000; border-width:1px 0 0 1px; border-collapse:collapse;}
+.mainSS section .tableName + table {margin-top:7px;}
+.mainSS section thead th {font-weight:700;}
+.mainSS section table th, .mainSS section table td {padding:2px 5px; border:solid #000; border-width:0 1px 1px 0; text-transform:none; color:#000;}
+.mainSS section .products {margin-top:15px;}
+.mainSS section .products + .products {margin-top:8px;}
+
+@media only screen and (-webkit-min-device-pixel-ratio:2), only screen and (min--moz-device-pixel-ratio:2), only screen and (-o-min-device-pixel-ratio:2/1), only screen and (min-device-pixel-ratio:2), only screen and (min-resolution:96dpi), only screen and (min-resolution:2dppx) {
+	.mainSS {width:calc(210mm + 2px); min-height:1123px; padding:40px; border:1px solid #d7d7d7; font-size:14px; line-height:20px;}
+	.mainSS table, .mainSS th, .mainSS td, .mainSS h6 {font-size:14px; line-height:16px;}
+	.mainSS .subTtl {margin-bottom:4px; font-size:13px; line-height:12px;}
+	.mainSS .dateTtl {font-size:12px;}
+	.mainSS .date {font-size:13px; line-height:12px;}
+	.mainSS p.small {font-size:13px; line-height:15px;}
+	.mainSS header h1 {font-size:32px; line-height:38px;}
+	.mainSS header h2 {font-size:16px; line-height:19px;}
+	.mainSS .symbolsBox .text-center {width:72px;}
+	.mainSS .symbolsBox .text-center + .text-center {margin-left:4px;}
+	.mainSS .symbolsBox img.iconPx48 {width:72px; height:72px;}
+	.mainSS section h3 {font-size:12px; line-height:14px;}
+	.mainSS section h3 .icons {font-size:10px;}
+	.mainSS section .titleTxt, .mainSS section .subtitleTxt {font-size:13px; line-height:20px;}
+	.mainSS section h4 {font-size:14px; line-height:20px;}
+}
+
+@media print {
+	.backdrop {position:relative; background-color:rgba(255,255,255,1);}
+	.modalCard {top:0;}
+	.card.wp-900 {width:100%; border:0;}
+	.modalCard .card-header {display:none; content:none; width:0; height:0; margin:0; padding:0; border:0; line-height:0; visibility:hidden; overflow:hidden;}
+	.modalCard > .card .card-body {max-height:100%; padding:0;}
+	.mainSS {width:100%; font-size:12pt;}
+	.mainSS table, .mainSS th, .mainSS td {font-size:12pt;}
+	.mainSS h6 {font-size:12pt;}
+	.mainSS p {font-size:12pt; line-height:normal;}
+	.mainSS p.small {font-size:9pt;}
+	.mainSS header h1 {font-size:20pt;}
+	.mainSS header h2 {font-size:14pt;}
+	.mainSS section {font-size:12pt;}
+	.mainSS section h3 {font-size:14pt;}
+	.mainSS section h3 .icons {font-size:.95em;}
+	.mainSS section h4 {font-size:12pt;}
+	.mainSS .symbolsBox img.iconPx48 {width:80px; height:80px;}
+}

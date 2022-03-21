@@ -1,0 +1,107 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-03-21T16:42:23.573Z",
+    "end": "2022-03-21T16:42:30.386Z",
+    "duration": 6813,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "c46cf1ef-526b-42c5-8101-d49cc117abd4",
+      "title": "",
+      "fullFile": "cypress/integration/1-login-started/log-in.js",
+      "file": "cypress/integration/1-login-started/log-in.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "721e712e-41c6-49c7-8a34-24b158d8e333",
+          "title": "Test Login form via Chemsoft NG",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should not be able to log in via Login form",
+              "fullTitle": "Test Login form via Chemsoft NG Should not be able to log in via Login form",
+              "timedOut": null,
+              "duration": 4995,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"https://dev04/system/login/chemsofttest\");\ncy.get('[name=\"user\"]').click();\ncy.get('.username > .form-control').type(\"zeljko\");\ncy.get('.password > .form-control').type(\"somewrongpassword\");\ncy.get('.btn').contains('Sign in').click();\ncy.get('a > img[alt=\"Chemsoft\"]').should('have.attr', 'alt', 'Chemsoft'); //cy.get('button').should('have.text', 'Update password');",
+              "err": {},
+              "uuid": "32287e65-ccd2-4cf3-9514-6eebb2b64fce",
+              "parentUUID": "721e712e-41c6-49c7-8a34-24b158d8e333",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "32287e65-ccd2-4cf3-9514-6eebb2b64fce"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4995,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.2"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/results/mochawesome",
+        "quite": "true",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.1.1"
+    }
+  }
+}

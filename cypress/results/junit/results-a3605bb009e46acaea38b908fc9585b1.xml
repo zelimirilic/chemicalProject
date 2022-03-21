@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.0000" tests="5" failures="0">
+  <testsuite name="Root Suite" timestamp="2022-03-21T16:42:35" tests="0" file="cypress/integration/2-iterate-over-elements/iterate-over-elements.js" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="Iterate over elements" timestamp="2022-03-21T16:42:35" tests="5" time="39.6730" failures="0">
+    <testcase name="Iterate over elements Log information of product" time="4.4880" classname="Log information of product">
+    </testcase>
+    <testcase name="Iterate over elements Choose a specific product" time="7.4150" classname="Choose a specific product">
+    </testcase>
+    <testcase name="Iterate over elements Validate a specific produc" time="7.8660" classname="Validate a specific produc">
+    </testcase>
+    <testcase name="Iterate over elements Validate a specific produc" time="9.6930" classname="Validate a specific produc">
+    </testcase>
+    <testcase name="Iterate over elements Validate a specific produc" time="9.2810" classname="Validate a specific produc">
+    </testcase>
+  </testsuite>
+</testsuites>

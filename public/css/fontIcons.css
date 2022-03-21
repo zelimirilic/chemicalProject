@@ -1,0 +1,199 @@
+@charset "UTF-8";
+@font-face {
+	font-family:"customIcons";
+	src:url("fonts/customIcons.eot?r72h3");
+	src:url("fonts/customIcons.eot?r72h3#iefix") format("embedded-opentype"), url("fonts/customIcons.ttf?r72h3") format("truetype"), url("fonts/customIcons.woff?r72h3") format("woff"), url("fonts/customIcons.svg?r72h3#customIcons") format("svg");
+	font-weight:normal; font-style:normal;
+}
+[data-icon]:before, [class^="icon-"]:before, [class*=" icon-"]:before, .icons:before, .icons[class^="icon-"]:before, .icons[class*=" icon-"]:before, .eqtree-default .eqtree-themeicon-custom:before, .dropdown-toggle::after, .ui-datepicker .ui-datepicker-header > a:before, .custom-check .custom-input:checked~.custom-label::before, .custom-check.right.depChecked .custom-label::after {font-family:"customIcons" !important; font-style:normal; font-weight:normal; font-variant:normal; text-transform:none; line-height:1; speak:none; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+[data-icon]:before {content:attr(data-icon);}
+
+/************ Icons ************/
+.icons, a.icons, a.icons:not([href]):not([tabindex]) {display:inline-block; padding:8px; background-color:#eff2f7; border-radius:4px; text-decoration:none; font-size:14px; line-height:0; color:#5d6a7e; vertical-align:middle; cursor:pointer;}
+.icons:hover, .icons:focus, a.icons:hover, a.icons:focus, a.icons:not([href]):not([tabindex]):hover, a.icons:not([href]):not([tabindex]):focus {background-color:#e5e9f2;}
+.icons:active {background-color:#e8f6f5; color:#3596b3;}
+.icons.xsmallIcn {font-size:9px;}
+.icons.smallIcn {font-size:12px;}
+.icons.mediumIcn {font-size:20px;}
+.icons.bigIcn {font-size:40px;}
+.icons.circle {border-radius:50%;}
+.symbolsBox .icons.bigIcn {font-size:48px;}
+.icons.cursorDefault, a.icons.cursorDefault {cursor:default;}
+.icons.icon-drag {cursor:move;}
+.navbar-toggler-icon {cursor:pointer;}
+button .icons {padding:0;}
+
+.icons.plainIcn {padding:0; background-color:transparent;}
+.input-group .icons.plainIcn, .emptyTxt .icons, .icons.tooltipInfo {color:#949fb1;}
+.icons.plainIcn:hover, .icons.plainIcn:focus, .icons.plainIcn:active {background-color:transparent; color:#3596b3;}
+.icons.plainIcn:focus, .icons.plainIcn:active {background-color:#e8f6f5;}
+.emptyTxt .icons.plainIcn:hover, .emptyTxt .icons.plainIcn:focus, .emptyTxt .icons.plainIcn:active {background-color:transparent; color:#949fb1; cursor:default;}
+.icons.tooltipInfo {position:relative; top:-2px;}
+.icons.tooltipInfo.big {top:0; font-size:16px;}
+.icons.circle.smallIcn {padding:6px;}
+.icons.circle.active {background-color:#3596b3; color:#fff;}
+.icons.plainIcn.whiteBg, .icons.plainIcn.whiteBg:hover, .icons.plainIcn.whiteBg:focus, .icons.plainIcn.whiteBg:active {background-color:#fff;}
+
+.icons.disabledTooltip:hover, .icons.disabledTooltip:focus, .icons.disabledTooltip:active {color:#5d6a7e;}
+
+.icons.icon-arrowup.arrowDown, .nav-link.dropdown-toggle:after {-webkit-transform:rotate(180deg); -moz-transform:rotate(180deg); -o-transform:rotate(180deg); -ms-transform:rotate(180deg); transform:rotate(180deg); transform-origin:50% 50%;}
+.icons.accentColor, .icons.plainIcn.accentColor {color:#ff5252;}
+
+.remarks.icons {width:24px; height:24px; padding:3px; border:2px solid; background:transparent; border-radius:50%; font-size:1em; text-align:center; line-height:0; cursor:default;}
+.remarks.warnings {border-color:#ff5252; color:#ff5252;}
+.remarks.prewarning, .remarks.notNecessary {border-color:#ffbe3d; color:#ffbe3d;}
+.remarks.done {border-color:#00c48c; color:#00c48c;}
+.remarks.icons.icon-delete {padding:3px;}
+.remarks + .remarksTxt {margin:6px 0 0 10px; font-size:.9em; font-weight:500; line-height:1; word-wrap:break-word; -webkit-hyphens:auto; -moz-hyphens:auto; -ms-hyphens:auto; hyphens:auto; overflow-wrap:break-word;}
+
+/**** Special cases ****/
+.icons + .icons, .actionLink .noEvents + .noEvents, .actionBtn .icons + .icons {margin-left:4px;}
+.multySwitch .switchClicked .icons {color:#3596b3;}
+.tab .tablinks .icons, .nav.nav-tabs .nav-link .icons {background:transparent;}
+.tab .tablinks.active .icons {color:#3596b3;}
+.accordionBox header .icons {padding:0 8px; color:#5e6b7e;}
+.accordionBox.smallBox header .icons {padding:0;}
+.statements .icons {background:none;}
+
+/**** Font ****/
+.icon-aid:before {content:"\e900";}
+.icon-and:before {content:"\e901";}
+.icon-application:before {content:"\e902";}
+.icon-archive:before {content:"\e903";}
+.icon-arrowleft:before {content:"\e904";}
+.icon-arrowup:before, .dropdown-toggle::after, .ui-datepicker .ui-datepicker-header > a:before {content:"\e905";}
+.icon-atom:before {content:"\e906";}
+.icon-attach:before {content:"\e907";}
+.icon-back:before {content:"\e942";}
+.icon-browse:before {content:"\e95a";}
+.icon-check:before {content:"\e908";}
+.icon-clean:before {content:"\e909";}
+.icon-closeAside:before {content:"\e961";}
+.icon-columncheck:before {content:"\e947";}
+.icon-columnedit:before {content:"\e946";}
+.icon-columns:before {content:"\e90a";}
+.icon-copy:before {content:"\e90f";}
+.icon-delete:before {content:"\e90b";}
+.icon-department:before {content:"\e90c";}
+.icon-details:before {content:"\e90d";}
+.icon-document:before {content:"\e92e";}
+.icon-download:before {content:"\e90e";}
+.icon-drag:before {content:"\e91f";}
+.icon-edit:before {content:"\e910";}
+.icon-excel:before {content:"\e911";}
+.icon-exposurescenario:before {content:"\e912";}
+.icon-filter:before {content:"\e913";}
+.icon-fire:before {content:"\e914";}
+.icon-foodprocessing:before {content:"\e915";}
+.icon-handling:before {content:"\e916";}
+.icon-history:before {content:"\e917";}
+.icon-home:before {content:"\e918";}
+.icon-info:before {content:"\e919";}
+.icon-infobox:before {content:"\e970";}
+.icon-language:before {content:"\e91a";}
+.icon-local:before {content:"\e965";}
+.icon-lock:before {content:"\e91b";}
+.icon-logout:before {content:"\e91c";}
+.icon-mail:before {content:"\e91d";}
+.icon-minus:before {content:"\e91e";}
+.icon-move:before {content:"\e963";}
+.icon-next:before {content:"\e920";}
+.icon-new:before {content:"\e95c";}
+.icon-newimage:before {content:"\e95b";}
+.icon-noitems:before {content:"\e93a";}
+.icon-noresult:before {content:"\e931";}
+.icon-noshow:before {content:"\e921";}
+.icon-opentab:before {content:"\e922";}
+.icon-or:before {content:"\e923";}
+.icon-ownfields:before {content:"\e964";}
+.icon-password:before {content:"\e924";}
+.icon-phone:before {content:"\e925";}
+.icon-pin:before {content:"\e966";}
+.icon-plus:before {content:"\e926";}
+.icon-print:before {content:"\e927";}
+.icon-producttype:before {content:"\e928";}
+.icon-producttypefull:before {content:"\e929";}
+.icon-publish:before {content:"\e95d";}
+.icon-question:before {content:"\e92a";}
+.icon-refresh:before {content:"\e92b";}
+.icon-replay:before {content:"\e92c";}
+.icon-restore:before {content:"\e92d";}
+.icon-restrictionlists:before {content:"\e960";}
+.icon-riskassessment:before {content:"\e92f";}
+.icon-safetysheet:before {content:"\e930";}
+.icon-save:before {content:"\e93b";}
+.icon-saveas:before {content:"\e932";}
+.icon-sds {display:inline-block; width:20px; height:20px; background-image:url("../img/icons/doc.svg"); background-size:cover; background-repeat:no-repeat;}
+.icon-sds.docType {display:block; width:32px; height:32px; margin-right:8px;}
+.icon-sdscompare:before {content:"\e934";}
+.icon-search:before {content:"\e935";}
+.icon-send:before {content:"\e968";}
+.icon-settings:before {content:"\e936";}
+.icon-shield:before {content:"\e937";}
+.icon-show:before {content:"\e938";}
+.icon-sign:before {content:"\e939";}
+.icon-switch:before {content:"\e93c";}
+.icon-toggle:before {content:"\e93d";}
+.icon-trash:before {content:"\e967";}
+.icon-tree:before {content:"\e93e";}
+.icon-unlock:before {content:"\e962";}
+.icon-upload:before {content:"\e93f";}
+.icon-user:before {content:"\e940";}
+.icon-userfull:before {content:"\e941";}
+.icon-usergroup:before {content:"\e95e";}
+.icon-userorg:before {content:"\e942";}
+.icon-video:before {content:"\e943";}
+.icon-warning:before {content:"\e944";}
+.icon-write:before {content:"\e945";}
+
+.icon-checkboxgroup:before {content:"\e956";}
+.icon-container:before {content:"\e948";}
+.icon-textareagroup:before {content:"\e949";}
+.icon-selectgroup:before {content:"\e94a";}
+.icon-inputgroup:before {content:"\e94b";}
+.icon-emailconfirmgroup:before {content:"\e94c";}
+.icon-emailgroup:before {content:"\e94d";}
+.icon-productdescriptiongroup:before {content:"\e955";}
+.icon-productgroup:before {content:"\e94e";}
+.icon-producttypegroup:before {content:"\e94f";}
+.icon-producttest:before {content:"\e95f";}
+.icon-radiogroup:before {content:"\e957";}
+.icon-replaceproductgroup:before {content:"\e950";}
+.icon-sdspublisher:before {content:"\e951";}
+.icon-section:before {content:"\e959";}
+.icon-storagegroup:before {content:"\e952";}
+.icon-trafficlight:before {content:"\e958";}
+.icon-uploadgroup:before {content:"\e953";}
+.icon-usagegroup:before {content:"\e954";}
+
+
+/************ Buttons ************/
+.btn, a.btn, a.btn:link {margin:0; padding:8px 12px; background:#eff2f7; border:0; -webkit-box-shadow:none; -moz-box-shadow:none; box-shadow:none; border-radius:4px; font-size:14px; font-weight:500; color:#5d6a7e; line-height:1; cursor:pointer;}
+.btn:active, .btn:hover, .btn:focus, .btn.focus, .btn:visited {background:#e5e9f2; border:0; -webkit-box-shadow:none; -moz-box-shadow:none; box-shadow:none; text-decoration:none; color:#5d6a7e; outline:none; cursor:pointer;}
+.btn:active:focus, .btn.active:focus, .btn:active.focus, .btn.active.focus {outline:none;}
+.btn + .btn, a.btn + a.btn {margin-left:10px;}
+.btn:first-child {margin-left:0;}
+.btn.btn-plain, a.btn.btn-plain, a.btn.btn-plain:link {background:transparent;}
+.modalCard .btn.btn-plain {padding:0;}
+.btn.bigBtn {width:100%; padding:14px; font-size:18px;}
+
+.btn.primary, a.btn.primary, a.btn.primary:link {background:#165b64; color:#fff;}
+.btn.primary:hover, .btn.primary:focus, .btn.focus, .btn.primary:visited {background:#8ed1eb;}
+
+.btnBadge {display:inline-block; padding:5px 8px; background:#e8f6f5; border-radius:4px; font-size:10px; font-weight:700; text-transform:uppercase; color:#3596b3; line-height:1; vertical-align:middle;}
+.btnBadge .badge .icons {background:none; padding:0; font-size:7px; line-height:1;}
+
+.btn.topBtn, a.btn.topBtn {display:block; margin:10px; padding:0;}
+.btn.topBtn .icons {width:40px; padding:10px; background:transparent; font-size:16px; color:#74cfc6; transition:color .4s,background-color .4s,border .4s,box-shadow .4s;}
+.btn.topBtn:hover .icons, .btn.topBtn:focus .icons {background-color:rgba(116,207,198,.1);}
+.btn.topBtn .icons.icon-delete {font-size:12px;}
+
+.btn-group .btn, .btn-group a.btn, .btn-group a.btn:link {padding:3px 10px 5px; border-radius:10px;}
+.btn-group .btn .icons {font-size:11px;}
+
+.btn.backToTop {position:fixed; right:16px; bottom:5px; z-index:10;}
+.btn.cornerBtn {position:absolute; right:0; top:0; padding:6px; box-shadow:0 1px 5px rgba(0,0,0,.23);}
+
+.tag {display:inline-block; padding:5px 4px 4px; background-color:#d5e9fa; border:1px solid #0084f4; border-radius:3px; font-size:8px; font-weight:700; text-transform:uppercase; line-height:1; color:#0084f4;}
+.tag.large {padding:5px 8px; font-size:10px;}
+.tag + .tag {margin-left:8px;}

@@ -1,0 +1,77 @@
+﻿/************ Flags ************/
+.flags {display:inline-block; width:16px; height:12px; background-image:url("../img/sprites/flags.png"); background-position-y:0; background-repeat:no-repeat; text-decoration:none; vertical-align:top; cursor:pointer;}
+.flags.flagAR, .flags.languageAG {background-position-x:0;}
+.flags.languageAR {background-position-x:-20px;}
+.flags.flagGB, .flags.languageBA {background-position-x:-40px;}
+.flags.flagBE, .flags.languageBE {background-position-x:-60px;}
+.flags.flagBG, .flags.languageBG {background-position-x:-80px;}
+.flags.flagBR, .flags.languageBR {background-position-x:-100px;}
+.flags.flagCA, .flags.languageCA {background-position-x:-120px;}
+.flags.flagCN, .flags.languageCN, .flags.languageC2 {background-position-x:-140px;}
+.flags.flagCH, .flags.languageCH {width:12px; background-position-x:-160px;}
+.flags.flagCZ, .flags.languageCZ {background-position-x:-180px;}
+.flags.flagDE, .flags.languageD {background-position-x:-200px;}
+.flags.flagDK, .flags.languageDE, .flags.languageDK {background-position-x:-220px;}
+.flags.flagEE, .flags.languageEE {background-position-x:-240px;}
+.flags.flagUS, .flags.languageEN, .flags.languageUS {background-position-x:-260px;}
+.flags.flagES, .flags.languageES {background-position-x:-280px;}
+.flags.flagFI, .flags.languageFI {background-position-x:-300px;}
+.flags.flagFR, .flags.languageFR {background-position-x:-320px;}
+.flags.flagGR, .flags.languageGK {background-position-x:-340px;}
+.flags.flagHR, .flags.languageHR {background-position-x:-360px;}
+.flags.flagHU, .flags.languageHU {background-position-x:-380px;}
+.flags.flagID, .flags.languageID {background-position-x:-400px;}
+.flags.flagIN, .flags.languageIN {background-position-x:-420px;}
+.flags.flagIE, .flags.languageIR, .flags.languageGA {background-position-x:-440px;}
+.flags.flagIT, .flags.languageIT {background-position-x:-460px;}
+.flags.flagJP, .flags.languageJA, .flags.languageJP {background-position-x:-480px;}
+.flags.flagKR, .flags.languageKO {background-position-x:-500px;}
+.flags.flagLT, .flags.languageLT {background-position-x:-520px;}
+.flags.flagLV, .flags.languageLV {background-position-x:-540px;}
+.flags.flagMX, .flags.languageMX {background-position-x:-560px;}
+.flags.flagMY, .flags.languageMY, .flags.languageMY2 {background-position-x:-580px;}
+.flags.flagNL, .flags.languageNL {background-position-x:-600px;}
+.flags.flagNO, .flags.languageNO {background-position-x:-620px;}
+.flags.flagPL, .flags.languagePL {background-position-x:-640px;}
+.flags.flagPT, .flags.languagePT {background-position-x:-660px;}
+.flags.flagRO, .flags.languageRO {background-position-x:-680px;}
+.flags.flagRU, .flags.languageRU {background-position-x:-700px;}
+.flags.flagSE, .flags.languageS {background-position-x:-720px;}
+.flags.flagSI, .flags.languageSI, .flags.languageSL {background-position-x:-740px;}
+.flags.flagSK, .flags.languageSK {background-position-x:-760px;}
+.flags.flagRS, .flags.languageSR, .flags.languageSH {background-position-x:-780px;}
+.flags.flagTH, .flags.languageTH {background-position-x:-800px;}
+.flags.flagTR, .flags.languageTR {background-position-x:-820px;}
+.flags.flagVN, .flags.languageVN {background-position-x:-840px;}
+.flags.flagUN, .flags.languageUN {background-position-x:-860px;}
+.flags.flagZA, .flags.languageZA {background-position-x:-880px;}
+.flags.flagEU, .flags.languageEU {background-position-x:-900px;}
+.flags.flagAT, .flags.languageAT {background-position-x:-920px;}
+.flags.flagAU, .flags.languageAU {background-position-x:-940px;}
+.flags.flagIS, .flags.languageIS {background-position-x:-960px;}
+.flags.flagSA, .flags.languageSA {background-position-x:-980px;}
+.flags.flagMT, .flags.languageMT {background-position-x:-1000px;}
+.flags.flagUY, .flags.languageUY {background-position-x:-1020px;}
+.flags.flagGY, .flags.languageGY {background-position-x:-1040px;}
+.flags.flagAE, .flags.languageAE {background-position-x:-1060px;}
+.flags.flagSG, .flags.languageSG {background-position-x:-1080px;}
+.flags.flagNZ, .flags.languageNZ {background-position-x:-1100px;}
+.flags.flagNP, .flags.languageNP {width:12px; background-position-x:-1120px;}
+.flags.flagTJ {background-position-x:-1140px;}
+.flags.flagPE {background-position-x:-1160px;}
+.flags.flagCO {background-position-x:-1180px;}
+.flags.flagHN {background-position-x:-1200px;}
+.flags.flagIL {background-position-x:-1220px;}
+.flags.flagET {background-position-x:-1240px;}
+.flags.flagDZ {background-position-x:-1260px;}
+.flags.flagKG {background-position-x:-1280px;}
+.flags.flagCD {background-position-x:-1300px;}
+.flags.flagCM {background-position-x:-1320px;}
+.flags.flagNG {background-position-x:-1340px;}
+.flags.flagKZ {background-position-x:-1360px;}
+.flags.flagKE {background-position-x:-1380px;}
+.flags.flagME {background-position-x:-1400px;}
+.flags.flagUA {background-position-x:-1420px;}
+.flags.flagAL {background-position-x:-1440px;}
+.flags.flagXK {background-position-x:-1460px;}
+.flags.flagMA {background-position-x:-1480px;}

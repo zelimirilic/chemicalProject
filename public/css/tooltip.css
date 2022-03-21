@@ -1,0 +1,18 @@
+﻿/************ Tooltip ************/
+.trigger {display:block !important}
+.tooltip {display:block !important; border:0; transition:opacity 0.5s, visibility 0.5s; z-index:10000;}
+.tooltip .tooltip-inner {position:relative; max-width:100%; padding:4px 10px; background:rgba(21,41,53,.9); opacity:.9; box-shadow:0 4px 4px rgba(0,0,0,.1); border-radius:2px; text-align:left; color:#fff;}
+.tooltip .tooltip-arrow {position:absolute; width:8px; height:4px; background:url("../img/icons/arrow.svg") no-repeat; opacity:.9; z-index:1;}
+.tooltip[x-placement^="top"] {margin-bottom:8px;}
+.tooltip[x-placement^="top"] .tooltip-arrow {left:calc(50% - 4px); bottom:-4px;}
+.tooltip[x-placement^="bottom"] {margin-top:8px;}
+.tooltip[x-placement^="bottom"] .tooltip-arrow {left:calc(50% - 4px); top:-4px; transform:rotate(180deg);}
+.tooltip[x-placement^="right"] {margin-left:8px;}
+.tooltip[x-placement^="right"] .tooltip-arrow {left:-6px; top:calc(50% - 4px); transform:rotate(90deg);}
+.tooltip[x-placement^="left"] {margin-right:8px;}
+.tooltip[x-placement^="left"] .tooltip-arrow {right:-6px; top:calc(50% - 4px); transform:rotate(-90deg);}
+.tooltip.popover .popover-inner {padding:16px; background:#fff; box-shadow:0 2px 10px #d3dae3; border-radius:4px; color:#5d6a7e; opacity:1;}
+.tooltip.popover .popover-arrow {width:0; height:0; background-image:none; border-style:solid; border-color:#fff; opacity:1;}
+.tooltip.popover[x-placement^="top"] .tooltip-arrow {left:calc(50% - 10px); bottom:-8px; margin:0 10px; border-width:10px 10px 0; border-left-color:transparent; border-right-color:transparent; border-bottom-color:transparent;}
+.tooltip[aria-hidden='true'] {visibility:hidden; opacity:0;}
+.tooltip[aria-hidden='false'] {visibility:visible; opacity:1;}

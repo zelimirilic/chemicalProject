@@ -1,0 +1,100 @@
+﻿/************ Pages ************/
+/****** Login, Forgot pass, Reset pass, Error page ******/
+.loginMain, .errorMain {height:100%; background-color:#f7f8fb; font-size:16px;}
+.errorMain {font-size:18px;}
+
+.imgLarge {width:100%; background:url("../img/login/illustration-bottom-large.svg") left bottom no-repeat, url("../img/login/illustration-top-large.svg") right top no-repeat;}
+.imgLarge > .row, .imgLarge > .card {background-color:#fff; box-shadow:0 5px 8px -1px rgba(60,72,91,0.1); border-radius:10px;}
+.imgLarge > .row {max-width:1110px; width:90%; height:700px; padding:40px;}
+.imgLarge > .card {width:720px;}
+
+.textIntro {flex:0 0 51.5%; max-width:530px; height:100%; margin-right:40px; background:#e8f6f5 url("../img/chemsoftLogoSmall.svg") 40px 40px no-repeat; border-radius:10px; font-size:18px;}
+.imgSmall {height:100%; background:url("../img/login/illustration-bottom-small.svg") left bottom no-repeat, url("../img/login/illustration-top-small.svg") right top no-repeat; border-radius:10px;}
+.welcomeTxt {width:360px; text-align:center;}
+.welcomeTtl {font-size:30px; font-weight:700; line-height:35px; color:#3c485b;}
+.infoTxt {margin-bottom:0; line-height:26px;}
+.errorTxt {padding:96px 150px; text-align:center;}
+.errorCode {width:267px; height:120px; margin:0 auto 56px; background:url("../img/login/404.svg") left bottom no-repeat;}
+.loginMain .icons {cursor:default;}
+
+.textBoxes {max-width:340px; margin:0 auto; padding-top:80px;}
+.textBoxes .introTxt {margin-bottom:56px; font-size:18px;}
+.textBoxes .introTxt h3 {margin-bottom:12px; font-size:25px; font-weight:700; color:#3c485b;}
+.textBoxes .form-control {height:100%; padding:12px 16px; font-size:16px;}
+.textBoxes .alert {margin-top:-32px;}
+.textBoxes .alert + .alert {margin-top:8px;}
+
+.loginMain .alert {padding:13px; border:0; font-weight:400; color:#fff; text-align:center;}
+.loginMain .alert.alert-danger {background:#ff5252;}
+.loginMain .alert.alert-success {background:#00c48c;}
+.loginMain .alert.alert-info {text-align:left; color:#3596b3;}
+.loginMain .alert.alert-info p {font-size:12px; line-height:1;}
+
+.login.popover {max-width:300px;}
+.login .tooltip-inner p {font-size:16px; line-height:19px;}
+.login .tooltip-inner p span.icons {line-height:1;}
+
+.validTxt {color:#00c48c;}
+.login .icons.circle {padding:4px; background:#d3dae3; font-size:7px; color:#fff;}
+.validTxt .icons.circle {background:#00c48c;}
+
+.progressBar {position:relative; width:80%; height:0; margin:0 auto; padding-top:50px; background:#f9f9f9; border-top:5px solid #595959; line-height:0;}
+.progressBarFill {position:absolute; left:0; top:-5px; border-top:5px solid #165b64;}
+
+/****** Home ******/
+.home p {margin:0;}
+
+/****** Settings page ******/
+.settingRow {border-bottom:1px solid #f0f0f0;}
+
+/****** Overview ******/
+.baseBox .card {margin:0; border:0; box-shadow:none; text-align:center;}
+.baseBox .card h6 {font-size:1rem;}
+.baseBox .card .card-block, .baseBox .card .card-footer {padding:0 3px;}
+.baseBox .card .card-block {flex:0 0 auto; padding-top:3px;}
+.baseBox .card .card-footer {justify-content:flex-start; background:transparent; border:0;}
+.baseBox .card > .cardInner {flex:1 1; margin:0 0;}
+.baseBox .card > .cardInner + .cardInner {margin-left:-1px; border-left:1px solid rgba(0,0,0,.1);}
+.baseBox .card .card-block h4 {margin:0; background:rgba(255,255,255,.15); border-bottom:1px solid rgba(0,0,0,.1);}
+.baseBox .card a {display:block; padding:30px 0; text-decoration:none; color:#fff;}
+.baseBox .card a:hover {color:#fff;}
+.baseBox .card .card-footer a {padding:16px .75rem; font-size:12px; font-weight:500;}
+
+.baseBox .levelNotStarted {background:#eff2f7;}
+.baseBox .levelWarning {background:#ffbe3d;}
+.baseBox .levelInProgress {background:#3596b3;}
+.baseBox .levelDone {background:#00c48c;}
+.baseBox .levelUrgent {background:#ff5252;}
+.baseBox .levelNotStarted h4, .baseBox .levelNotStarted a, .baseBox .levelNotStarted a:hover, .baseBox .levelWarning h4, .baseBox .levelWarning a, .baseBox .levelWarning a:hover {color:#3c485b;}
+
+/****** Product Type ******/
+.productType.card-body {max-height:79vh; overflow-y:auto;}
+
+/****** Document link ******/
+.docBox {display:-ms-flexbox; display:flex; -ms-flex-wrap:nowrap; flex-wrap:nowrap; -ms-flex-align:center; align-items:center; width:200px; padding:16px; border:1px solid #e2e8f0; border-radius:4px;}
+.docBox:hover {border-color:#3596b3;}
+.docBox + .docBox {margin-left:8px;}
+.docBox p {margin:0; font-size:13px; font-weight:500; text-transform:capitalize; color:#3c485b;}
+.docBox p.date {margin-top:4px; font-size:12px; font-weight:400; color:#496580;}
+
+/****** One-off-measure link ******/
+.externalMain {height:100%; background-color:#f7f8fb; font-size:16px; color:#5d6a7e;}
+.externalMain .imgLarge {width:100%; background:url("../img/login/illustration-bottom-large.svg") left bottom no-repeat, url("../img/login/illustration-top-large.svg") right top no-repeat;}
+.externalMain .imgLarge > .card {width:460px; padding:60px; background-color:#fff; box-shadow:0 5px 8px -1px rgba(60,72,91,0.1); border-radius:10px;}
+.externalMain .imgLarge > .card .success {min-height:290px;}
+.externalMain .logoIntro {width:125px; height:20px; margin-bottom:32px; background:url("../img/chemsoftLogoSmall.svg") 0 0 no-repeat;}
+.externalMain h3 {margin-bottom:12px; font-size:25px; font-weight:700; text-align:center; color:#3c485b;}
+.externalMain h6 {font-size:18px; font-weight:400; text-align:center;}
+.externalMain .dataBox {margin:56px 0;}
+.externalMain .dataBox p {margin-top:14px; margin-bottom:0;}
+.externalMain .dataBox p:first-child {margin-top:0;}
+.checkCircle {display:block; width:80px; height:80px; margin:0 auto 60px; background:url("../img/icons/checkCircle.svg") 0 0 no-repeat;}
+
+/****** Product Request ******/
+.requestBox {padding:0;}
+.requestBox .sticky-top {top:24px;}
+.requestBox .alerts {margin:24px 24px 0;}
+.requestBox h4 {margin-bottom:0; font-size:16px; line-height:19px;}
+
+.card-body.externalMain {padding:60px 200px; text-align:center;}
+.card-body.externalMain .btn {padding:8px 32px;}
