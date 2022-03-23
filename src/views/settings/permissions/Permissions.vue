@@ -95,10 +95,12 @@ export default {
     canEditPermissions: canEditPermissions,
     idToSlashedString: idToSlashedString,
     update(group) {
+      debugger;
       (this.permissions || []).splice(this.permissions.findIndex(x => x.userGroupID === group.userGroupID), 1, group);
       this.closeModal();
     },
     add(group) {
+      debugger;
       this.permissions.push(group);
       this.closeModal();
     },

@@ -1,9 +1,16 @@
+import Homepage_PO from '../../support/pageObjects/Homepage_PO';
+
 /// <reference types="Cypress" />
 
 describe("Test Login form via Chemsoft NG", () => {
-    it("Should be able to log in via Login form", () => {
 
-        cy.visit("https://dev04/system/login/chemsofttest");
+    beforeEach(function () {
+        const homePage_PO = new Homepage_PO();
+        homePage_PO.visitHomepage();
+
+    });
+
+    it("Should be able to log in via Login form", () => {
         cy.get('[name="user"]').click();
         cy.get('.username > .form-control').type("miljan");
         cy.get('.btn').contains('Sign in').click();
@@ -12,9 +19,8 @@ describe("Test Login form via Chemsoft NG", () => {
 
     });
 
-    it.only("Should not be able to log in via Login form", () => {
+    it("Should not be able to log in via Login form", () => {
 
-        cy.visit("https://dev04/system/login/chemsofttest");
         cy.get('[name="user"]').click();
         cy.get('.username > .form-control').type("zeljko");
         cy.get('.password > .form-control').type("somewrongpassword");
@@ -26,7 +32,6 @@ describe("Test Login form via Chemsoft NG", () => {
 
     it("Should not be able to log in via Login form - wrong user name", () => {
 
-        cy.visit("https://dev04/system/login/chemsofttest");
         cy.get('[name="user"]').click();
         cy.get('.username > .form-control').type("somewrongUsername");
         cy.get('.password > .form-control').type("somewrongpassword");

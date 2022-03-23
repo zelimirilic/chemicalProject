@@ -1,54 +1,43 @@
+import Homepage_PO from '../../support/pageObjects/Homepage_PO'
 /// <reference types="Cypress" />
 
 describe("Iterate over elements", () => {
 
+    beforeEach(function () {
+        const homePage_PO = new Homepage_PO();
+        homePage_PO.visitHomepage();
+        homePage_PO.clickOnSignIn();
+        cy.get('.nav-link').contains('List').click();
+    });
+
     it("Log information of product", () => {
 
-        cy.visit("https://dev04/system/login/chemsofttest");
-        cy.get('[name="user"]').click();
-        cy.get('.username > .form-control').type("miljan");
-        cy.get('.btn').contains('Sign in').click();
-        cy.get('.nav-link').contains('List').click();
-        // cy.get(".prodNo").each(($el, index, $list) => {
-        //     cy.log("Index: " + index + " : " + $el.text());
-
-    });
-
-    it("Choose a specific product", () => {
-
-        cy.visit("https://dev04/system/login/chemsofttest");
-        cy.get('[name="user"]').click();
-        cy.get('.username > .form-control').type("miljan");
-        cy.get('.btn').contains('Sign in').click();
-        cy.get('.nav-link').contains('List').click();
         cy.get(".prodNo").each(($el, index, $list) => {
-            if ($el.text() === 'Sigma 61887') {
-                cy.wrap($el).click();
-            };
-
+            //console.log("Index: " + index + " : " + $el.text());
+            //cy.log("Index: " + index + " : " + $el.text());
         });
+        cy.get(".prodNo").eq(4).invoke('text').as('prodNo');
+        cy.get('@prodNo').its('length').should('be.gt', 0);
+        //cy.get('@prodNo').should('include', 'Sigma');
     });
 
-    it("Validate a specific produc", () => {
+    it("Validate a first specific product", () => {
 
-        cy.visit("https://dev04/system/login/chemsofttest");
-        cy.get('[name="user"]').click();
-        cy.get('.username > .form-control').type("miljan");
-        cy.get('.btn').contains('Sign in').click();
-        cy.get('.nav-link').contains('List').click();
+        cy.get(".prodNo").eq(1).invoke('text').as('prodNo');
+        cy.get('@prodNo').its('length').should('be.gt', 0);
+        cy.get('@prodNo').should('include', 'Sigma');
+    });
+
+    it("Validate a second specific produc", () => {
+
         cy.get(".prodNo").eq(1).invoke('text').as('prodNo');
         cy.get('@prodNo').its('length').should('be.gt', 0);
         cy.get('@prodNo').should('include', 'Sigma 309451Test');
 
     });
 
-    it("Validate a specific produc", () => {
+    it("Validate a third specific produc", () => {
 
-        cy.visit("https://dev04/system/login/chemsofttest");
-        cy.get('[name="user"]').click();
-        cy.get('.username > .form-control').type("miljan");
-        cy.get('.btn').contains('Sign in').click();
-        cy.get('.nav-link').contains('List').click();
         cy.get('.tablinks').contains('Assembled').click();
         cy.get(".prodName").eq(2).invoke('text').as('prodName');
         cy.get('@prodName').its('length').should('be.gt', 0);
@@ -57,17 +46,22 @@ describe("Iterate over elements", () => {
 
     });
 
-    it("Validate a specific produc", () => {
+    it("Validate a fourth specific produc", () => {
 
-        cy.visit("https://dev04/system/login/chemsofttest");
-        cy.get('[name="user"]').click();
-        cy.get('.username > .form-control').type("miljan");
-        cy.get('.btn').contains('Sign in').click();
-        cy.get('.nav-link').contains('List').click();
         cy.get('.tablinks').contains('Assembled').click();
         cy.get(".symbols").as('symbol');
         cy.get('@symbol').should('have.length', 21);
         cy.get('@symbol').find(".iconPx24").invoke('attr', 'title').should('include', 'Xi');
+
+    });
+
+    it.only("Validate a fifth specific produc", () => {
+
+        cy.get('.prodNo').eq(1).then(($headerText) => {
+            const headerText = $headerText.text();
+            cy.log(headerText).its('length').should('be.gt', 0);
+
+        });
 
     });
 

@@ -12,6 +12,12 @@
 			</ModalDialog>
 		</div>
 		<label class="alert alert-danger w-100 mt-2" v-show="!isValid && errorMessage">{{ errorMessage }}</label>
+		<div class="d-flex mt-4" v-if="showDocumentLink && dat.applicationRequest && dat.applicationRequest.applicationDocument">
+			<a class="docBox w-auto" :href="dat.applicationRequest.applicationDocument.url" target="_blank">
+				<span class="docType icon-sds"></span>
+				<p>{{ dat.applicationRequest.applicationDocument.shortFileName }}</p>
+			</a>
+		</div>
 	</div>
 </template>
 
@@ -26,7 +32,7 @@ export default {
     InventoryAddSimple,
     ButtonIconAdd,
   },
-  props: ['dataProp', 'placeholder', 'text', 'title', 'required', 'readOnly', 'dat', 'value', 'validations', 'disableProductNameEditing', 'sdsNotRequired', 'shouldShowRequestButton'],
+  props: ['dataProp', 'placeholder', 'text', 'title', 'required', 'readOnly', 'dat', 'value', 'validations', 'disableProductNameEditing', 'sdsNotRequired', 'shouldShowRequestButton', 'showDocumentLink'],
   data() {
     return {
       showInventoryAdd: false,

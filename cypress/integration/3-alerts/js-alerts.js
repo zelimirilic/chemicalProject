@@ -2,10 +2,14 @@
 
 
 describe("Handle JS alerts", () => {
+
+    beforeEach(function () {
+        cy.visit("https://dev04/system/login/chemsofttest/?name=miljan&password=hirsl666");
+        cy.get('.nav-link').contains('Tools').click();
+    });
+
     it("Confirm JS alerts contains the correct text", () => {
 
-        cy.visit("https://dev04/system/login/chemsofttest/?name=miljan&password=hirsl666");
-        cy.get('.nav-link').contains('Tools').click({ force: true });
         cy.get('[href="/system/chemicals/risk_assessment/risks"]').click();
         cy.get(':nth-child(2) > td.prodName > a').click();
 
@@ -18,8 +22,6 @@ describe("Handle JS alerts", () => {
 
     it("Validate confirm alert box works correctly when user clicks OK", () => {
 
-        cy.visit("https://dev04/system/login/chemsofttest/?name=miljan&password=hirsl666");
-        cy.get('.nav-link').contains('Tools').click();
         cy.get('[href="/system/chemicals/risk_assessment/risks"]').click();
         cy.get(':nth-child(11) > td.prodName > a').click();
 
@@ -40,8 +42,6 @@ describe("Handle JS alerts", () => {
 
     it("Validate confirm alert box works correctly when user clicks Cancel", () => {
 
-        cy.visit("https://dev04/system/login/chemsofttest/?name=miljan&password=hirsl666");
-        cy.get('.nav-link').contains('Tools').click();
         cy.get('[href="/system/chemicals/risk_assessment/risks"]').click();
         cy.get(':nth-child(11) > td.prodName > a').click();
 

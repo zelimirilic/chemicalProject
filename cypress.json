@@ -1,8 +1,15 @@
 {
+    "baseUrl": "https://dev04/system/login/chemsofttest/?name=miljan&password=hirsl666",
     "defaultCommandTimeout": 15000,
     "projectId": "rq4wyv",
     "reporter": "cypress-multi-reporters",
     "reporterOptions": {
         "configFile": "reporter-config.json"
+    },
+    "chromeWebSecurity": false,
+    "pageLoadTimeout": 30000,
+    "ignoreTestFiles": "**/other/*",
+    "env": {
+        "chemsoft_homepage": "https://dev04/system/login/chemsofttest"
     }
 }

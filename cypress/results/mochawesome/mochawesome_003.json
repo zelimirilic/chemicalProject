@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2022-03-21T16:44:06.047Z",
-    "end": "2022-03-21T16:44:32.278Z",
-    "duration": 26231,
+    "start": "2022-03-23T14:16:35.684Z",
+    "end": "2022-03-23T14:17:00.949Z",
+    "duration": 25265,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "d2cdbebf-9ed4-406a-bfbe-db401eefba56",
+      "uuid": "c34e0d5c-b21d-466e-9191-e8fd12be35d3",
       "title": "",
       "fullFile": "cypress/integration/4-Navigation/chemsoft-navigation.js",
       "file": "cypress/integration/4-Navigation/chemsoft-navigation.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "5a28cd44-4162-4961-8169-d2acb75b8766",
+          "uuid": "10d49c5b-3b43-4cb7-9429-8b8632adef04",
           "title": "Validate Chemsoft home page links",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Confirm links redirect to the correct pages",
               "fullTitle": "Validate Chemsoft home page links Confirm links redirect to the correct pages",
               "timedOut": null,
-              "duration": 25052,
+              "duration": 25199,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "cy.visit(\"https://dev04/system/login/chemsofttest\");\ncy.url().should('include', 'chemsofttest');\ncy.get('.username > .form-control').type(\"miljan\");\ncy.get('.btn').contains('Sign in').click();\ncy.url().should('include', 'system');\ncy.wait(10000);\ncy.go('back');\ncy.url().should('include', 'chemsofttest');\ncy.reload();\ncy.url().should('include', 'https://dev04/system/login/chemsofttest');\ncy.get('.username > .form-control').type(\"miljan\");\ncy.get('.btn').contains('Sign in').click();\ncy.url().should('include', 'system');\ncy.wait(10000);\ncy.go('back');\ncy.get('[name=\"user\"]').click();\ncy.get('.username > .form-control').type(\"wrongUserName\");\ncy.get('.btn').contains('Sign in').click();\ncy.get('.alerts').should('have.text', '\\n\\tWrong user name or password\\n');",
               "err": {},
-              "uuid": "a2ad1ad7-c25f-4b67-87ca-7b4fb892e352",
-              "parentUUID": "5a28cd44-4162-4961-8169-d2acb75b8766",
+              "uuid": "fd79bdda-b35b-45aa-8969-1ac6bfacffd1",
+              "parentUUID": "10d49c5b-3b43-4cb7-9429-8b8632adef04",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "a2ad1ad7-c25f-4b67-87ca-7b4fb892e352"
+            "fd79bdda-b35b-45aa-8969-1ac6bfacffd1"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 25052,
+          "duration": 25199,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

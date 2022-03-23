@@ -251,7 +251,8 @@ export const reviewFields = function () {
 						title: this.getTranslation('I00.00009310', 'Pick product'), className: 'col-12', required: true, shouldShowRequestButton: true,
 						readOnly: true,
 						validations: [{ strFnc: 'return !props.required || !!data.product.id;', message: this.getTranslation('I00.00012080', 'Product is not set!') }],
-						iSafe: false
+						iSafe: false,
+						showDocumentLink: true
 					}
 				},
 				{

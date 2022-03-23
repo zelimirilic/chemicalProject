@@ -72,6 +72,7 @@
 
 /****** Document link ******/
 .docBox {display:-ms-flexbox; display:flex; -ms-flex-wrap:nowrap; flex-wrap:nowrap; -ms-flex-align:center; align-items:center; width:200px; padding:16px; border:1px solid #e2e8f0; border-radius:4px;}
+.docBox.w-auto {width:auto;}
 .docBox:hover {border-color:#3596b3;}
 .docBox + .docBox {margin-left:8px;}
 .docBox p {margin:0; font-size:13px; font-weight:500; text-transform:capitalize; color:#3c485b;}

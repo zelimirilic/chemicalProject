@@ -3,10 +3,13 @@
 
 describe("Move, copy and delete product in chemsoft", () => {
 
+    beforeEach(function () {
+        cy.visit("/");
+        cy.get('.nav-link').contains('Tools').click();
+    });
+
     it("Check product and move it on desired department", () => {
 
-        cy.visit("https://dev04/system/login/chemsofttest/?name=miljan&password=hirsl666");
-        cy.get('.nav-link').contains('Tools').click({ force: true });
         cy.get('[href="/system/chemicals/inventory"]').click();
         cy.get('.d-flex > :nth-child(2) > .icons').click({ force: true });
         cy.get(':nth-child(2) > .d-flex > :nth-child(2) > .icons').click({ force: true });
@@ -20,8 +23,6 @@ describe("Move, copy and delete product in chemsoft", () => {
 
     it("Check product and copy it on desired department", () => {
 
-        cy.visit("https://dev04/system/login/chemsofttest/?name=miljan&password=hirsl666");
-        cy.get('.nav-link').contains('Tools').click({ force: true });
         cy.get('[href="/system/chemicals/inventory"]').click();
         cy.get('.d-flex > :nth-child(2) > .icons').click({ force: true });
         cy.get('.mainTtl > :nth-child(1) > .d-flex > :nth-child(2)').click({ force: true });
