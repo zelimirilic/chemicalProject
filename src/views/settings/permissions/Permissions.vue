@@ -70,6 +70,21 @@ export default {
       showModal: false
     };
   },
+  beforeRouteLeave(to, from, next) {
+    this.$store.state.saveStatus = false;
+    if (this.permissions && this.isChanged) {
+      this.confirm(this.getTranslation('I00.00053950', 'Unsaved data'), this.getTranslation('I00.00053960', 'You have unsaved data. Are you sure you want to proceed?'))
+        .then(() => {
+          this.$store.state.saveStatus = false;
+          var routeMatch = to.path.indexOf('login') > -1;
+          if (routeMatch)
+            this.logOut();
+
+          next()
+        })
+        .catch(errorDebug);
+    } else next();
+  },
   methods: {
     getAllPermissions() {
       return axios.cancelAll()
@@ -95,12 +110,10 @@ export default {
     canEditPermissions: canEditPermissions,
     idToSlashedString: idToSlashedString,
     update(group) {
-      debugger;
       (this.permissions || []).splice(this.permissions.findIndex(x => x.userGroupID === group.userGroupID), 1, group);
       this.closeModal();
     },
     add(group) {
-      debugger;
       this.permissions.push(group);
       this.closeModal();
     },

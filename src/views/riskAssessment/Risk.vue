@@ -8,8 +8,8 @@
 				</template>
 				<template v-if="!isGeneral">
 					<ButtonIcon iconClass="icon-copy" @click="openCopyRaModal" v-tooltip="getTranslation('I00.00038410', 'Copy')" v-if="isNew" />
-					<ButtonIconRestore @click="revertRisk" v-if="writeRights && riskIsChanged" />
-					<ButtonIcon iconClass="icon-save" v-tooltip="getTranslation('I00.00004810', 'Save')" @click="tabChanged(activeStep, activeStep)" v-if="writeRights && riskIsChanged" />
+					<ButtonIconRestore :class="{ disabled: isSaving }" @click="revertRisk" v-if="writeRights && riskIsChanged" />
+					<ButtonIcon iconClass="icon-save" :class="{ disabled: isSaving }" v-tooltip="getTranslation('I00.00004810', 'Save')" @click="tabChanged(activeStep, activeStep)" v-if="writeRights && riskIsChanged" />
 					<ButtonIcon iconClass="icon-safetysheet" :class="{ disabled: (risk.activity.activityItems.length === 0 && !noProdSelected && risk.additionalRiskSource.length === 0) || !stepsDone.first() }" v-tooltip="getTranslation('I00.00000170', 'Safety sheet')" @click="openSafetySheetModal" v-if="activeStep >= steps.length - 2" />
 				</template>
 				<template v-if="!isGeneral && appSettings.permissions.signRiskAssessment.full">
@@ -130,7 +130,8 @@ export default {
         handlingProcessCategory: [],
         logs: [],
         symbols: [],
-        validUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 3))
+        validUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 3)),
+        isNew: true
       });
 
     },

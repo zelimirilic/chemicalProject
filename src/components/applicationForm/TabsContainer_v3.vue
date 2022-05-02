@@ -34,7 +34,7 @@
 						</div>
 					</div>
 					<div v-if="!element.children.any()" class="mt-3 py-4 stripedBg borderTRBL rounded"></div>
-					<component :is="element.template" :class="{ readOnly: tabsIcons[value] }" :element="element" v-bind="element.props" :childs="element.children" :dat="dat" :isEdit="isEdit" :additionalClass="additionalClass" @item-dragging="$emit('item-dragging', $event)" @set-selected="$emit('set-selected', $event)" @set-selected-container="$emit('set-selected-container', $event)" @remove-section="removeSection(element)" @grabbed="emitGrabbed" />
+					<component :is="element.template" :class="{ readOnly: tabsIcons[value] }" :element="element" v-bind="element.props" :childs="element.children" :dat="dat" :isEdit="isEdit" @modalInModal="$emit('modalInModal', $event)" :additionalClass="additionalClass" @item-dragging="$emit('item-dragging', $event)" @set-selected="$emit('set-selected', $event)" @set-selected-container="$emit('set-selected-container', $event)" @remove-section="removeSection(element)" @grabbed="emitGrabbed" />
 				</div>
 			</div>
 		</div>
@@ -52,44 +52,45 @@
 import Section from './Section_v3';
 import { getAllChildrens } from '../../libraries/common_v3';
 import ModalDialog from '../../components/common/modal/ModalDialog_v3';
-import ButtonOk from "../../components/common/button/button/ButtonOk_v3";
-import ButtonCancel from "../../components/common/button/button/ButtonCancel_v3";
+import ButtonOk from '../../components/common/button/button/ButtonOk_v3';
+import ButtonCancel from '../../components/common/button/button/ButtonCancel_v3';
 export default {
-  components: {
-    Section,
-    ModalDialog,
-    ButtonOk,
-    ButtonCancel
-  },
-  props: ['childs', 'text', 'value', 'required', 'dat', 'isEdit', 'canAdd', 'additionalClass', 'tabIcon', 'sendBtn', 'areTabsDraggable'],
-  methods: {
-    removeSection(section) {
-      this.confirm(this.getTranslation('I00.00055330', 'Remove section'), this.getTranslation('I00.00055340', 'Are you sure you want to remove section and all its content?'))
-        .then(() => {
-          var children = this.childs[this.value].children;
+	components: {
+		Section,
+		ModalDialog,
+		ButtonOk,
+		ButtonCancel,
+	},
+	props: ['childs', 'text', 'value', 'required', 'dat', 'isEdit', 'canAdd', 'additionalClass', 'tabIcon', 'sendBtn', 'areTabsDraggable'],
+	methods: {
+		removeSection(section) {
+			this.confirm(this.getTranslation('I00.00055330', 'Remove section'), this.getTranslation('I00.00055340', 'Are you sure you want to remove section and all its content?'))
+				.then(() => {
+					var children = this.childs[this.value].children;
 
-          var index = this.childs[this.value].children.indexOf(section);
-          children.remove(section);
+					var index = this.childs[this.value].children.indexOf(section);
+					children.remove(section);
 
-          if (children.any() && (section.props.isSelected || getAllChildrens(section).any(f => f.props.isSelected))) {
-            this.$emit('set-selected-container', index >= children.length ? children.last() : children[index]);
-          }
-        }).catch(this.errorDebug);
-    },
-    emitGrabbed(grabCol, element, event) {
-      this.$emit('grabbed', grabCol, element, event);
-    },
-  },
-  computed: {
-    tabsIcons() {
-      return this.childs.map(f => this.tabIcon && this.tabIcon(f));
-    },
-  },
-  mounted() {
-    if (process.env.NODE_ENV === 'development') window['thisTabsContainer'] = this;
+					if (children.any() && (section.props.isSelected || getAllChildrens(section).any((f) => f.props.isSelected))) {
+						this.$emit('set-selected-container', index >= children.length ? children.last() : children[index]);
+					}
+				})
+				.catch(this.errorDebug);
+		},
+		emitGrabbed(grabCol, element, event) {
+			this.$emit('grabbed', grabCol, element, event);
+		},
+	},
+	computed: {
+		tabsIcons() {
+			return this.childs.map((f) => this.tabIcon && this.tabIcon(f));
+		},
+	},
+	mounted() {
+		if (process.env.NODE_ENV === 'development') window['thisTabsContainer'] = this;
 
-    this.getTranslation('I00.00055330', 'Remove section');
-    this.getTranslation('I00.00055340', 'Are you sure you want to remove section and all its content?');
-  },
-}
+		this.getTranslation('I00.00055330', 'Remove section');
+		this.getTranslation('I00.00055340', 'Are you sure you want to remove section and all its content?');
+	},
+};
 </script>

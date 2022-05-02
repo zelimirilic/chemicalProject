@@ -11,7 +11,7 @@
 /************ Icons ************/
 .icons, a.icons, a.icons:not([href]):not([tabindex]) {display:inline-block; padding:8px; background-color:#eff2f7; border-radius:4px; text-decoration:none; font-size:14px; line-height:0; color:#5d6a7e; vertical-align:middle; cursor:pointer;}
 .icons:hover, .icons:focus, a.icons:hover, a.icons:focus, a.icons:not([href]):not([tabindex]):hover, a.icons:not([href]):not([tabindex]):focus {background-color:#e5e9f2;}
-.icons:active {background-color:#e8f6f5; color:#3596b3;}
+.icons:active, .icons.active {background-color:#e8f6f5; color:#3596b3;}
 .icons.xsmallIcn {font-size:9px;}
 .icons.smallIcn {font-size:12px;}
 .icons.mediumIcn {font-size:20px;}
@@ -95,6 +95,8 @@ button .icons {padding:0;}
 .icon-lock:before {content:"\e91b";}
 .icon-logout:before {content:"\e91c";}
 .icon-mail:before {content:"\e91d";}
+.icon-maximize:before {content:"\e969";}
+.icon-minimize:before {content:"\e96a";}
 .icon-minus:before {content:"\e91e";}
 .icon-move:before {content:"\e963";}
 .icon-next:before {content:"\e920";}

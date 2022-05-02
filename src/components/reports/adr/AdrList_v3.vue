@@ -4,7 +4,8 @@
 			<tr>
 				<Th class="IconColumn skipForSorting skipColumn ignoreInExportToExcel" name="icon"></Th>
 				<Th class="prodNo" prop="artNum" name="artNum" sort export :placeholder="getTranslation('I00.00002880', 'Prod. No.')">{{ getTranslation('I00.00002880', 'Prod. No.') }}</Th>
-				<Th class="prodName" prop="name" name="name" sort export defaultSort :placeholder="getTranslation('I00.00004270', 'Name')">{{ getTranslation('I00.00004270', 'Name') }}</Th>
+				<Th class="prodName" prop="name" name="name" sort export :placeholder="getTranslation('I00.00004270', 'Name')">{{ getTranslation('I00.00004270', 'Name') }}</Th>
+				<Th v-if="isPerDepartments" :prop="(f) => getOrganisationName(f)" name="departmentPath" sort defaultSort="desc" :placeholder="getTranslation('I00.00002940', 'Department')" :export="(f) => getOrganisationPathValues(f)">{{ getTranslation('I00.00002940', 'Department') }}</Th>
 				<Th class="supplier" prop="supplier" name="supplier" sort export :placeholder="getTranslation('I00.00004110', 'Supplier')">{{ getTranslation('I00.00004110', 'Supplier') }}</Th>
 				<Th class="prodNo" prop="un" name="un" sort export :placeholder="getTranslation('I00.00015630', 'UN')">{{ getTranslation('I00.00015630', 'UN') }}</Th>
 				<Th class="wp-110" prop="packagingGroup" name="packagingGroup" sort export :placeholder="getTranslation('I00.00015640', 'Packaging Group')">{{ getTranslation('I00.00015640', 'Packaging Group') }}</Th>
@@ -28,6 +29,9 @@
 				</td>
 				<td class="prodName">
 					<a :href="product.item.linkToISafe">{{ product.item.name }}</a>
+				</td>
+				<td v-if="isPerDepartments">
+					<span :title="product.item.departmentInfo.departmentPath">{{ product.item.departmentInfo.tableName }}</span>
 				</td>
 				<td class="supplier">
 					<a :href="product.item.linkToSupplier">
@@ -56,8 +60,8 @@
 </template>
 
 <script>
-import DataTable from '../../common/dataTable/DataTable_v3'
-import { parseSelectedColumns, getProp, columnsTranslator, saveReportData } from '../../../libraries/reports_v3';
+import DataTable from '../../common/dataTable/DataTable_v3';
+import { parseSelectedColumns, getProp, columnsTranslator, saveReportData, getOrganisationPathValues, getOrganisationName } from '../../../libraries/reports_v3';
 import AdditionalCell from '../components/AdditionalCell_v3';
 import Th from '../../common/dataTable/Th_v3';
 import { deepClone, hashCode } from '../../../libraries/common_v3';
@@ -74,6 +78,7 @@ export default {
       currentData: this.data.map(f => ({ ...f, hashCode: () => hashCode(f) })),
       cloneData: null,
       filteredDataValues: null,
+      isPerDepartments: this.data.find(x => x.departmentInfo)
     }
   },
   methods: {
@@ -81,6 +86,8 @@ export default {
     getProp: getProp,
     deepClone,
     save: saveReportData,
+    getOrganisationPathValues: getOrganisationPathValues,
+    getOrganisationName: getOrganisationName,
     exportAdditionalColumn(type, name) {
       return this.columnsTranslator(type).export(name)
     },

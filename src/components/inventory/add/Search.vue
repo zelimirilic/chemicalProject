@@ -1,5 +1,5 @@
 <template>
-	<div class="row align-items-center">
+	<div class="row flex-nowrap align-items-center">
 		<div class="col-auto">
 			<div class="specialType input-group">
 				<div class="input-group-prepend noColor" @click="submitSearch">
@@ -15,6 +15,9 @@
 			<Select :items="countries" :class="{ disabled: !countries }" prop="CountryName" :value="country" @input="$emit('countryChanged', $event)" />
 			<!-- <Animation smallAnimation v-if="!countries.any()"/> -->
 		</div>
+		<div class="col-auto ml-auto">
+			<span class="icons icon-maximize" :class="{ 'icon-minimize active': maximizeModal, 'icon-maximize': !maximizeModal }" @click="resizeModal()"></span>
+		</div>
 	</div>
 </template>
 
@@ -28,6 +31,7 @@ export default {
       searchCategory: null,
       searchWord: '',
       lastSearchObj: {},
+      maximizeModal: false
     };
   },
   methods: {
@@ -50,6 +54,10 @@ export default {
     focus() {
       this.$nextTick(() => this.$refs.input.$el.focus())
     },
+    resizeModal() {
+      this.maximizeModal = !this.maximizeModal;
+      this.$emit('maximize');
+    }
   },
   computed: {
     searchData() {

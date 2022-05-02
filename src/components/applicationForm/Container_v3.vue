@@ -16,15 +16,32 @@
 </template>
 
 <script>
-import Container from './Container';
-import ImortedComponents from '../../components/applicationForm/imortedComponents_v3';
-
-
+import { getAllChildrens, getFnc, setFnc } from '../../libraries/common_v3';
+import imortedComponents from './imortedComponents_v3';
 export default {
-  extends: Container,
-  name: 'Container',
   components: {
-    ImortedComponents
-  }
+    ...imortedComponents,
+  },
+  props: ['childs', 'text', 'required', 'isSelected', 'templates', 'dat', 'isEdit', 'element', 'additionalClass'],
+  name: 'Container',
+  methods: {
+    removeChild(item) {
+      this.childs.remove(item);
+
+      if (item.props.isSelected || getAllChildrens(item).any(f => f.props.isSelected))
+        this.$emit('set-selected-container', this.element);
+    },
+    selectContainer(item, event) {
+      if (item.children) {
+        event.stopPropagation();
+        this.$emit('set-selected-container', item);
+      }
+    },
+    emitGrabbed(grabCol, element, event) {
+      this.$emit('grabbed', grabCol, element, event);
+    },
+    getFnc,
+    setFnc,
+  },
 }
 </script>

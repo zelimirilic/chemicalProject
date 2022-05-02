@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import { submitDataThroughForm } from './forms';
 import axios from '../axios';
+import { ticker } from '../libraries/common';
 
 export const exportToExcel = (headers, data, departmentName) => {
     return axios.post('/ExportToExcel/ExportToOldExcel', { excel_headers: JSON.stringify(headers), excel_data: JSON.stringify(data), department_name: departmentName })
@@ -8,13 +9,14 @@ export const exportToExcel = (headers, data, departmentName) => {
             submitDataThroughForm("/ExportToExcel/DownloadExcelFile", { fileName: response.data.excelFileGuid });
         });
 }
-export const exportAllToExcel = (headers, datas, departmentNames) => {
-    return axios.post('/ExportToExcel/ExportAllToOldExcel', { excel_headers: headers, excel_datas: datas, department_names: departmentNames })
-        .then((response) => {
-            submitDataThroughForm("/ExportToExcel/DownloadExcelFile", { fileName: response.data.excelFileGuid });
-        });
-}
+export const exportAllToExcel = (headers, datas, departmentNames, message) => {
+    if (window.Ticker) window.Ticker.AddInfoMessage(message);
+    else ticker.addInfoMessage(message);
 
+    return axios.post('/ExportToExcel/ExportAllToOldExcelPostedAsText', JSON.stringify(headers) + '|~$|~' + JSON.stringify(datas) + '|~$|~' + JSON.stringify(departmentNames), { 'Content-Type': 'text/plain' }).then(response => {
+        submitDataThroughForm('/ExportToExcel/DownloadExcelFile', { fileName: response.data.excelFileGuid });
+    });
+};
 export const genericDangerSymbolsResult = (array, datatable_product) => {
     //array should be array of paramethers with which we extract array of objects we need to get appropriate symbols
     var result = new Array();

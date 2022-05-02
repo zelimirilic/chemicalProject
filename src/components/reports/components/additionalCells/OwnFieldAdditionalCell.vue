@@ -19,7 +19,7 @@ export default {
         items.push(item.value);
       return items;
     }, getValue() {
-      if (this.value)
+      if (this.value && !Array.isArray(this.value))
         return this.value;
       else {
         if (!Array.isArray(this.departmentValue)) {

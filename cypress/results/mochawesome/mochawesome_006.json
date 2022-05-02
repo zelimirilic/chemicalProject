@@ -1,0 +1,145 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-04-28T13:58:52.145Z",
+    "end": "2022-04-28T13:59:04.809Z",
+    "duration": 12664,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "770fdb45-f2a8-42b5-b25a-abc82851aaef",
+      "title": "",
+      "fullFile": "cypress/integration/1-login-started/log-in.js",
+      "file": "cypress/integration/1-login-started/log-in.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d0fa5e31-bc5e-49c6-b32e-7714751cf066",
+          "title": "Test Login form via Chemsoft NG",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should be able to log in via Login form",
+              "fullTitle": "Test Login form via Chemsoft NG Should be able to log in via Login form",
+              "timedOut": null,
+              "duration": 5427,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('[name=\"user\"]').click();\ncy.get('.username > .form-control').type(\"miljan\");\ncy.get('.btn').contains('Sign in').click();\ncy.get('a > img[alt=\"Chemsoft\"]').should('have.attr', 'alt', 'Chemsoft');",
+              "err": {},
+              "uuid": "604d00db-6fe6-4c9a-8a99-a5700dc91970",
+              "parentUUID": "d0fa5e31-bc5e-49c6-b32e-7714751cf066",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should not be able to log in via Login form",
+              "fullTitle": "Test Login form via Chemsoft NG Should not be able to log in via Login form",
+              "timedOut": null,
+              "duration": 4706,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('[name=\"user\"]').click();\ncy.get('.username > .form-control').type(\"zeljko\");\ncy.get('.password > .form-control').type(\"somewrongpassword\");\ncy.get('.btn').contains('Sign in').click();\ncy.get('a > img[alt=\"Chemsoft\"]').should('have.attr', 'alt', 'Chemsoft'); //cy.get('button').should('have.text', 'Update password');",
+              "err": {},
+              "uuid": "b678c5cd-b62b-45c8-94de-e26e888dac38",
+              "parentUUID": "d0fa5e31-bc5e-49c6-b32e-7714751cf066",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should not be able to log in via Login form - wrong user name",
+              "fullTitle": "Test Login form via Chemsoft NG Should not be able to log in via Login form - wrong user name",
+              "timedOut": null,
+              "duration": 2474,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('[name=\"user\"]').click();\ncy.get('.username > .form-control').type(\"somewrongUsername\");\ncy.get('.password > .form-control').type(\"somewrongpassword\");\ncy.get('.btn').contains('Sign in').click();\ncy.get('.alerts').should('have.html', '<div>Wrong username or password</div><button type=\"button\" class=\"close ml-auto\"><span>×</span></button>');\ncy.get('.alerts').should('have.text', 'Wrong username or password×');",
+              "err": {},
+              "uuid": "a6f8bcd8-60a5-43e2-a11e-f8f20042ac12",
+              "parentUUID": "d0fa5e31-bc5e-49c6-b32e-7714751cf066",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "604d00db-6fe6-4c9a-8a99-a5700dc91970",
+            "b678c5cd-b62b-45c8-94de-e26e888dac38",
+            "a6f8bcd8-60a5-43e2-a11e-f8f20042ac12"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 12607,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.2"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/results/mochawesome",
+        "quite": "true",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.1.1"
+    }
+  }
+}

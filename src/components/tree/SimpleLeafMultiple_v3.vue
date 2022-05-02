@@ -6,7 +6,7 @@
 			<A :treeid="idStr" class="" :title="item.name">{{ item.name }}</A>
 			<sup class="astera" v-if="starred">*</sup>
 		</span>
-		<CheckBox class="ml-2" :value="listOfSelectedItems && listOfSelectedItems.filter((x) => x.item.orgID.id === item.orgID.id).length > 0" />
+		<CheckBox class="ml-2" :value="listOfSelectedItems && listOfSelectedItems.filter((x) => x.orgID.id === item.orgID.id).length > 0" />
 	</span>
 </template>
 

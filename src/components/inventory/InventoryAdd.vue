@@ -1,9 +1,9 @@
 <template>
-	<div>
+	<div class="cardCont">
 		<SmallLoader v-if="!countries" />
 		<template v-else>
 			<div class="card-body">
-				<Search :countries="countries" :country="country" :lastSearchObj="lastSearchObj" :numberOfProducts="(searchedProducts || []).length" @search="submitSearch" @countryChanged="country = $event" ref="search" />
+				<Search @maximize="$emit('maximize')" :countries="countries" :country="country" :lastSearchObj="lastSearchObj" :numberOfProducts="(searchedProducts || []).length" @search="submitSearch" @countryChanged="country = $event" ref="search" />
 				<Products class="addTbl mt-4" :lastSearchObj="lastSearchObj" :products="searchedProducts" :addedProductIds="productAdded()" :tabs="tabs" :selectedTab="selectedTab" :units="units" @tabChanged="tabChanged" @productSelected="productSelected" @clearPreviouslySelectedProduct="selectedProduct = null" :isVisible="isVisible" @addProduct="$emit('productPicked', $event)" @removeProduct="$emit('productRemoved', $event)" />
 				<div class="card pageWrapper mt-3" v-if="selectedProduct">
 					<h6 class="boxTtl">

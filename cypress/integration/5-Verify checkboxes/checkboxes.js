@@ -11,7 +11,7 @@ describe("Move, copy and delete product in chemsoft", () => {
     it("Check product and move it on desired department", () => {
 
         cy.get('[href="/system/chemicals/inventory"]').click();
-        cy.get('.d-flex > :nth-child(2) > .icons').click({ force: true });
+        cy.get('.d-flex > :nth-child(2) > .icon-move').click({ force: true });
         cy.get(':nth-child(2) > .d-flex > :nth-child(2) > .icons').click({ force: true });
         cy.get('.eqtree-children > :nth-child(2) > span > a').click({ force: true });
         cy.get('[title="OK"]').click({ force: true });
@@ -24,7 +24,7 @@ describe("Move, copy and delete product in chemsoft", () => {
     it("Check product and copy it on desired department", () => {
 
         cy.get('[href="/system/chemicals/inventory"]').click();
-        cy.get('.d-flex > :nth-child(2) > .icons').click({ force: true });
+        cy.get('.d-flex > :nth-child(2) > .icon-move').click({ force: true });
         cy.get('.mainTtl > :nth-child(1) > .d-flex > :nth-child(2)').click({ force: true });
         cy.get('.eqtree-open > .eqtree-children > :nth-child(2) > span > a').click({ multiple: true });
         cy.get('[title="OK"]').click({ force: true });

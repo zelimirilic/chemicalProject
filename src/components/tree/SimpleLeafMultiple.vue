@@ -1,5 +1,5 @@
 <template>
-	<span class="custom-check right" @click="$emit('click')" :class="{ depChecked: listOfSelectedItems && listOfSelectedItems.filter((x) => x.item.orgID.id === item.orgID.id).length > 0 }">
+	<span class="custom-check right" @click="$emit('click')" :class="{ depChecked: listOfSelectedItems && listOfSelectedItems.filter((x) => x.orgID.id === item.orgID.id).length > 0 }">
 		<span class="custom-label" :class="{ disabled: item.disabled }">
 			<i class="eqtree-icon eqtree-themeicon eqtree-themeicon-custom"></i>
 			<i class="pl-2" :class="item.icon" v-if="item.icon" />

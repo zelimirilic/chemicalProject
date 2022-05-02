@@ -75,6 +75,36 @@
 				<InventoryModal v-else :data="inventoryModalData.inventoryListData" :sideTree="sideTree" :title="inventoryModalData.modalTitle" :excelTitle="inventoryModalData.modalTitle" :perPage.sync="perPage" />
 			</ModalDialog>
 
+			<div v-if="!appSettings.overviewProductsOnList" class="card pageWrapper">
+				<CardBox :text="getTranslation('I00.00007810', 'Lists and remarks')">
+					<DataTable tableWrapClass="smallTbl" :tableData="restrictionList" noSearch noHeader noFooter>
+						<template v-slot:head>
+							<tr>
+								<Th class="prodNo w-85" prop="Name" sort>{{ getTranslation('I00.00020000', 'Name') }}</Th>
+								<Th prop="ModifiedDate" sort>{{ getTranslation('I00.00006850', 'Number') }}</Th>
+							</tr>
+						</template>
+						<template v-slot:body="product">
+							<tr>
+								<td class="prodNo w-85 bold">
+									<A @click="openRestrictionListModal(product.item.ID, product.item.ID_mdbID, product.item.ListText)">{{ product.item.ListText }}</A>
+								</td>
+								<td class="text-right noWrap">
+									<span class="mr-2">{{ product.item.Amount }}</span>
+								</td>
+							</tr>
+						</template>
+					</DataTable>
+				</CardBox>
+			</div>
+
+			<ModalDialog v-if="showRestrictionListModal" :title="restrictionListModalData.name" additional-class="w-80" @close="cancelRestrictionListModal()">
+				<SmallLoader v-if="!restrictionListModalData" />
+				<RestrictionListModal v-else :data="restrictionListModalData.products" :title="restrictionListModalData.departmentName + ' (' + parseDate(Date.now()) + ')'" :excelTitle="restrictionListModalData.departmentName" :revisionDate="parseDate(restrictionListModalData.listUpdateDate)" :perPage.sync="perPage" />
+			</ModalDialog>
+		</div>
+
+		<div class="row card-deck mt-4">
 			<div v-if="!appSettings.overviewDisableFiveLatestChangeProds" class="card pageWrapper">
 				<CardBox :text="getTranslation('I00.00009040', 'Latest updated products')">
 					<DataTable tableWrapClass="smallTbl" :tableData="latestUpdatedProdList" noSearch noHeader noFooter>
@@ -108,36 +138,35 @@
 					</DataTable>
 				</CardBox>
 			</div>
-		</div>
-
-		<div v-if="appSettings.riskAssessment_v3" class="card pageWrapper mt-4">
-			<CardBox :text="getTranslation('I00.00005730', 'One-off measures')">
-				<div class="p-3" v-if="measureList.length == 0">{{ getTranslation('I00.00044540', 'No one-off measures on this department.') }}</div>
-				<DataTable :tableData="measureList" :perPage="5" noHeader v-else>
-					<template v-slot:head>
-						<tr>
-							<Th class="prodName" prop="Name" sort export>{{ getTranslation('I00.00002940', 'DepartmenText') }}</Th>
-							<Th prop="Task" sort export>{{ getTranslation('I00.00005730', 'OneOfMeasuresText') }}</Th>
-							<Th :prop="(type) => getTranslation(type.MeasureType, 'Type')" sort export>{{ getTranslation('I00.00006930', 'TypeText') }}</Th>
-							<Th prop="ResponsiblePerson" sort export>{{ getTranslation('I00.00005970', 'In charge') }}</Th>
-							<Th class="wp-100" prop="Date" sort export>{{ getTranslation('I00.00008620', 'Date') }}</Th>
-						</tr>
-					</template>
-					<template v-slot:body="measure">
-						<tr>
-							<td class="prodName">
-								<span>{{ measure.item.Name }}</span>
-							</td>
-							<td>
-								<A @click="getMeasures(measure.item.ID)">{{ measure.item.Task }}</A>
-							</td>
-							<td>{{ measure.item.MeasureType ? getTranslation(measure.item.MeasureType, 'TextOfMeasureType') : '' }}</td>
-							<td>{{ measure.item.ResponsiblePerson }}</td>
-							<td class="wp-100 noWrap">{{ parseDate(measure.item.Date) }}</td>
-						</tr>
-					</template>
-				</DataTable>
-			</CardBox>
+			<div v-if="appSettings.riskAssessment_v3" class="card pageWrapper">
+				<CardBox :text="getTranslation('I00.00005730', 'One-off measures')">
+					<div class="p-3" v-if="measureList.length == 0">{{ getTranslation('I00.00044540', 'No one-off measures on this department.') }}</div>
+					<DataTable :tableData="measureList" :perPage="5" noHeader v-else>
+						<template v-slot:head>
+							<tr>
+								<Th class="prodName w-25" prop="Name" sort export>{{ getTranslation('I00.00002940', 'DepartmenText') }}</Th>
+								<Th prop="Task" sort export>{{ getTranslation('I00.00005730', 'OneOfMeasuresText') }}</Th>
+								<Th :prop="(type) => getTranslation(type.MeasureType, 'Type')" sort export>{{ getTranslation('I00.00006930', 'TypeText') }}</Th>
+								<Th prop="ResponsiblePerson" sort export>{{ getTranslation('I00.00005970', 'In charge') }}</Th>
+								<Th class="wp-100" prop="Date" sort export>{{ getTranslation('I00.00008620', 'Date') }}</Th>
+							</tr>
+						</template>
+						<template v-slot:body="measure">
+							<tr>
+								<td class="prodName w-25">
+									<span>{{ measure.item.Name }}</span>
+								</td>
+								<td>
+									<A @click="getMeasures(measure.item.ID)">{{ measure.item.Task }}</A>
+								</td>
+								<td>{{ measure.item.MeasureType ? getTranslation(measure.item.MeasureType, 'TextOfMeasureType') : '' }}</td>
+								<td>{{ measure.item.ResponsiblePerson }}</td>
+								<td class="wp-100 noWrap">{{ parseDate(measure.item.Date) }}</td>
+							</tr>
+						</template>
+					</DataTable>
+				</CardBox>
+			</div>
 		</div>
 		<template>
 			<ModalDialog additional-class="w-70" :title="getTranslation('I00.00005730', 'One-off measures')" @close="showMeasureListModal = false" v-if="showMeasureListModal">
@@ -182,6 +211,7 @@ import StatusOfDocumentsModal from '../../components/overview/StatusOfDocumentsM
 import DocumentRemarksModal from '../../components/overview/DocumentRemarksModal';
 import RiskAssessmentModal from '../../components/overview/RiskAssessmentModal';
 import InventoryModal from '../../components/overview/InventoryModal';
+import RestrictionListModal from '../../components/overview/RestrictionListModal';
 
 export default {
   components: {
@@ -189,7 +219,8 @@ export default {
     StatusOfDocumentsModal,
     DocumentRemarksModal,
     RiskAssessmentModal,
-    InventoryModal
+    InventoryModal,
+    RestrictionListModal
   },
   data: function () {
     return {
@@ -214,15 +245,18 @@ export default {
         noOfInvProducts: { key: 'NO_OF_INVENTORY_PRODUCTS', value: 0, data: null },
         noOfInvItems: { key: 'NO_OF_INVENTORY_ITEMS', value: 0, data: null }
       },
+      restrictionList: [],
       latestUpdatedProdList: [],
       measureList: [],
       hasSignRAPermission: false,
       hasRAPermission: false,
       loading: true,
+      showRestrictionListModal: false,
       showDocumentStatusModal: false,
       showDocumentRemarksModal: false,
       showRiskAssessmentStatusModal: false,
       showInventoryStatusModal: false,
+      restrictionListModalData: {},
       documentStatusModalData: null,
       documentRemarksModalData: null,
       riskAssessmentModalData: null,
@@ -251,6 +285,7 @@ export default {
           this.inventoryStatus.noOfInvItems.value = response.data.NoOfInv;
           this.hasRAPermission = response.data.HasRAPermission;
           this.hasSignRAPermission = response.data.HasSignRAPermission;
+          this.restrictionList = response.data.ProdListList;
           this.latestUpdatedProdList = response.data.LatestUpdatedProdList;
           this.measureList = response.data.MeasureList;
           this.loading = false;
@@ -321,6 +356,22 @@ export default {
         })
         .catch(errorDebug);
     },
+    openRestrictionListModal(listId, listIdMdbId, name) {
+      this.restrictionListModalData.name = name;
+      var orgId = this.sideTree.getSelectedDepartment().orgID;
+      axios.postWithCancelToken('/OverviewListAndRemarks/GetListAndRemarks', { orgId: orgId.id, orgID_mdbID: orgId.id_mdbID, listId: listId, listIdMdbId: listIdMdbId })
+        .then(response => {
+          response.data = JSON.parse(response.data);
+          this.restrictionListModalData.listDescription = response.data.ListDescription;
+          this.restrictionListModalData.departmentName = response.data.DepartmentName;
+          this.restrictionListModalData.departmentPath = response.data.DepartmentPath;
+          this.restrictionListModalData.products = response.data.Products;
+          this.restrictionListModalData.listUpdateDate = response.data.ListUpdateDate;
+          this.restrictionListModalData.userHasExcludedRestrictionListPermissions = response.data.UserHasExcludedRestrictionListPermissions;
+          this.showRestrictionListModal = true;
+        })
+        .catch(errorDebug);
+    },
     saveCustomerAnswers(docRemarks) {
       axios.postWithCancelToken('/OverviewDocumentRemarks/SaveForChemsoft', { model: docRemarks })
         .then(response => {
@@ -341,6 +392,10 @@ export default {
     cancelRiskModal() {
       this.showRiskAssessmentStatusModal = false;
       this.riskAssessmentModalData = null;
+    },
+    cancelRestrictionListModal() {
+      this.showRestrictionListModal = false;
+      this.restrictionListModalData = {};
     },
     cancelInventoryModal() {
       this.showInventoryStatusModal = false;

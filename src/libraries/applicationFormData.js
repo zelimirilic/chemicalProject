@@ -34,7 +34,7 @@ var basicFields = () => {
 				template: 'InformationBox',
 				icon: 'infobox',
 				name: Vue.prototype.getTranslation('I00.00040090', 'Information'),
-				props: { propRoot: 'informationBox', placeholder: Vue.prototype.getTranslation('I00.00055380', 'Some text here'), text: Vue.prototype.getTranslation('I00.00040090', 'Information') + ':', className: 'col-12', iSafe: false }
+				props: { propRoot: 'informationBox', placeholder: Vue.prototype.getTranslation('I00.00055380', 'Some text here'), text: Vue.prototype.getTranslation('I00.00040090', 'Information') + ':', className: 'col-12' }
 			},
 			{
 				template: 'Container',
@@ -70,8 +70,7 @@ export const requestFields = function () {
 						validations: [{ strFnc: 'return !props.required || !(data.product.name || \'\').isNullOrEmpty();', message: this.getTranslation('I00.00020310', 'Missing required field') }],
 						disableProductNameEditing: false,
 						sdsNotRequired: true,
-						shouldShowRequestButton: true,
-						iSafe: false
+						shouldShowRequestButton: true
 					}
 				},
 				{
@@ -79,7 +78,7 @@ export const requestFields = function () {
 					icon: 'sdspublisher',
 					canBeOnlyOne: true,
 					name: this.getTranslation('I00.00006760', 'SDS publisher'),
-					props: { dataProp: 'product.supplierName', text: this.getTranslation('I00.00006760', 'SDS publisher'), placeholder: 'SDS publisher', className: 'col-12', required: true, iSafe: false }
+					props: { dataProp: 'product.supplierName', text: this.getTranslation('I00.00006760', 'SDS publisher'), placeholder: 'SDS publisher', className: 'col-12', required: true }
 				},
 				{
 					template: 'DepartmentWithConsumption',
@@ -101,8 +100,7 @@ export const requestFields = function () {
 							required: true
 						},
 						usingDash: true,
-						className: 'col-12',
-						iSafe: false
+						className: 'col-12'
 					},
 				},
 				{
@@ -110,7 +108,7 @@ export const requestFields = function () {
 					icon: 'productdescriptiongroup',
 					canBeOnlyOne: true,
 					name: this.getTranslation('I00.00012470', 'Describe how the product is to be used'),
-					props: { dataProp: 'dynamic.usageDescription', placeholder: this.getTranslation('I00.00012470', 'Describe how the product is to be used'), text: this.getTranslation('I00.00012470', 'Describe how the product is to be used'), className: 'col-12', required: true, iSafe: false }
+					props: { dataProp: 'dynamic.usageDescription', placeholder: this.getTranslation('I00.00012470', 'Describe how the product is to be used'), text: this.getTranslation('I00.00012470', 'Describe how the product is to be used'), className: 'col-12', required: true }
 				},
 				{
 					template: 'InputGroup',
@@ -122,8 +120,7 @@ export const requestFields = function () {
 						text: this.getTranslation('I00.00012810', 'Your email address'),
 						tooltipTxt: this.getTranslation('I00.00020670', 'Email of group or person responsible for approval'),
 						className: 'col-12', required: true,
-						validations: [{ strFnc: 'return validators.email.fnc(value);', message: this.getTranslation('I00.00012710', 'Please provide a valid email adress.') }],
-						iSafe: false
+						validations: [{ strFnc: 'return validators.email.fnc(value);', message: this.getTranslation('I00.00012710', 'Please provide a valid email adress.') }]
 					}
 				},
 				{
@@ -134,8 +131,7 @@ export const requestFields = function () {
 					props: {
 						dataProp: 'dynamic.confirmEmail', type: 'email', placeholder: this.getTranslation('I00.00012530', 'Confirm email address'),
 						text: this.getTranslation('I00.00012530', 'Confirm email address'), className: 'col-12', required: true,
-						validations: [{ strFnc: 'return data.dynamic.email === data.dynamic.confirmEmail;', message: this.getTranslation('I00.00012700', 'Email address did not match the email address in the Confirm field.') }],
-						iSafe: false
+						validations: [{ strFnc: 'return data.dynamic.email === data.dynamic.confirmEmail;', message: this.getTranslation('I00.00012700', 'Email address did not match the email address in the Confirm field.') }]
 					}
 				},
 				{
@@ -143,7 +139,7 @@ export const requestFields = function () {
 					icon: 'usergroup',
 					canBeOnlyOne: true,
 					name: this.getTranslation('I00.00020670', 'Email of group or person responsible for approval'),
-					props: { dataProp: 'dynamic.approvalGroups', text: this.getTranslation('I00.00020670', 'Email of group or person responsible for approval'), className: 'col-12', users: [], iSafe: false },
+					props: { dataProp: 'dynamic.approvalGroups', text: this.getTranslation('I00.00020670', 'Email of group or person responsible for approval'), className: 'col-12', users: [] },
 				},
 			],
 			basicFields: basicFields()
@@ -156,14 +152,14 @@ export const requestFields = function () {
 					icon: 'producttypegroup',
 					canBeOnlyOne: true,
 					name: this.getTranslation('I00.00007350', 'product type'),
-					props: { dataProp: 'productTypes', text: this.getTranslation('I00.00007350', 'product type'), title: this.getTranslation('I00.00007350', 'product type'), className: 'col-12', required: false, iSafe: false }
+					props: { dataProp: 'productTypes', text: this.getTranslation('I00.00007350', 'product type'), title: this.getTranslation('I00.00007350', 'product type'), className: 'col-12', required: false }
 				},
 				{
 					template: 'ProductGroup',
 					icon: 'replaceproductgroup',
 					canBeOnlyOne: true,
 					name: this.getTranslation('I00.00012770', 'Replaces the following product(s)'),
-					props: { dataProp: 'replaceProduct', text: this.getTranslation('I00.00012770', 'Replaces the following product(s)'), title: this.getTranslation('I00.00012770', 'Replaces the following product(s)'), className: 'col-12', required: false, iSafe: false }
+					props: { dataProp: 'replaceProduct', text: this.getTranslation('I00.00012770', 'Replaces the following product(s)'), title: this.getTranslation('I00.00012770', 'Replaces the following product(s)'), className: 'col-12', required: false }
 				},
 				{
 					template: 'DepartmentWithConsumption',
@@ -185,8 +181,7 @@ export const requestFields = function () {
 							required: false
 						},
 						usingDash: true,
-						className: 'col-12',
-						iSafe: false
+						className: 'col-12'
 					},
 				},
 				{
@@ -194,42 +189,42 @@ export const requestFields = function () {
 					icon: 'storagegroup',
 					canBeOnlyOne: true,
 					name: this.getTranslation('I00.00020590', 'Describe how to store the product'),
-					props: { dataProp: 'dynamic.storageDescription', placeholder: this.getTranslation('I00.00020590', 'Describe how to store the product'), text: this.getTranslation('I00.00020590', 'Describe how to store the product'), className: 'col-12', required: false, iSafe: false }
+					props: { dataProp: 'dynamic.storageDescription', placeholder: this.getTranslation('I00.00020590', 'Describe how to store the product'), text: this.getTranslation('I00.00020590', 'Describe how to store the product'), className: 'col-12', required: false }
 				},
 				{
 					template: 'UploadFileGroup',
 					icon: 'uploadgroup',
 					name: this.getTranslation('I00.00016670', 'Attach document'),
 					canBeOnlyOne: true,
-					props: { dataProp: 'applicationDocument', text: this.getTranslation('I00.00016670', 'Attach document'), title: this.getTranslation('I00.00016670', 'Attach document'), className: 'col-12', required: false, iSafe: false }
+					props: { dataProp: 'applicationDocument', text: this.getTranslation('I00.00016670', 'Attach document'), title: this.getTranslation('I00.00016670', 'Attach document'), className: 'col-12', required: false }
 				},
 				{
 					template: 'TrafficLight',
 					icon: 'trafficLight',
 					name: this.getTranslation('I00.00049950', 'Traffic lights'),
 					canBeOnlyOne: true,
-					props: { dataProp: 'product.currentTrafficLights', text: this.getTranslation('I00.00049950', 'Traffic lights'), title: this.getTranslation('I00.00049950', 'Traffic lights'), className: 'col-2', iSafe: false }
+					props: { dataProp: 'product.currentTrafficLights', text: this.getTranslation('I00.00049950', 'Traffic lights'), title: this.getTranslation('I00.00049950', 'Traffic lights'), className: 'col-2' }
 				},
 				{
 					template: 'DateGroup',
 					icon: 'producttest',
 					name: this.getTranslation('I00.00054440', 'Product is on test'),
 					canBeOnlyOne: true,
-					props: { dataProp: 'productOnTestUntil', text: this.getTranslation('I00.00054440', 'Product is on test') + ':', className: 'col-12', minDate: { parameters: '', strFnc: 'return new Date()' }, required: false, iSafe: false }
+					props: { dataProp: 'productOnTestUntil', text: this.getTranslation('I00.00054440', 'Product is on test') + ':', className: 'col-12', minDate: { parameters: '', strFnc: 'return new Date()' }, required: false }
 				},
 				{
 					template: 'RestrictionAndProhibitionLists',
 					icon: 'restrictionlists',
 					name: this.getTranslation('I00.00043120', 'Restriction and prohibition lists'),
 					canBeOnlyOne: true,
-					props: { dataProp: 'restrictionAndProhibitionLists', text: this.getTranslation('I00.00043120', 'Restriction and prohibition lists') + ':', className: 'col-12', minDate: { parameters: '', strFnc: 'return new Date()' }, iSafe: false }
+					props: { dataProp: 'restrictionAndProhibitionLists', text: this.getTranslation('I00.00043120', 'Restriction and prohibition lists') + ':', className: 'col-12', minDate: { parameters: '', strFnc: 'return new Date()' } }
 				},
 				{
 					template: 'OwnFields',
 					icon: 'ownfields',
 					name: this.getTranslation('I00.00028730', 'Own fields'),
 					canBeOnlyOne: true,
-					props: { dataProp: 'ownFields', text: this.getTranslation('I00.00028730', 'Own fields') + ':', className: 'col-12', iSafe: false }
+					props: { dataProp: 'ownFields', text: this.getTranslation('I00.00028730', 'Own fields') + ':', className: 'col-12' }
 				},
 			]
 		},
@@ -251,7 +246,6 @@ export const reviewFields = function () {
 						title: this.getTranslation('I00.00009310', 'Pick product'), className: 'col-12', required: true, shouldShowRequestButton: true,
 						readOnly: true,
 						validations: [{ strFnc: 'return !props.required || !!data.product.id;', message: this.getTranslation('I00.00012080', 'Product is not set!') }],
-						iSafe: false,
 						showDocumentLink: true
 					}
 				},
@@ -275,8 +269,7 @@ export const reviewFields = function () {
 							required: true
 						},
 						usingDash: true,
-						className: 'col-12',
-						iSafe: false
+						className: 'col-12'
 					},
 				},
 			]
@@ -289,7 +282,7 @@ export const reviewFields = function () {
 					icon: 'producttypegroup',
 					canBeOnlyOne: true,
 					name: this.getTranslation('I00.00007350', 'product type'),
-					props: { dataProp: 'productTypes', text: this.getTranslation('I00.00007350', 'product type'), title: this.getTranslation('I00.00007350', 'product type'), className: 'col-12', required: false, iSafe: false }
+					props: { dataProp: 'productTypes', text: this.getTranslation('I00.00007350', 'product type'), title: this.getTranslation('I00.00007350', 'product type'), className: 'col-12', required: false }
 				},
 				{
 					template: 'DepartmentWithConsumption',
@@ -311,8 +304,7 @@ export const reviewFields = function () {
 							required: false
 						},
 						usingDash: true,
-						className: 'col-12',
-						iSafe: false
+						className: 'col-12'
 					},
 				},
 				{
@@ -320,28 +312,28 @@ export const reviewFields = function () {
 					icon: 'producttest',
 					name: this.getTranslation('I00.00054440', 'Product is on test'),
 					canBeOnlyOne: true,
-					props: { dataProp: 'productOnTestUntil', text: this.getTranslation('I00.00054440', 'Product is on test') + ':', className: 'col-12', minDate: { parameters: '', strFnc: 'return new Date()' }, required: false, iSafe: false }
+					props: { dataProp: 'productOnTestUntil', text: this.getTranslation('I00.00054440', 'Product is on test') + ':', className: 'col-12', minDate: { parameters: '', strFnc: 'return new Date()' }, required: false }
 				},
 				{
 					template: 'UploadFileGroup',
 					icon: 'uploadgroup',
 					name: this.getTranslation('I00.00016670', 'Attach document'),
 					canBeOnlyOne: true,
-					props: { dataProp: 'applicationDocument', text: this.getTranslation('I00.00016670', 'Attach document'), title: this.getTranslation('I00.00016670', 'Attach document'), className: 'col-12', required: false, iSafe: false }
+					props: { dataProp: 'applicationDocument', text: this.getTranslation('I00.00016670', 'Attach document'), title: this.getTranslation('I00.00016670', 'Attach document'), className: 'col-12', required: false }
 				},
 				{
 					template: 'RestrictionAndProhibitionLists',
 					icon: 'restrictionlists',
 					name: this.getTranslation('I00.00005540', 'Restriction and prohibition lists'),
 					canBeOnlyOne: true,
-					props: { dataProp: 'restrictionAndProhibitionLists', text: this.getTranslation('I00.00005540', 'Restriction and prohibition lists') + ':', className: 'col-12', minDate: { parameters: '', strFnc: 'return new Date()' }, iSafe: false }
+					props: { dataProp: 'restrictionAndProhibitionLists', text: this.getTranslation('I00.00005540', 'Restriction and prohibition lists') + ':', className: 'col-12', minDate: { parameters: '', strFnc: 'return new Date()' } }
 				},
 				{
 					template: 'OwnFields',
 					icon: 'ownfields',
 					name: this.getTranslation('I00.00028730', 'Own fields'),
 					canBeOnlyOne: true,
-					props: { dataProp: 'ownFields', text: this.getTranslation('I00.00028730', 'Own fields') + ':', isReview: true, className: 'col-12', iSafe: false }
+					props: { dataProp: 'ownFields', text: this.getTranslation('I00.00028730', 'Own fields') + ':', isReview: true, className: 'col-12' }
 				},
 			]
 		}, basicFields()];

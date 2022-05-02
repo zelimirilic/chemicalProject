@@ -115,6 +115,7 @@ input[type="checkbox"] + label.readOnly, input[type="radio"] + label.readOnly {c
 
 /************ Datepicker ************/
 .dateInp.mx-datepicker-inline {min-width:120px;}
+.smallDate .dateInp.mx-datepicker-inline {max-width:120px;}
 .dateInp .mx-input {height:auto;}
 .dateInp.mx-datepicker-inline.notValid .mx-input {border-color:#ff5252;}
 .dateBox .mx-calendar-content .cell:hover, .dateBox .mx-calendar-content .cell:focus {background-color:#165b64; color:#fff; outline:none;}

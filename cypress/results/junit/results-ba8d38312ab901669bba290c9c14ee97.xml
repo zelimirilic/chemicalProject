@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.0000" tests="3" failures="0">
+  <testsuite name="Root Suite" timestamp="2022-04-28T13:55:06" tests="0" file="cypress/integration/3-alerts/js-alerts.js" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="Handle JS alerts" timestamp="2022-04-28T13:55:06" tests="3" time="39.4170" failures="0">
+    <testcase name="Handle JS alerts Confirm JS alerts contains the correct text" time="15.8740" classname="Confirm JS alerts contains the correct text">
+    </testcase>
+    <testcase name="Handle JS alerts Validate confirm alert box works correctly when user clicks OK" time="11.5440" classname="Validate confirm alert box works correctly when user clicks OK">
+    </testcase>
+    <testcase name="Handle JS alerts Validate confirm alert box works correctly when user clicks Cancel" time="11.9190" classname="Validate confirm alert box works correctly when user clicks Cancel">
+    </testcase>
+  </testsuite>
+</testsuites>

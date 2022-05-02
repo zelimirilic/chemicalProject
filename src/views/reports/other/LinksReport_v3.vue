@@ -14,49 +14,48 @@ import LinksList from '../../../components/reports/other/LinksList_v3';
 import { parseProducts } from '../../../libraries/reports_v3';
 
 export default {
-  name: 'LinksReport',
-  components: {
-    Reports,
-    LinksList,
-  },
-  data() {
-    return {
-      prodData: null,
-      selectedColumns: [],
-      usages: [],
-      storages: [],
-      hiddenColumns: [],
-      pageStyle: null,
-      perPage: 15,
-    };
-  },
-  methods: {
-    getSelectedDepartmentList() {
-      this.prodData = null;
-      var node = window.SideTree.GetSelectedNode();
-      return axios
-        .cancelAll()
-        .postWithCancelToken('/OrgProdListLinks/GetDepartments', { pagestyle: this.pageStyle, selectedColumns: this.selectedColumns, orgid: node.KeyID, org_mdbid: node.KeyID_mdbID })
-        .then(response => {
-          if (response) {
-            this.prodData = parseProducts(response, this.sideTree.getAllData());
-          }
-        })
-        .catch(errorDebug);
-    },
-    tabChanged(event) {
-      this.pageStyle = event;
-      this.getSelectedDepartmentList();
-
-    },
-  },
-  computed: {
-    canEdit() {
-      return this.pageStyle === 'singlenode' && (this.selectedColumns || []).filter((f) => f.ownField == true).any();
-    }
-  },
-  beforeDestroy() {
-    axios.cancelAll();
-  }
+	name: 'LinksReport',
+	components: {
+		Reports,
+		LinksList
+	},
+	data() {
+		return {
+			prodData: null,
+			selectedColumns: [],
+			usages: [],
+			storages: [],
+			hiddenColumns: [],
+			pageStyle: null,
+			perPage: 15
+		};
+	},
+	methods: {
+		getSelectedDepartmentList() {
+			this.prodData = null;
+			var node = window.SideTree.GetSelectedNode();
+			return axios
+				.cancelAll()
+				.postWithCancelToken('/OrgProdListLinks/GetDepartments', { pagestyle: this.pageStyle, selectedColumns: this.selectedColumns, orgid: node.KeyID, org_mdbid: node.KeyID_mdbID })
+				.then(response => {
+					if (response) {
+						this.prodData = parseProducts(response, this.sideTree.getAllData());
+					}
+				})
+				.catch(errorDebug);
+		},
+		tabChanged(event) {
+			this.pageStyle = event;
+			this.getSelectedDepartmentList();
+		}
+	},
+	computed: {
+		canEdit() {
+			return this.pageStyle === 'singlenode' && (this.selectedColumns || []).filter(f => f.ownField == true).any();
+		}
+	},
+	beforeDestroy() {
+		axios.cancelAll();
+	}
 };
 </script>

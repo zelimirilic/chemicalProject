@@ -4,10 +4,10 @@
 			<div class="whiteBg borderTRBL rounded">
 				<TreeMultiple class="hp-280 py-3 pl-3" :data="data" :state="state" @click="addItem($event)" :listOfSelectedItems="listOfSelectedItems" v-if="data" />
 			</div>
-			<div class="multiSelTree mxhp-156 mt-3 scrollBar">
+			<div class="multiSelTree mxhp-156 mt-3 scrollBar" v-if="listOfSelectedItems.length > 0">
 				<div class="statements d-flex align-items-center" v-for="(item, index) in listOfSelectedItems" :key="index">
-					<div class="col" :title="nodeNamePath(item)">{{ item.item.name }}</div>
-					<div class="col-auto"><span class="icons icon-delete plainIcn" :title="getTranslation('I00.00039230', 'Delete')" @click="addItem(item)"></span></div>
+					<div class="col" :title="nodeNamePath(sideTree.getAllData().find((y) => y.item.orgID.id === item.orgID.id))">{{ item.name }}</div>
+					<div class="col-auto"><span class="icons icon-delete plainIcn" :title="getTranslation('I00.00039230', 'Delete')" @click="removeItem(item)"></span></div>
 				</div>
 			</div>
 		</div>
@@ -45,6 +45,9 @@ export default {
   methods: {
     addItem(item) {
       this.$emit('addItem', item);
+    },
+    removeItem(item) {
+      this.$emit('removeItem', item);
     },
     sendList() {
       this.$emit('input', this.selectedItem);

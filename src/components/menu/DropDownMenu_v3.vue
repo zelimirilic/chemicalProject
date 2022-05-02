@@ -1,7 +1,7 @@
 <template>
 	<component :is="component || 'div'" :class="`drop${drop || 'down'}`" @click="dropdownVisible = !dropdownVisible">
 		<slot></slot>
-		<div class="dropdown-menu" :class="{ [`dropdown-menu-${align}`]: align, [additionalClass]: additionalClass, showDropdown: dropdownVisible }" v-show="dropdownVisible">
+		<div class="chemsoft-langmenu__dropdown" :class="{ [`chemsoft-langmenu__dropdown--${align}`]: align, [additionalClass]: additionalClass }" v-show="dropdownVisible">
 			<slot name="items"></slot>
 		</div>
 	</component>

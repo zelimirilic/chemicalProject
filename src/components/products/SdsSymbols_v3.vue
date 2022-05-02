@@ -2,7 +2,9 @@
 	<div>
 		<div v-if="dat.any()">
 			<div class="left">
-				<a class="mx-1" :class="'flags ' + getFlag(arr)" v-for="(arr, ind) in dat" :key="ind + arr" :href="arr.url" target="_blank"><span :title="arr.language"></span></a>
+				<a class="mx-1" v-for="(arr, ind) in dat" :key="ind + arr" :href="arr.url" target="_blank">
+					<span class="flagsISO" :title="arr.flagTitle">{{ arr.flagText }}</span>
+				</a>
 			</div>
 		</div>
 		<template v-else>-</template>
@@ -10,14 +12,7 @@
 </template>
 
 <script>
-import { isNullOrEmpty } from '../../libraries/common_v3';
-
 export default {
-  props: ['dat'],
-  methods: {
-    getFlag(item) {
-      return isNullOrEmpty(item.countryLanguageID) ? 'language' + item.languageCode : 'flag' + item.countryLanguageID.split('-').last();
-    }
-  },
-}
+	props: ['dat']
+};
 </script>

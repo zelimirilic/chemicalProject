@@ -1,3 +1,4 @@
+
 <template>
 	<div class="scrollWrap pb-4">
 		<div class="row px-4 pt-20 align-items-start">
@@ -134,8 +135,8 @@
 		<CardBox class="mt-5" additionalClass="lightGrayBg borderT" :text="getTranslation('I00.00019100', 'InternalNotes')">
 			<TextAreaGroup class="mt-4 mb-0 px-4" v-model="risk.handlingInstructions.internalNotes"></TextAreaGroup>
 		</CardBox>
-		<ModalDialog additional-class="w-80" :withFooter="true" :title="getTranslation('I00.00007080', 'Search product')" @close="showAddProductModal = false" v-show="showAddProductModal">
-			<InventoryAddSimple @productPicked="addProductToList" @productRemoved="removeProduct" @cancel="showAddProductModal = false" :addedProductsIds="getAddedProductIds()" :isVisible="showAddProductModal" :selectMultipleProducts="true" withConsumption withProductType :validations="validations" />
+		<ModalDialog :class="{ maximize: maximizeModal, minimize: !maximizeModal }" :additionalClass="{ maximize: maximizeModal, minimize: !maximizeModal }" :withFooter="true" :title="getTranslation('I00.00007080', 'Search product')" @close="showAddProductModal = false" v-show="showAddProductModal">
+			<InventoryAddSimple @maximize="maximizeModal = !maximizeModal" @productPicked="addProductToList" @productRemoved="removeProduct" @cancel="showAddProductModal = false" :addedProductsIds="getAddedProductIds()" :isVisible="showAddProductModal" :selectMultipleProducts="true" withConsumption withProductType :validations="validations" />
 		</ModalDialog>
 	</div>
 </template>
@@ -161,6 +162,8 @@ export default {
       orgId: null,
       showAddProductModal: false,
       $modelValidators: [],
+      ventilationType: null,
+      maximizeModal: false
     };
   },
   props: ['risk', 'options', 'common'],
@@ -318,5 +321,19 @@ export default {
       this.nodeSelected(this.sideTree.getSelectedDepartment());
     }
   },
+  mounted() {
+    if (this.risk.isNew) {
+      var nod = this.sideTree.getSelectedDepartment();
+      axios
+        .post('/OrganisationInfo/GetDepartmentInfo', { orgId: nod.orgID.id, orgIdMdbId: nod.orgID.id_mdbID })
+        .then(response => {
+          var opEnvironmentType = this.options['operationEnvironmentTypeList'].find(f => f.value === response.data.departmentInfo.ventilationType);
+          this.propSelected('operationEnvironmentType', opEnvironmentType)
+          this.risk.exposedNumberOfPeople = response.data.departmentInfo.exposedPerson;
+
+        })
+        .catch(errorDebug);
+    }
+  }
 };
 </script>

@@ -1,0 +1,5 @@
+﻿@import "../base/_typography.scss";
+
+@function vr($index, $divide: 1) {
+    @return calc($rhythm * $index / $divide);
+}

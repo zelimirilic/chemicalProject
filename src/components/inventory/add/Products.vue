@@ -1,8 +1,8 @@
 <template>
-	<Tabs class="card pageWrapper" tabcontent="hp-240" :class="{ disabled: isPickingProduct }" :tabs="tabs" prop="text" :value="selectedTab" @input="$emit('tabChanged', $event)">
+	<Tabs class="card pageWrapper" :class="{ disabled: isPickingProduct }" :tabs="tabs" prop="text" :value="selectedTab" @input="$emit('tabChanged', $event)">
 		<SmallLoader v-if="!products" />
 		<template v-else>
-			<DataTable tableClass="border0" tableWrapClass="hp-240" :tableData="products" :isSearchResult="true" :hasOuterSearchWord="lastSearchObj.search_word" noHeader noFooter noSearch :perPage="10000">
+			<DataTable tableClass="border0" :tableData="products" :isSearchResult="true" :hasOuterSearchWord="lastSearchObj.search_word" noHeader noFooter noSearch :perPage="10000">
 				<template #head>
 					<tr>
 						<Th class="prodNo" prop="ArtNo" sort>{{ getTranslation('I00.00002880', 'Product number') }}</Th>
@@ -55,120 +55,117 @@ import Tabs from '../../common/tabs/Tabs';
 import { parseDate } from '../../../libraries/date';
 
 export default {
-  components: {
-    Tabs,
-  },
-  props: ['products', 'units', 'tabs', 'selectedTab', 'addedProductIds', 'lastSearchObj', 'isVisible'],
-  data() {
-    return {
-      showTooltip: false,
-      prodTooltips: {},
-      tooltipProdList: null,
-      isPickingProduct: false,
-      selectedProductId: null
-    };
-  },
-  methods: {
-    pickProduct(prod) {
-      this.isPickingProduct = true;
-      var defaultUnit = this.units.find(f => idsAreEqual(f.id, { ID: 3, ID_mdbID: 10 })) || this.units.first();
-      return this.getProductDetails(prod)
-        .then(() => {
-          this.isPickingProduct = false;
-          return {
-            id: {
-              id: prod.Id,
-              id_mdbID: prod.Id_mdbId,
-              clvid: prod.VariantId,
-            },
-            artNo: prod.ArtNo,
-            name: prod.Name,
-            supplierName: prod.SupplierName,
-            isCustomerProduct: this.tabs[this.selectedTab].id === 0,
-            usage: { unit: defaultUnit, isSet: true },
-            storage: { unit: defaultUnit, isSet: false },
-            startDate: parseDate(new Date()),
-            productTypes: JSON.parse(prod.ProductTypeIds || '[]').map(f => ({ id: parseID(f) })),
-            productGuid: prod.ProductGuid,
-          };
-        });
-    },
-    getSymbol(sym) {
-      return sym.UserDefined ? sym.ImageURL : (this.appSettings.imageFolder + sym.PictureName + '_medium.gif')
-    },
-    getSymbolTitle(sym) {
-      return sym.UserDefined ? sym.Phrase : ((sym.Description.match('^CLP') || []).any() ? sym.Phrase : sym.FaroKod)
-    },
-    addProduct(prod) {
-      this.pickProduct(prod)
-        .then((response) => this.$emit('addProduct', response));
-    },
-    removeProduct(prod) {
-      this.$emit('clearPreviouslySelectedProduct');
-      this.selectedProductId = null;
-      this.$emit('removeProduct', this.findAddedProductId(prod));
-    },
-    productSelected(prod) {
-      this.$emit('clearPreviouslySelectedProduct');
-      this.selectedProductId = { Id: prod.Id, Id_mdbId: prod.Id_mdbId, clvid: prod.VariantId };
-      this.pickProduct(prod)
-        .then((response) => this.$emit('productSelected', response));
-    },
-    getMsdsLink(content) {
-      return this.settings.appUrl + content.replace('../', '');
-    },
-    findAddedProductId(item) {
-      return this.addedProductIds ? (this.addedProductIds.find(x => x.id === item.Id && x.id_mdbID === item.Id_mdbId && x.clvid === item.VariantId) || null) : null;
-    },
-    isSelectedProduct(prod) {
-      return this.selectedProductId && this.selectedProductId.Id === prod.item.Id && this.selectedProductId.Id_mdbId === prod.item.Id_mdbId && this.selectedProductId.clvid === prod.item.VariantId;
-    },
-    getProductDetails(prod) {
-      var selectedNode = this.sideTree.getSelectedDepartment();
-      if (this.selectedTab === 0) {
-        var url = '/InventoryAmountsAndLocalVariations/' + (this.appSettings.systemUsesLocalVariation ? "ShowWithVariantsJson" : "ShowJson");
-        return axios.post(url,
-          {
-            prod_id: prod.Id,
-            prodid_mdbID: prod.Id_mdbId,
-            prod_variation_id: prod.VariantId,
-            orgid: selectedNode ? selectedNode.orgID.id : 0,
-            org_mdbid: selectedNode ? selectedNode.orgID.id_mdbID : 0,
-            close_on_add: null,
-            hide_amounts_ui: null,
-            inventory_add: null,
-            call_from_local_info: null,
-            min_date: null,
-            year: null,
-            add_substitution: null,
-            isCustomerProduct: true,
-            productTypes: null,
-            fromKit: null,
-          })
-          .then(response => response.data)
-          .catch(errorDebug);
-      } else {
-        return Promise.resolve({
-          ...prod,
-          isCustomerProduct: false,
-          variants: this.appSettings.systemUsesLocalVariation ? [] : null
-        });
-      }
-    },
-    createProdId(prod) {
-      return { id: prod.Id, id_mdbID: prod.Id_mdbId, clvid: prod.VariantId };
-    },
-    isLocalID: isLocalID
-  },
-  mounted() {
-    if (process.env.NODE_ENV === 'development') window['thisInventoryProducts'] = this;
-  },
-  watch: {
-    isVisible() {
-      if (!this.isVisible) {
-        this.selectedProductId = null;
-      }
-    }
-  }
-}
+	components: {
+		Tabs
+	},
+	props: ['products', 'units', 'tabs', 'selectedTab', 'addedProductIds', 'lastSearchObj', 'isVisible'],
+	data() {
+		return {
+			showTooltip: false,
+			prodTooltips: {},
+			tooltipProdList: null,
+			isPickingProduct: false,
+			selectedProductId: null
+		};
+	},
+	methods: {
+		pickProduct(prod) {
+			this.isPickingProduct = true;
+			var defaultUnit = this.units.find(f => idsAreEqual(f.id, { ID: 3, ID_mdbID: 10 })) || this.units.first();
+			return this.getProductDetails(prod).then(() => {
+				this.isPickingProduct = false;
+				return {
+					id: {
+						id: prod.Id,
+						id_mdbID: prod.Id_mdbId,
+						clvid: prod.VariantId
+					},
+					artNo: prod.ArtNo,
+					name: prod.Name,
+					supplierName: prod.SupplierName,
+					isCustomerProduct: this.tabs[this.selectedTab].id === 0,
+					usage: { unit: defaultUnit, isSet: true },
+					storage: { unit: defaultUnit, isSet: false },
+					startDate: parseDate(new Date()),
+					productTypes: JSON.parse(prod.ProductTypeIds || '[]').map(f => ({ id: parseID(f) })),
+					productGuid: prod.ProductGuid
+				};
+			});
+		},
+		getSymbol(sym) {
+			return sym.UserDefined ? sym.ImageURL : this.appSettings.imageFolder + sym.PictureName + '_medium.gif';
+		},
+		getSymbolTitle(sym) {
+			return sym.UserDefined ? sym.Phrase : (sym.Description.match('^CLP') || []).any() ? sym.Phrase : sym.FaroKod;
+		},
+		addProduct(prod) {
+			this.pickProduct(prod).then(response => this.$emit('addProduct', response));
+		},
+		removeProduct(prod) {
+			this.$emit('clearPreviouslySelectedProduct');
+			this.selectedProductId = null;
+			this.$emit('removeProduct', this.findAddedProductId(prod));
+		},
+		productSelected(prod) {
+			this.$emit('clearPreviouslySelectedProduct');
+			this.selectedProductId = { Id: prod.Id, Id_mdbId: prod.Id_mdbId, clvid: prod.VariantId };
+			this.pickProduct(prod).then(response => this.$emit('productSelected', response));
+		},
+		getMsdsLink(content) {
+			return this.settings.appUrl + content.replace('../', '');
+		},
+		findAddedProductId(item) {
+			return this.addedProductIds ? this.addedProductIds.find(x => x.id === item.Id && x.id_mdbID === item.Id_mdbId && x.clvid === item.VariantId) || null : null;
+		},
+		isSelectedProduct(prod) {
+			return this.selectedProductId && this.selectedProductId.Id === prod.item.Id && this.selectedProductId.Id_mdbId === prod.item.Id_mdbId && this.selectedProductId.clvid === prod.item.VariantId;
+		},
+		getProductDetails(prod) {
+			var selectedNode = this.sideTree.getSelectedDepartment();
+			if (this.selectedTab === 0) {
+				var url = '/InventoryAmountsAndLocalVariations/' + (this.appSettings.systemUsesLocalVariation ? 'ShowWithVariantsJson' : 'ShowJson');
+				return axios
+					.post(url, {
+						prod_id: prod.Id,
+						prodid_mdbID: prod.Id_mdbId,
+						prod_variation_id: prod.VariantId,
+						orgid: selectedNode ? selectedNode.orgID.id : 0,
+						org_mdbid: selectedNode ? selectedNode.orgID.id_mdbID : 0,
+						close_on_add: null,
+						hide_amounts_ui: null,
+						inventory_add: null,
+						call_from_local_info: null,
+						min_date: null,
+						year: null,
+						add_substitution: null,
+						isCustomerProduct: true,
+						productTypes: null,
+						fromKit: null
+					})
+					.then(response => response.data)
+					.catch(errorDebug);
+			} else {
+				return Promise.resolve({
+					...prod,
+					isCustomerProduct: false,
+					variants: this.appSettings.systemUsesLocalVariation ? [] : null
+				});
+			}
+		},
+		createProdId(prod) {
+			return { id: prod.Id, id_mdbID: prod.Id_mdbId, clvid: prod.VariantId };
+		},
+		isLocalID: isLocalID
+	},
+	mounted() {
+		if (process.env.NODE_ENV === 'development') window['thisInventoryProducts'] = this;
+	},
+	watch: {
+		isVisible() {
+			if (!this.isVisible) {
+				this.selectedProductId = null;
+			}
+		}
+	}
+};
 </script>

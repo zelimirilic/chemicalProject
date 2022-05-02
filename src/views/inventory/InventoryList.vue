@@ -22,12 +22,13 @@
 					{{ lastUserData == null ? '' : lastUserData.user + ', ' + lastUserData.shortDate }}
 				</p>
 				<SelectGroup class="form-inline" :items="years" :value="getYear(selectedYear)" @input="yearChanged($event)" :text="getTranslation('I00.00022850', 'Active year')" compareByHash />
-				<CheckBoxGroup class="ml-3" :class="{ disabled: this.disableInactiveProducts }" v-model="inactiveProducts" :text="getTranslation('I00.00028620', 'Show inactive product')" @input="toggleCheck()">{{ getTranslation('I00.00028620', 'Show inactive product') }}</CheckBoxGroup>
+				<CheckBoxGroup class="ml-3" v-model="activeProducts" :text="getTranslation('I00.00057310', 'Show active product')" @input="toggleCheck()"></CheckBoxGroup>
+				<CheckBoxGroup class="ml-3" v-model="inactiveProducts" :text="getTranslation('I00.00028620', 'Show inactive product')" @input="toggleCheck()"></CheckBoxGroup>
 			</div>
 			<DataTable :class="{ readOnly: !writeRights }" :tableData="inventoryData" :perPage.sync="perPage" :title="getTranslation('I00.00003910', 'Invenotory list')" excelTitle noHeader v-show="!isSaving">
 				<template #head>
 					<tr>
-						<th class="iconCol" v-if="writeRights"><CheckBoxGroup :value="areAllSelected" @input="selectAll" alwaysOn /></th>
+						<th class="iconCol" v-if="writeRights && (activeProducts || !inactiveProducts)"><CheckBoxGroup :value="areAllSelected" @input="selectAll" alwaysOn /></th>
 						<Th class="prodNo" prop="artNo" sort export>{{ getTranslation('I00.00002880', 'ArticleNo') }}</Th>
 						<Th class="prodName w-25" prop="artName" sort export defaultSort>{{ getTranslation('I00.00003590', 'ProductName') }}</Th>
 						<Th class="w-15" prop="supplierName" sort export>{{ getTranslation('I00.00004110', 'SupplierName') }}</Th>
@@ -87,8 +88,8 @@
 				</template>
 			</DataTable>
 		</MainTitle>
-		<ModalDialog additional-class="w-80" :title="getTranslation('I00.00049020', 'Add to inventory')" :withFooter="true" @close="showAddProductModal = false" v-show="showAddProductModal">
-			<InventoryAdd :minDate="minDate" :maxDate="maxDate" @productPicked="productPicked" @addProduct="addProduct" @productRemoved="removeProduct" @cancel="showAddProductModal = false" :withFooter="true" :addedProductsIds="getAddedProductIds()" withConsumption withProductType :validations="validations" :isVisible="showAddProductModal" :okButtonText="getTranslation('I00.00054510', 'Add & close')" />
+		<ModalDialog :class="{ maximize: maximizeModal, minimize: !maximizeModal }" :additionalClass="{ maximize: maximizeModal, minimize: !maximizeModal }" :title="getTranslation('I00.00049020', 'Add to inventory')" :withFooter="true" @close="showAddProductModal = false" v-show="showAddProductModal">
+			<InventoryAdd @maximize="maximizeModal = !maximizeModal" :minDate="minDate" :maxDate="maxDate" @productPicked="productPicked" @addProduct="addProduct" @productRemoved="removeProduct" @cancel="showAddProductModal = false" :withFooter="true" :addedProductsIds="getAddedProductIds()" withConsumption withProductType :validations="validations" :isVisible="showAddProductModal" :okButtonText="getTranslation('I00.00054510', 'Add & close')" />
 		</ModalDialog>
 		<ModalDialog additional-class="w-50" :title="getTranslation('I00.00027220', 'Move products to other department.')" @close="showMoveModal = false" v-if="showMoveModal">
 			<InventoryMove @input="moveProducts" @cancel="showMoveModal = false" />
@@ -118,7 +119,7 @@
 
 <script>
 import axios from '../../axios';
-import { errorDebug, camelCaseObj, hashCode, idToString, idToSlashedString, idsAreEqual, ticker, isLocalID, idExtendoString } from '../../libraries/common';
+import { errorDebug, camelCaseObj, hashCode, idToString, idToSlashedString, idsAreEqual, ticker, isLocalID, idExtendoString, deepClone } from '../../libraries/common';
 import { parseDate } from '../../libraries/date';
 import MainTitle from '../../components/common/cardBox/MainTitle';
 import InventoryAdd from '../../components/inventory/InventoryAdd';
@@ -138,6 +139,7 @@ export default {
   data() {
     return {
       inventoryData: null,
+      cloneInventoryData: null,
       units: [],
       selects: [],
       $modelValidators: [],
@@ -153,8 +155,8 @@ export default {
       lastUserData: null,
       years: [],
       selectedYear: new Date().getFullYear(),
+      activeProducts: true,
       inactiveProducts: false,
-      disableInactiveProducts: false,
       inactiveProductsCurrentYear: [],
       removeOptions: [{ "option": this.getTranslation("I00.00027550", ""), "value": 1 }, { "option": this.getTranslation("I00.00027560", ""), "value": 0 }],
       delete_no_change: true,
@@ -162,6 +164,7 @@ export default {
       minDate: parseDate(new Date().getFullYear() + "-01-01"),
       maxDate: parseDate(new Date().getFullYear() + "-12-31"),
       usageChange: null,
+      maximizeModal: false
     };
   },
   watch: {
@@ -170,6 +173,7 @@ export default {
     }
   },
   methods: {
+    deepClone,
     getValueUnit(prop) {
       return product => `${product[prop] || ''}${this.getUnit(product[prop + 'Unit']).shortName}`;
     },
@@ -182,33 +186,63 @@ export default {
     },
     logOut: logOut,
     nodeSelected(node) {
+      var nod = this.sideTree.getSelectedDepartment();
+      var orgID = nod.orgID.id + '_' + nod.orgID.id_mdbID;
       ticker.clearMessages();
-      this.inventoryData = null;
       this.selects = [];
+      var self = this;
+      if (this.activeProducts || this.inactiveProducts) {
+        var post;
+        if (this.isCurrentYear) {
+          this.inventoryData = null;
+          post = axios.post('/Inventory/ListJson', { organisation: { orgID: node.orgID, nodePath: node.nodePath }, show_inactive_products: this.inactiveProducts });
+        }
+        else {
+          this.inventoryData = deepClone(this.cloneInventoryData);
+          post = axios.post('/InventoryArchive/ListJson', { organisation: { orgID: node.orgID, nodePath: node.nodePath }, year: this.selectedYear });
+        }
 
-      var post;
-      if (this.isCurrentYear)
-        post = axios.post('/Inventory/ListJson', { organisation: { orgID: node.orgID, nodePath: node.nodePath }, show_inactive_products: this.inactiveProducts });
-      else
-        post = axios.post('/InventoryArchive/ListJson', { organisation: { orgID: node.orgID, nodePath: node.nodePath }, year: this.selectedYear });
+        if ((this.inventoryData == null || (this.inventoryData || []).map(f => f.isCurrentYear).filter(g => g == false).length == 0) || (this.inventoryData || {}).orgID != orgID || (this.inventoryData || {}).selectedYear != this.selectedYear) {
+          post.then(response => {
+            var data = camelCaseObj(JSON.parse(response.data));
+            this.inventoryData = data.inventoryData
+              .map(f => ({
+                ...f,
+                startDate: new Date(f.startDate),
+                isCurrentYear: self.isCurrentYear
+              }))
+            this.inventoryData.orgID = orgID;
+            this.inventoryData.selectedYear = this.selectedYear;
+            this.inventoryData.forEach(f => { var hash = hashCode(f); this.$set(f, 'hashCode', () => hash); });
+            this.cloneInventoryData = deepClone(this.inventoryData);
+            this.changeInventoryHash(this.inventoryData);
+            if (!self.activeProducts && self.inactiveProducts)
+              this.inventoryData = this.inventoryData.filter(g => g.deleted);
+            else if (self.activeProducts && !self.inactiveProducts)
+              this.inventoryData = this.inventoryData.filter(g => !g.deleted);
 
-      post.then(response => {
-        var data = camelCaseObj(JSON.parse(response.data));
-        this.inventoryData = data.inventoryData
-          .map(f => ({
-            ...f,
-            startDate: new Date(f.startDate)
-          }));
-        this.inventoryData.forEach(f => { var hash = hashCode(f); this.$set(f, 'hashCode', () => hash); });
-        this.changeInventoryHash(this.inventoryData);
-        this.units = [{ shortName: "-" }, ...data.units];
-        this.locked = data.locked;
-        this.lastUserData = data.lastUserData;
-      })
-        .catch(errorDebug);
+            this.units = [{ shortName: "-" }, ...data.units];
+            this.locked = data.locked;
+            this.lastUserData = data.lastUserData;
+          })
+            .catch(errorDebug);
+        } else {
+          var inventoryData = deepClone(this.cloneInventoryData);
+          this.changeInventoryHash(inventoryData);
+          if (this.activeProducts && this.inactiveProducts)
+            this.inventoryData = inventoryData;
+          else if (!this.activeProducts && this.inactiveProducts)
+            this.inventoryData = inventoryData.filter(g => g.deleted);
+          else if (this.activeProducts && !this.inactiveProducts)
+            this.inventoryData = inventoryData.filter(g => !g.deleted);
+        }
 
-      if (!this.writeRights) {
-        ticker.addWarningMessage(this.getTranslation('I00.00016210', 'You don\'t have enough permissions. This page is read-only.'));
+
+        if (!this.writeRights) {
+          ticker.addWarningMessage(this.getTranslation('I00.00016210', 'You don\'t have enough permissions. This page is read-only.'));
+        }
+      } else {
+        this.inventoryData = [];
       }
     },
     deleteCurrentOrOldYears() {
@@ -271,9 +305,9 @@ export default {
     },
     deleteSelected() {
       this.inventoryData = this.inventoryData.filter(f => !f.isNew);
+      this.cloneInventoryData = deepClone(this.inventoryData);
       this.selects = this.selects.filter(f => !f.isNew);
       var prodIds = this.selects.map(f => this.createProdId(f));
-
       if (prodIds.length) {
         var nod = this.sideTree.getSelectedDepartment();
         if (this.isCurrentYear) {
@@ -287,15 +321,19 @@ export default {
                 .then(response => {
                   this.isSaving = false;
                   if (response.data.status) {
-                    if (this.inactiveProducts)
+                    if (this.inactiveProducts) {
                       this.inventoryData.filter(f => this.selects.includes(f)).forEach(x => {
                         x.endDate = new Date();
-                        x.deleted = true
+                        x.deleted = true;
+                        var hash = hashCode(x); this.$set(x, 'hashCode', () => hash);
                       })
+                    }
                     else {
                       this.inventoryData = this.inventoryData.filter(f => !this.selects.includes(f));
+                      this.inventoryData.forEach(f => { var hash = hashCode(f); this.$set(f, 'hashCode', () => hash); });
                     }
-
+                    this.cloneInventoryData = deepClone(this.inventoryData);
+                    this.changeInventoryHash(this.inventoryData);
                     this.selects = [];
 
                   } else {
@@ -321,9 +359,11 @@ export default {
               if (response.data) {
                 this.inventoryData.filter(f => this.selects.includes(f)).forEach(x => {
                   x.endDate = this.display_end_date;
-                  x.deleted = true
+                  x.deleted = true;
+                  var hash = hashCode(x); this.$set(x, 'hashCode', () => hash);
                 });
-
+                this.cloneInventoryData = deepClone(this.inventoryData);
+                this.changeInventoryHash(this.inventoryData);
                 this.selects = [];
                 this.showRemoveModal = false;
               } else {
@@ -337,6 +377,7 @@ export default {
     save() {
       this.isSaving = true;
       var nod = this.sideTree.getSelectedDepartment();
+      var self = this;
       var changedItems = this.editedItems;
       var saveData = changedItems
         .map(f => ({
@@ -360,11 +401,15 @@ export default {
           f.deleted = f.deleted ? !f.restore : false;
           this.$set(f, 'hashCode', () => hash)
         });
-
+        this.inventoryData.forEach(f => { var hash = hashCode(f); this.$set(f, 'hashCode', () => hash); });
+        this.changeInventoryHash(this.inventoryData);
         this.selects = [];
         this.isSaving = false;
         this.inventoryData.__ob__.dep.notify();
-        this.changeInventoryHash(this.inventoryData);
+        if (!self.activeProducts && self.inactiveProducts)
+          this.inventoryData = this.inventoryData.filter(g => g.deleted);
+        else if (self.activeProducts && !self.inactiveProducts)
+          this.inventoryData = this.inventoryData.filter(g => !g.deleted);
       }).catch(this.errorDebug);
     },
     addProduct(product) {
@@ -372,6 +417,7 @@ export default {
       invProd.usageUnit = product.usage.unit.shortName;
       invProd.storageUnit = product.storage.unit.shortName;
       this.inventoryData.push(invProd);
+      this.cloneInventoryData = deepClone(this.inventoryData);
       ticker.addInfoMessage(this.getTranslation('I00.00053950', 'Unsaved data'));
     },
     productPicked(product) {
@@ -387,6 +433,7 @@ export default {
       axios.post('/InventoryCopy/Submit', { selectedKeyID: fromOrg.id, selectedKeyID_mdbID: fromOrg.id_mdbID, ...event, selectedCheckboxes })
         .then(result => {
           this.inventoryData = this.inventoryData.filter(f => !this.selects.includes(f));
+          this.cloneInventoryData = deepClone(this.inventoryData);
           this.selects = [];
           if (!result.data.areAllProductsCopied) {
             var substitution_move_message = this.getTranslation('I00.00043890', 'Some products are not moved because of existing substitution work on destination department.');
@@ -481,17 +528,13 @@ export default {
     },
     yearChanged(event) {
       this.selectedYear = (this.years.find(f => f === event));
-
       if (!this.isCurrentYear) {
-        this.disableInactiveProducts = true;
         this.inactiveProductsCurrentYear = this.inactiveProducts;
-        this.inactiveProducts = true;
         this.maxDate = parseDate(this.selectedYear + "-12-31");
         this.minDate = parseDate(this.selectedYear + "-01-01");
         this.display_end_date = this.maxDate;
       }
       else {
-        this.disableInactiveProducts = false;
         this.inactiveProducts = this.inactiveProductsCurrentYear;
         this.maxDate = parseDate(this.selectedYear + "-12-31");
         this.minDate = parseDate(this.selectedYear + "-01-01");

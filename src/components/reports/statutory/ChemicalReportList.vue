@@ -5,6 +5,7 @@
 				<!--Th class="iconCol skipForSorting skipColumn ignoreInExportToExcel"></Th-->
 				<Th class="prodNo" prop="artNum" sort export>{{ getTranslation('I00.00002880', 'Prod. No.') }}</Th>
 				<Th class="prodName" prop="name" sort export defaultSort>{{ getTranslation('I00.00033260', 'Current tradename') }}</Th>
+				<Th v-if="isPerDepartments" :prop="(f) => getOrganisationName(f)" name="departmentPath" sort :export="(f) => getOrganisationPathValues(f)" defaultSort="desc">{{ getTranslation('I00.00002940', 'Department') }}</Th>
 				<Th class="prodNo smallCell" prop="productType" sort export>{{ getTranslation('I00.00012550', 'Product type') }}</Th>
 				<Th class="consume" :prop="getValueUnits('consumption')" :sort="getValues('consumption')" :export="getValues('consumption')">{{ getTranslation('I00.00005480', 'Annual consumption') }}</Th>
 				<Th :export="getUnits('consumption')" v-show="false">{{ getTranslation('I00.00027360', 'Unit') }}</Th>
@@ -21,6 +22,7 @@
 				<!--Th class="iconCol skipForSorting skipColumn ignoreInExportToExcel"></Th-->
 				<Th class="prodNo" :prop="getCasNumber" export>{{ getTranslation('I00.00011610', 'CAS-number') + ' / ' + getTranslation('I00.00020780', 'EG-number') }}</Th>
 				<Th class="prodName" :prop="getCasName" export>{{ getTranslation('I00.00011590', 'Substance') + ' / ' + getReachText() }}</Th>
+				<Th class="skipForSorting" v-if="isPerDepartments"></Th>
 				<Th class="consume" :prop="getSubstanceProperty('precentage')" export>{{ '%' }}</Th>
 				<Th class="consume" :prop="getSubstancePropertyValue('participation')" export>{{ getTranslation('I00.00005480', 'Annual consumption') }}</Th>
 				<Th :prop="getSubstancePropertyUnit('participation')" v-show="false" export>{{ getTranslation('I00.00027360', 'Unit') }}</Th>
@@ -53,6 +55,9 @@
 						<router-link :to="`/product/${product.item.prodID}_${product.item.prodID_mdbID}`">{{ product.item.name }}</router-link>
 					</p>
 				</td>
+				<td v-if="isPerDepartments">
+					<span :title="product.item.departmentInfo.departmentPath">{{ product.item.departmentInfo.tableName }}</span>
+				</td>
 				<td class="prodNo">{{ product.item.productType }}</td>
 				<td class="statusCell" v-if="isGerman">{{ product.item.wasserKlass }}</td>
 				<td class="consume">
@@ -61,6 +66,7 @@
 						<span class="noWrap">{{ arr.unit }}</span>
 					</p>
 				</td>
+
 				<td class="symbols">
 					<div class="symbolClass">{{ product.item.faroKlass }}</div>
 					<DangerSymbols :dat="getDangerSymbols(product.item)" />
@@ -81,6 +87,7 @@
 					<div>{{ substance.casName }}</div>
 					<div>{{ getReachText() + ': ' + substance.additionalData1 }}</div>
 				</td>
+				<td v-if="isPerDepartments">&nbsp;</td>
 				<td class="consume">{{ substance.precentage }}</td>
 				<td class="consume">
 					<p v-for="(arr, ind) in substance.participation" :key="ind">
@@ -105,18 +112,26 @@ import { getDangerSymbols } from '../../../libraries/reports';
 import { genericDangerSymbolsResult } from '../../../libraries/exportToExcel';
 import DangerSymbols from '../../../components/riskAssessment/DangerSymbols';
 import { isLocalID } from '../../../libraries/common';
+import { getOrganisationPathValues, getOrganisationName } from '../../../libraries/reports';
 
 export default {
   components: {
     DangerSymbols
   },
   props: ['data', 'title', 'excelTitle', 'customFieldsTitles', 'perPage'],
+  data() {
+    return {
+      isPerDepartments: this.data.find(x => x.departmentInfo),
+    }
+  },
   computed: {
     isGerman() {
       return this.appSettings.orgProdListLawOtherCountry == 'German';
     },
   },
   methods: {
+    getOrganisationPathValues: getOrganisationPathValues,
+    getOrganisationName: getOrganisationName,
     getValueUnits: (prop) => (product) => product[prop].map((f) => (f.value + '') + (f.unit || '')).join('\n'),
     getValues: prop => product => product[prop].map(f => f.value).join('\n'),
     getUnits: prop => product => product[prop].map(f => f.unit).join('\n'),

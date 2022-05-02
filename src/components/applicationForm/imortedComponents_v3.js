@@ -11,6 +11,7 @@ import OwnFields from './predefined/OwnFields_v3';
 import DateGroup from '../../components/common/form/date/DateGroup_v3';
 import Input from './../common/form/input/Input_v3';
 import InputGroup from './../common/form/input/InputGroup_v3';
+import CheckBoxGroup from './../common/form/checkBox/CheckBoxGroup_v3.vue';
 import TextAreaGroup from './../common/form/textArea/TextAreaGroup_v3';
 import SelectGroup from './../common/form/select/SelectGroup_v3';
 import InformationBox from './../common/form/informationBox/InformationBox_v3';
@@ -29,6 +30,7 @@ export default {
     DateGroup,
     Input,
     InputGroup,
+    CheckBoxGroup,
     TextAreaGroup,
     SelectGroup,
     InformationBox

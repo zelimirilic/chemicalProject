@@ -5,6 +5,7 @@
 		<DepartmentInfoImage class="mt-4" :departmentInfo="departmentInfoForImage" :defaultImageContent="defaultImageContent" :orgId="orgId" @saveButtonStatus="saveStatus.departmentInfoImage = $event" />
 		<DepartmentInfoPermissions v-if="isAvailableDepartmentInfoForPermissions" class="mt-4" :departmentInfo="departmentInfoForPermissions" :appSettings="appSettings" :orgId="orgId" @saveButtonStatus="saveStatus.departmentInfoPermissions = $event" />
 		<DepartmentInfoSpecificFields class="mt-4" :departmentInfo="departmentInfoForSpecificField" :departmentOwnFields="departmentOwnFieldsForSpecificField" :orgId="orgId" @saveButtonStatus="saveStatus.departmentInfoSpecificFields = $event" />
+		<DepartmentProductType class="mt-4" :departmentInfo="departmentInfo" :orgId="orgId" />
 		<ContactsAndResponsibilities class="mt-4" :departmentInfo="departmentInfoForPermissions" :contactsAndResponsibilities="contactsAndResponsibilitiesData" :responsibilityList="responsibilityListData" :orgId="orgId" />
 		<DocumentsBoxEditor :documentCategories="'departmentDocumentsOnly'" :orgId="orgId" />
 	</div>
@@ -18,6 +19,7 @@ import DepartmentInfoBasics from '../../../components/settings/departmentInfo/De
 import DepartmentInfoImage from '../../../components/settings/departmentInfo/DepartmentInfoImage';
 import DepartmentInfoSpecificFields from '../../../components/settings/departmentInfo/DepartmentInfoSpecificFields';
 import ContactsAndResponsibilities from '../../../components/settings/departmentInfo/ContactsAndResponsibilities';
+import DepartmentProductType from '../../../components/settings/departmentInfo/DepartmentProductType';
 import DepartmentInfoPermissions from '../../../components/settings/departmentInfo/DepartmentInfoPermissions';
 import DocumentsBoxEditor from '../../../components/products/productPage/DocumentsBoxEditor';
 
@@ -25,6 +27,7 @@ export default {
   components: {
     DepartmentInfoBasics,
     DepartmentInfoSpecificFields,
+    DepartmentProductType,
     ContactsAndResponsibilities,
     DepartmentInfoImage,
     DepartmentInfoPermissions,
@@ -74,7 +77,7 @@ export default {
           this.departmentInfoForSpecificField = { ...this.departmentInfo };
           this.departmentInfoForImage = { ...this.departmentInfo };
           this.departmentInfoForPermissions = { ...this.departmentInfo };
-          this.saveStatusHash = hashCode(this.saveStatus)
+          this.saveStatusHash = hashCode(this.saveStatus);
         })
         .catch(errorDebug);
     }

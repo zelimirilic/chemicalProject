@@ -6,7 +6,7 @@
 		</label>
 		<div class="input-group" :class="{ notValid: !isValid }">
 			<Input :class="{ notValid: !isValid, readOnly: propToBool(readOnly) || disableProductNameEditing }" :placeholder="placeholder" :value="(value || {}).name" @input="setProductName($event)" @blur="setProductName($event)" />
-			<ButtonIconAdd @click="showInventoryAdd = true" :title="title" withBorder withReadOnlyMode />
+			<ButtonIconAdd @click="openModal()" :title="title" withBorder withReadOnlyMode />
 			<ModalDialog :title="getTranslation('I00.00009310', 'Choose product')" @close="cancel()" :withFooter="!appSettings.disableInventoryShowRequestButton" additional-class="w-80" v-show="showInventoryAdd">
 				<InventoryAddSimple @productPicked="addProduct" :isVisible="showInventoryAdd" @productRemoved="removeProduct" @cancel="cancel()" :isProductApplication="true" :shouldShowRequestButton="shouldShowRequestButton" withConsumption withProductType />
 			</ModalDialog>
@@ -30,43 +30,49 @@ import ModalDialog from '../../common/modal/ModalDialog_v3';
 import Input from '../../common/form/input/Input_v3';
 import { alert } from '../../../libraries/common';
 export default {
-  components: {
-    InventoryAddSimple,
-    ButtonIconAdd,
-    ModalDialog,
-    Input
-  },
-  props: ['dataProp', 'placeholder', 'text', 'title', 'required', 'readOnly', 'dat', 'value', 'validations', 'disableProductNameEditing', 'sdsNotRequired', 'shouldShowRequestButton', 'showDocumentLink'],
-  data() {
-    return {
-      showInventoryAdd: false,
-      isValid: true,
-      errorMessage: null,
-    }
-  },
-  methods: {
-    setProductName(value) {
-      this.$emit('input', { name: value, supplierName: (this.value || {}).supplierName });
-      this.$nextTick(() => this.checkIsValid());
-    },
-    addProduct(product) {
-      this.$emit('input', product);
-      this.$nextTick(() => this.checkIsValid());
-    },
-    removeProduct() {
-      this.$emit('input', {});
-    },
-    cancel() {
-      this.showInventoryAdd = false;
-      alert.clearMessages();
-    },
-    propToBool: propToBool,
-    checkIsValid: checkIsValid,
-  },
-  mounted() {
-    this.$set(this.dat, 'disableProductNameEditing', this.disableProductNameEditing);
-    this.$set(this.dat, 'sdsNotRequired', this.sdsNotRequired);
-    this.$set(this.dat, 'shouldShowRequestButton', this.shouldShowRequestButton);
-  }
-}
+	components: {
+		InventoryAddSimple,
+		ButtonIconAdd,
+		ModalDialog,
+		Input,
+	},
+	props: ['dataProp', 'placeholder', 'text', 'title', 'required', 'readOnly', 'dat', 'value', 'validations', 'disableProductNameEditing', 'sdsNotRequired', 'shouldShowRequestButton', 'showDocumentLink'],
+	data() {
+		return {
+			showInventoryAdd: false,
+			isValid: true,
+			errorMessage: null,
+		};
+	},
+	methods: {
+		setProductName(value) {
+			this.$emit('input', { name: value, supplierName: (this.value || {}).supplierName });
+			this.$nextTick(() => this.checkIsValid());
+		},
+		addProduct(product) {
+			this.$emit('input', product);
+			this.$nextTick(() => this.checkIsValid());
+		},
+		removeProduct() {
+			this.$emit('input', {});
+		},
+		cancel() {
+			this.showInventoryAdd = false;
+			alert.clearMessages();
+			this.$emit('modalInModal', false);
+		},
+		openModal() {
+			this.showInventoryAdd = true;
+			alert.clearMessages();
+			this.$emit('modalInModal', true);
+		},
+		propToBool: propToBool,
+		checkIsValid: checkIsValid,
+	},
+	mounted() {
+		this.$set(this.dat, 'disableProductNameEditing', this.disableProductNameEditing);
+		this.$set(this.dat, 'sdsNotRequired', this.sdsNotRequired);
+		this.$set(this.dat, 'shouldShowRequestButton', this.shouldShowRequestButton);
+	},
+};
 </script>

@@ -127,6 +127,13 @@ export const parseSelectedColumns = selectedColumns => {
 	}
 	return ret;
 }
+export const getOrganisationPathValues = function (product) {
+	return product['departmentInfo'].departmentPath;
+}
+
+export const getOrganisationName = function (product) {
+	return product['departmentInfo'].tableName;
+}
 
 export const getSds = productId => {
 	ticker.removeMessage(Vue.prototype.getTranslation('I00.00020510', 'SDS missing'));
@@ -185,23 +192,20 @@ export const beforeReportRouteLeave = function (to, from, next) {
 				next();
 				return;
 			}
-
 			var options = [];
 			this.$store.getters.state.subSearches.forEach((f) => {
 				options.push({ name: f.item.name, text: f.text });
 			});
 			var report = this.$store.getters.state.customReports.find(f => f.id == this.$route.query.id);
-			var existingReport = this.$store.getters.state.customReports.find(f => f.id == to.query.id);
-			if (existingReport || !to.query.id) this.$store.state.savedNewReportFlag = false;
 			var filters = [];
 			report.filterObject.filterQuery.forEach((f) => {
 				filters.push({ name: f.name, text: f.text });
 			});
-
 			isChanged = (hashCode([report.additionalColumns.map(f => ({ id: f.id, name: f.name })), report.hiddenColumns]) !== hashCode([this.selectedColumns.map(f => ({ id: f.id, name: f.name })), this.hiddenColumns])
 				|| (hashCode(filters) !== hashCode(options)) || from.params.tab != report.filterObject.route.params.tab) && !this.$store.state.savedNewReportFlag;
 		} else
 			isChanged = this.selectedColumns.concat(this.hiddenColumns).concat(this.$store.getters.state.subSearches).length && !this.$store.state.savedNewReportFlag;
+
 		if (isChanged) {
 			this.$store.state.saveStatus = true;
 			this.confirm(this.getTranslation('I00.00053950', 'Unsaved data'), this.getTranslation('I00.00053960', 'You have unsaved data. Are you sure you want to proceed?'))

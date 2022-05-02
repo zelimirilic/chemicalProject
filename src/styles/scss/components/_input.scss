@@ -1,0 +1,91 @@
+﻿.#{$namespace}-input {
+    &__wrapper {
+        @include flexbox(column);
+    }
+
+    &__field {
+        height: auto;
+        color: $color-gray-5;
+        border: 1px solid $color-gray-2;
+        @include border-radius(4px);
+        padding: vr(1, 2) vr(1, 1.5);
+        margin-top: vr(1, 3);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+            border: 1px solid $color-secondary;
+            transition: all 0.3s ease;
+        }
+
+        &:focus {
+            background-color: $color-tertiary;
+            transition: all 0.3s ease;
+        }
+
+        &:focus-visible {
+            outline: none;
+        }
+
+        &::placeholder {
+            color: $color-gray-2;
+            transition: all 0.3s ease;
+        }
+
+        &[readonly] {
+            pointer-events: none;
+        }
+
+        &[disabled] {
+            background-color: $color-gray-1;
+            pointer-events: none;
+
+            &::placeholder {
+                color: $color-gray-5;
+            }
+        }
+
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus,
+        &:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px white inset;
+        }
+
+        &--error {
+            border: 1px solid $color-error;
+            @include bacgrkound-opacity($color-error, 0.1);  
+            color: $color-gray-2;
+        }
+
+        &--xs {
+            padding: vr(1, 12) vr(1, 3);
+            @include font-size(14, 5, 6);
+        }
+
+        &--s {
+            padding: vr(1, 6) vr(1, 2);
+            @include font-size(14, 5, 6);
+        }
+
+        &--m {
+            padding: vr(1, 4) vr(1, 2);
+            @include font-size(14, 5, 6);
+        }
+
+        &--l {
+            padding: vr(1, 3) vr(1, 2);
+            @include font-size(14, 5, 6);
+        }
+
+        &--xl {
+            padding: vr(5, 12) vr(1, 2);
+            @include font-size(14, 5, 6);
+        }
+    }
+
+    &__message {
+        color: $color-error;
+        margin: vr(1, 6) 0 0 0;
+    }
+}

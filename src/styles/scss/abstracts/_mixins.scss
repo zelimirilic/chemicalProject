@@ -1,0 +1,76 @@
+﻿///
+/// Since the current way to qualify a class from within its ruleset is quite
+/// ugly, here is a mixin providing a friendly API to do so!!!
+///
+
+///* FLEXBOX MIXINS *///
+@mixin flexbox($direction: initial) {
+    display: flex;
+    flex-direction: $direction;
+}
+
+@mixin justify-content($value: flex-start) {
+    justify-content: $value;
+}
+
+@mixin align-items($value: stretch) {
+    align-items: $value;
+}
+
+///* DISPLAY MIXINS *///
+@mixin inline-block {
+    display: inline-block;
+}
+
+/// * OPACITY MIXIN *///
+@mixin opacity($opacity) {
+    opacity: $opacity;
+}
+
+/// * BORDER RADIUS * ///
+@mixin border-radius($radius: 0px) {
+    border-radius: $radius;
+}
+
+// * FONT SIZE * ///
+@mixin font-size($size, $lhm: 1,  $lhd: 1, $letter-spacing: normal) {
+    font-size: calc($size * 1px);
+    line-height: calc($rhythm * $lhm / $lhd);
+
+    @if $letter-spacing==normal {
+        letter-spacing: normal;
+    } @else {
+        letter-spacing: $letter-spacing;
+    }
+}
+
+/////////////////////////
+/// * LAYOUT MIXINS * ///
+/////////////////////////
+
+// * BOX * //
+@mixin box($padding: $rhythm, $border-width: 1px, $border-type: solid, $border-color: $color-gray-2) {
+    display: block;
+    padding: $padding;
+    border: $border-width $border-type $border-color;
+}
+
+// * STACK * //
+@mixin stack($justify: flex-start) {
+    display: flex;
+    flex-direction: column;
+    justify-content: $justify;
+}
+
+// * CENTER * //
+@mixin center() {
+    display: block;
+    box-sizing: content-box;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/// * OPACITY MIXIN * ///
+@mixin bacgrkound-opacity($color, $opacity: 1) {
+    background: rgba($color, $opacity);
+}

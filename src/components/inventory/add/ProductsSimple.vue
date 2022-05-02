@@ -1,8 +1,8 @@
 <template>
-	<Tabs class="card pageWrapper" tabcontent="hp-400" :class="{ disabled: isPickingProduct }" :tabs="tabs" prop="text" :value="selectedTab" @input="$emit('tabChanged', $event)">
+	<Tabs class="card pageWrapper" :class="{ disabled: isPickingProduct }" :tabs="tabs" prop="text" :value="selectedTab" @input="$emit('tabChanged', $event)">
 		<SmallLoader v-if="!products" />
 		<template v-else>
-			<DataTable tableWrapClass="hp-400" :tableData="products" noHeader noFooter noSearch :perPage="10000" :isSearchResult="true" :hasOuterSearchWord="lastSearchObj.search_word">
+			<DataTable :tableData="products" noHeader noFooter noSearch :perPage="10000" :isSearchResult="true" :hasOuterSearchWord="lastSearchObj.search_word">
 				<template #head>
 					<tr>
 						<Th class="iconCol" prop="ArtNo" sort>&nbsp;</Th>

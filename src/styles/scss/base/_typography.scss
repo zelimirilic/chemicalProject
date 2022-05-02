@@ -1,0 +1,41 @@
+﻿/// === TYPOGRAPHY === ///
+/// * FONT FAMILY *////
+$font-primary: "Inter", sans-serif;
+
+/// * STYLES * ///
+.#{$namespace} {
+
+    h3 {
+        @include font-size(24, 1.5);
+    }
+
+    &-fsize--xs {
+        @include font-size(12, 3, 2);
+    }  
+    
+    &-fsize--s {
+        @include font-size(14, 5, 6);
+        margin-top: rh(1, 12);
+        margin-bottom: rh(1, 12);
+    }  
+    
+    &-fsize--m {
+        @include font-size(16);
+    }  
+    
+    &-fsize--l {
+        @include font-size(18, 1.2);
+    }   
+    
+    &-fsize--xl {
+        @include font-size(20, 1.25);
+    }
+    
+    &-fsize--xxl {
+        @include font-size(24, 1.5);
+    }
+    
+    &-fsize--xxxl {
+        @include font-size(28, 1.75);
+    }
+}

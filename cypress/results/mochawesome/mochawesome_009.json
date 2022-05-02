@@ -1,0 +1,126 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-04-28T14:00:43.124Z",
+    "end": "2022-04-28T14:01:29.121Z",
+    "duration": 45997,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "bb57a686-c1fd-4b0a-bcca-b86d1abafec1",
+      "title": "",
+      "fullFile": "cypress/integration/4-Navigation/chemsoft-navigation.js",
+      "file": "cypress/integration/4-Navigation/chemsoft-navigation.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d19f3cad-57a5-4627-91dd-a2b67d828f88",
+          "title": "Validate Chemsoft home page links",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Confirm links redirect to the correct pages - Chemsoft NG",
+              "fullTitle": "Validate Chemsoft home page links Confirm links redirect to the correct pages - Chemsoft NG",
+              "timedOut": null,
+              "duration": 25466,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"https://dev04/system/login/chemsofttest\");\ncy.url().should('include', 'chemsofttest');\ncy.get('.username > .form-control').type(\"miljan\");\ncy.get('.btn').contains('Sign in').click();\ncy.url().should('include', 'system');\ncy.wait(10000);\ncy.go('back');\ncy.url().should('include', 'chemsofttest');\ncy.reload();\ncy.url().should('include', 'https://dev04/system/login/chemsofttest');\ncy.get('.username > .form-control').type(\"miljan\");\ncy.get('.btn').contains('Sign in').click();\ncy.url().should('include', 'system');\ncy.wait(10000);\ncy.go('back');\ncy.get('[name=\"user\"]').click();\ncy.get('.username > .form-control').type(\"wrongUserName\");\ncy.get('.btn').contains('Sign in').click();\ncy.get('.alerts').should('have.text', 'Wrong username or password×');",
+              "err": {},
+              "uuid": "fca8f0d9-6f24-4b0f-9665-88d4b3d44d08",
+              "parentUUID": "d19f3cad-57a5-4627-91dd-a2b67d828f88",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Confirm links redirect to the correct pages - iChemistry",
+              "fullTitle": "Validate Chemsoft home page links Confirm links redirect to the correct pages - iChemistry",
+              "timedOut": null,
+              "duration": 20480,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"https://dev04/main/storaenso\");\ncy.get('#user').type(\"miljan\");\ncy.get('#pswd').type(\"hirsl666\");\ncy.get('.ichemistry-button').contains('Sign in').click();\ncy.url().should('include', '~master/application.aspx');\ncy.go('back');\ncy.reload();\ncy.url().should('include', 'https://dev04/main/storaenso');\ncy.get('#user').type(\"miljan\");\ncy.get('#pswd').type(\"hirsl666\");\ncy.get('.ichemistry-button').contains('Sign in').click();\ncy.url().should('include', '~master/application.aspx');\ncy.go('back');\ncy.get('#user').type(\"miljan\");\ncy.get('.ichemistry-button').contains('Sign in').click();\ncy.get('#passErrMsg').should('contain.text', 'The password field is required');\ncy.get('#pswd').type(\"wrongUserName\");\ncy.get('.ichemistry-button').contains('Sign in').click();\ncy.get('.ichemistry-alert').should('contain.text', 'Wrong username or password');",
+              "err": {},
+              "uuid": "c53813b1-7774-4b63-a6a1-0adc37a03c5d",
+              "parentUUID": "d19f3cad-57a5-4627-91dd-a2b67d828f88",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "fca8f0d9-6f24-4b0f-9665-88d4b3d44d08",
+            "c53813b1-7774-4b63-a6a1-0adc37a03c5d"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 45946,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.2"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/results/mochawesome",
+        "quite": "true",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.1.1"
+    }
+  }
+}

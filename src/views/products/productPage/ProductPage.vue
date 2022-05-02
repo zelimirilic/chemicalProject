@@ -22,6 +22,11 @@
 				<ProductTypesEditor :product="product" />
 				<SynonymsBoxEditor :product="product" @saved="productSaved" />
 				<ClassificationBoxEditor :product="product" />
+				<div class="card mt-4">
+					<Accordion :text="getTranslation('I00.00057300', 'Product application data')" v-model="applicationDataOpened">
+						<ApplicationDataBox :productId="product.id"></ApplicationDataBox>
+					</Accordion>
+				</div>
 			</div>
 			<div class="col-xl-7 col-12">
 				<div class="card mt-4" v-if="!this.appSettings.hideProductPageLists && !this.appSettings.distributorMode">
@@ -105,6 +110,7 @@ import RestrictionAndProhibitionListsEditor from '../../../components/products/p
 import OwnFieldsBoxEditor from '../../../components/products/productPage/OwnFieldsBoxEditor';
 import ClassificationBoxEditor from '../../../components/products/productPage/ClassificationBoxEditor';
 import SafetySheetModalDialogList from '../productPage/SafetySheetModalDialogList'
+import ApplicationDataBox from '../../../components/products/productPage/ApplicationDataBox'
 
 export default {
   name: 'ProductPage',
@@ -121,7 +127,8 @@ export default {
     RestrictionAndProhibitionListsEditor,
     OwnFieldsBoxEditor,
     ClassificationBoxEditor,
-    SafetySheetModalDialogList
+    SafetySheetModalDialogList,
+    ApplicationDataBox
   },
   props: ['id'],
   data() {
@@ -133,6 +140,7 @@ export default {
       risksOpened: false,
       listsOpened: false,
       ownFieldsOpened: false,
+      applicationDataOpened: false,
       risks: null,
       restrictionLists: null,
       departmentOwnFields: null,

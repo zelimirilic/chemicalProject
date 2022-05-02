@@ -4,7 +4,8 @@
 		<template #head>
 			<tr>
 				<Th class="prodNo" prop="artNum" name="artNum" sort export>{{ getTranslation('I00.00002880', 'Prod. No.') }}</Th>
-				<Th class="prodName" prop="name" name="name" sort export defaultSort>{{ getTranslation('I00.00004270', 'Name') }}</Th>
+				<Th class="prodName" prop="name" name="name" sort export>{{ getTranslation('I00.00004270', 'Name') }}</Th>
+				<Th v-if="isPerDepartments" :prop="(f)=> getOrganisationName(f)" name="departmentPath" sort :export="(f)=> getOrganisationPathValues(f)" defaultSort="desc">{{ getTranslation('I00.00002940', 'Department') }}</Th>
 				<Th class="supplier" prop="supplier" name="supplier" sort export>{{ getTranslation('I00.00004110', 'Supplier') }}</Th>
 				<Th class="prodNo" prop="un" name="un" sort export>{{ getTranslation('I00.00015630', 'UN') }}</Th>
 				<Th class="wp-110" prop="packagingGroup" name="packagingGroup" sort export>{{ getTranslation('I00.00015640', 'Packaging Group') }}</Th>
@@ -31,6 +32,9 @@
 						<router-link :to="`/product/${product.item.id}_${product.item.id_mdbID}`">{{ product.item.name }}</router-link>
 					</p>
 				</td>
+				<td v-if="isPerDepartments">
+					<span :title="product.item.departmentInfo.departmentPath">{{ product.item.departmentInfo.tableName }}</span>
+				</td>
 				<td class="supplier">
 					<span>{{ product.item.supplier }}</span>
 				</td>
@@ -54,7 +58,7 @@
 
 <script>
 import AdditionalCell from '../components/AdditionalCell';
-import { columnsTranslator, parseSelectedColumns, getSds, saveReportData, getProp } from '../../../libraries/reports';
+	import { columnsTranslator, parseSelectedColumns, getSds, saveReportData, getProp, getOrganisationPathValues, getOrganisationName } from '../../../libraries/reports';
 import { idToSlashedString, isLocalID, deepClone, hashCode } from '../../../libraries/common';
 
 export default {
@@ -67,7 +71,8 @@ export default {
       currentData: this.data.map(f => ({ ...f, hashCode: () => hashCode(f) })),
       cloneData: null,
       isSaving: false,
-      filteredDataValues: null,
+		filteredDataValues: null,
+		isPerDepartments: this.data.find(x => x.departmentInfo),
     }
   },
   methods: {
@@ -78,6 +83,8 @@ export default {
     isLocalID: isLocalID,
     deepClone,
     save: saveReportData,
+    getOrganisationPathValues: getOrganisationPathValues,
+    getOrganisationName: getOrganisationName,
     showEdit() {
       this.cloneData = deepClone(this.currentData).map((f, ind) => ({ ...f, originalData: () => this.currentData[ind] }));
     },

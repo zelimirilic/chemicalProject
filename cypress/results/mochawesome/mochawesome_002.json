@@ -5,9 +5,9 @@
     "passes": 3,
     "pending": 0,
     "failures": 0,
-    "start": "2022-03-23T14:15:52.562Z",
-    "end": "2022-03-23T14:16:28.934Z",
-    "duration": 36372,
+    "start": "2022-04-28T13:55:06.711Z",
+    "end": "2022-04-28T13:55:46.144Z",
+    "duration": 39433,
     "testsRegistered": 3,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "c6633c7d-e3b9-4d80-b7cd-95f53f573f9e",
+      "uuid": "4072c09c-6793-4751-a3ff-5a98c81501a9",
       "title": "",
       "fullFile": "cypress/integration/3-alerts/js-alerts.js",
       "file": "cypress/integration/3-alerts/js-alerts.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "f49ce3ca-8819-4828-86a2-95958970626d",
+          "uuid": "28980025-bec5-4827-989d-196bd6a7c623",
           "title": "Handle JS alerts",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Confirm JS alerts contains the correct text",
               "fullTitle": "Handle JS alerts Confirm JS alerts contains the correct text",
               "timedOut": null,
-              "duration": 12502,
+              "duration": 15874,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,8 +47,8 @@
               "context": null,
               "code": "cy.get('[href=\"/system/chemicals/risk_assessment/risks\"]').click();\ncy.get(':nth-child(2) > td.prodName > a').click();\ncy.get('.tablinks').contains('Handling').click();\ncy.xpath('//html/body/div[1]/div/main/div/div/div[2]/div/div[2]/div[2]/div[1]/div[1]/div/div/input').click({\n  force: true\n}).type('sdsd');\ncy.get('.mainMenu > :nth-child(2) > .nav-link').click();\ncy.get('.card > .card-body > h6').eq(1).should('have.text', 'You have unsaved data. Are you sure you want to proceed?');",
               "err": {},
-              "uuid": "7ae79e6b-9f9b-41bd-b94b-8de86a98abaf",
-              "parentUUID": "f49ce3ca-8819-4828-86a2-95958970626d",
+              "uuid": "e5fc0587-ebc4-4c89-920b-7429c1a8614c",
+              "parentUUID": "28980025-bec5-4827-989d-196bd6a7c623",
               "isHook": false,
               "skipped": false
             },
@@ -56,7 +56,7 @@
               "title": "Validate confirm alert box works correctly when user clicks OK",
               "fullTitle": "Handle JS alerts Validate confirm alert box works correctly when user clicks OK",
               "timedOut": null,
-              "duration": 12255,
+              "duration": 11544,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -65,8 +65,8 @@
               "context": null,
               "code": "cy.get('[href=\"/system/chemicals/risk_assessment/risks\"]').click();\ncy.get(':nth-child(11) > td.prodName > a').click();\ncy.get('.tablinks').contains('Risk evaluation and actions').click();\ncy.get('.col-2 > :nth-child(1) > .dateInp > .mx-input-wrapper > .mx-input').eq(0).click();\ncy.get('.col-2 > :nth-child(1) > .dateInp > .mx-input-wrapper > .mx-input').click();\ncy.get('.cell').eq(7).should('have.attr', 'data-row-col', '1,0').click();\ncy.get('.nav-link').contains('List').click();\ncy.get('.card > .card-body > h6').eq(1).should('have.text', 'You have unsaved data. Are you sure you want to proceed?');\ncy.get(':nth-child(8) > .modalCard > .card > .card-body > .pt-4 > [title=\"OK\"]').click(); // cy.on('window:alert', (str) => {\n//     expect(str).to.equal('You have unsaved data. Are you sure you want to proceed?')\n// })\ncy.url().should('include', 'chemical_list/department');",
               "err": {},
-              "uuid": "39661da0-94dc-4003-8057-bc7eaf1f83cb",
-              "parentUUID": "f49ce3ca-8819-4828-86a2-95958970626d",
+              "uuid": "0a7469a6-464a-4ccc-9e2c-774e722ce650",
+              "parentUUID": "28980025-bec5-4827-989d-196bd6a7c623",
               "isHook": false,
               "skipped": false
             },
@@ -74,7 +74,7 @@
               "title": "Validate confirm alert box works correctly when user clicks Cancel",
               "fullTitle": "Handle JS alerts Validate confirm alert box works correctly when user clicks Cancel",
               "timedOut": null,
-              "duration": 11430,
+              "duration": 11919,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -83,22 +83,22 @@
               "context": null,
               "code": "cy.get('[href=\"/system/chemicals/risk_assessment/risks\"]').click();\ncy.get(':nth-child(11) > td.prodName > a').click();\ncy.get('.tablinks').contains('Risk evaluation and actions').click();\ncy.get('.col-2 > :nth-child(1) > .dateInp > .mx-input-wrapper > .mx-input').eq(0).click();\ncy.get('.col-2 > :nth-child(1) > .dateInp > .mx-input-wrapper > .mx-input').click();\ncy.get('.cell').eq(7).should('have.attr', 'data-row-col', '1,0').click();\ncy.get('.nav-link').contains('List').click();\ncy.get('.card > .card-body > h6').eq(1).should('have.text', 'You have unsaved data. Are you sure you want to proceed?');\ncy.get(':nth-child(8) > .modalCard > .card > .card-body > .pt-4 > [title=\"Cancel\"]').click(); // cy.on('window:confirm', () => {\n//     return true;\n// })\ncy.url().should('include', 'evaluation');",
               "err": {},
-              "uuid": "570eeda8-157f-49e5-b127-d8fca9bb3b36",
-              "parentUUID": "f49ce3ca-8819-4828-86a2-95958970626d",
+              "uuid": "f8166fa5-7f2f-40ed-bd5a-594ffa93bd1d",
+              "parentUUID": "28980025-bec5-4827-989d-196bd6a7c623",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "7ae79e6b-9f9b-41bd-b94b-8de86a98abaf",
-            "39661da0-94dc-4003-8057-bc7eaf1f83cb",
-            "570eeda8-157f-49e5-b127-d8fca9bb3b36"
+            "e5fc0587-ebc4-4c89-920b-7429c1a8614c",
+            "0a7469a6-464a-4ccc-9e2c-774e722ce650",
+            "f8166fa5-7f2f-40ed-bd5a-594ffa93bd1d"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 36187,
+          "duration": 39337,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

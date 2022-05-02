@@ -1,10 +1,11 @@
 <template>
-	<DataTable :tableData="cloneData || currentData" :orgId="orgId" :perPage="perPage" :title="title" :selectFilterProps="['pictograms', 'sdsdocLanguage', 'usageAmount', 'trafficLightStatusName']" @filteredTableData="setFilteredData" :selectFilterValues="filteredDataValues" :excelTitle="excelTitle" @update:per-page="$emit('update:per-page', $event)" :hiddenColumns="appSettings.useReportsAdditionalColumns && hiddenColumns" @hide-columns="$emit('hide-columns', $event)" :edit="cloneData != null" @[eventEdit]="showEdit" @cancel="cloneData = null" @save="save" showHeadersWhenEmpty>
+	<DataTable :tableData="cloneData || currentData" :orgId="orgId" :perPage="perPage" :title="title" :selectFilterProps="['pictograms', 'sdsdocLanguage', 'usageAmount', 'trafficLightStatusName']" @filteredTableData="setFilteredData" :selectFilterValues="filteredDataValues" :excelTitle="excelTitle" @update:per-page="$emit('update:per-page', $event)" :hiddenColumns="appSettings.useReportsAdditionalColumns && hiddenColumns" @hide-columns="$emit('hide-columns', $event)" :edit="cloneData != null" @[eventEdit]="showEdit" @cancel="cloneData = null" @save="save" showHeadersWhenEmpty @openAdvancedFilter="$emit('openAdvancedFilter', $event)" hasAdvancedFilter>
 		<template #head>
 			<tr>
 				<Th class="IconColumn skipForSorting skipColumn ignoreInExportToExcel" name="icon"></Th>
 				<Th class="prodNo" prop="artNum" name="artNum" sort export :placeholder="getTranslation('I00.00002880', 'Prod. No.')">{{ getTranslation('I00.00002880', 'Prod. No.') }}</Th>
-				<Th class="prodName" prop="name" name="name" sort export defaultSort :placeholder="getTranslation('I00.00004270', 'Name')">{{ getTranslation('I00.00004270', 'Name') }}</Th>
+				<Th class="prodName" prop="name" name="name" sort export :placeholder="getTranslation('I00.00004270', 'Name')">{{ getTranslation('I00.00004270', 'Name') }}</Th>
+				<Th v-if="isPerDepartments" :prop="(f) => getOrganisationName(f)" name="departmentPath" sort defaultSort="desc" :export="(f) => getOrganisationPathValues(f)">{{ getTranslation('I00.00002940', 'Department') }}</Th>
 				<Th class="supplier" prop="supplier" name="supplier" sort export :placeholder="getTranslation('I00.00004110', 'Supplier')">{{ getTranslation('I00.00004110', 'Supplier') }}</Th>
 				<Th class="consume" :prop="getValueUnits('consumption')" :sort="getValues('consumption')" :export="getValues('consumption')" :placeholder="getTranslation('I00.00005480', 'Annual consumption')">{{ getTranslation('I00.00005480', 'Annual consumption') }}</Th>
 				<Th :export="getUnits('consumption')" v-show="false">{{ getTranslation('I00.00027360', 'Unit') }}</Th>
@@ -31,6 +32,9 @@
 				</td>
 				<td class="prodName">
 					<a :href="product.item.linkToISafe">{{ product.item.name }}</a>
+				</td>
+				<td v-if="isPerDepartments">
+					<span :title="product.item.departmentInfo.departmentPath">{{ product.item.departmentInfo.tableName }}</span>
 				</td>
 				<td class="supplier">
 					<span>{{ product.item.supplier }}</span>
@@ -69,11 +73,11 @@
 <script>
 
 import DangerSymbols from '../../../components/riskAssessment/DangerSymbols';
-import DataTable from '../../common/dataTable/DataTable_v3'
+import DataTable from '../../common/dataTable/DataTable_v3';
 import Th from '../../common/dataTable/Th_v3';
 import AdditionalCell from '../components/AdditionalCell_v3';
 import { genericDangerSymbolsResult } from '../../../libraries/exportToExcel_v3';
-import { columnsTranslator, parseSelectedColumns, getDangerSymbols, getProp, saveReportData } from '../../../libraries/reports_v3';
+import { columnsTranslator, parseSelectedColumns, getDangerSymbols, getProp, saveReportData, getOrganisationPathValues, getOrganisationName } from '../../../libraries/reports_v3';
 import { deepClone, hashCode } from '../../../libraries/common_v3';
 
 export default {
@@ -89,6 +93,7 @@ export default {
       currentData: this.data.map(f => ({ ...f, hashCode: () => hashCode(f) })),
       cloneData: null,
       filteredDataValues: null,
+      isPerDepartments: this.data.find(x => x.departmentInfo)
     }
   },
   methods: {
@@ -97,6 +102,8 @@ export default {
     getProp: getProp,
     getDangerSymbols: getDangerSymbols,
     save: saveReportData,
+    getOrganisationPathValues: getOrganisationPathValues,
+    getOrganisationName: getOrganisationName,
     showEdit() {
       this.cloneData = deepClone(this.currentData).map((f, ind) => ({ ...f, originalData: () => this.currentData[ind] }));
     },
@@ -108,7 +115,7 @@ export default {
       return text
     },
     exportAdditionalColumn(type, name) {
-      return this.columnsTranslator(type).export(name)
+      return this.columnsTranslator(type).export(name);
     },
     trafficLightStatusName(item) {
       return item.trafficLightStatusName;

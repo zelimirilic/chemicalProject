@@ -9,8 +9,8 @@
 				<SmallLoader v-if="!risksData" />
 				<RiskAssesmentModalDialogList :data="risksData" v-else />
 			</ModalDialog>
-			<ModalDialog v-if="showAddProductModal" :title="getTranslation('I00.00049020', 'Add to inventory')" :withFooter="true" additional-class="w-80" @close="showAddProductModal = false">
-				<InventoryAdd @productPicked="addProduct" @cancel="showAddProductModal = false" :withFooter="true" :addedProductsIds="getAddedProductIds()" withConsumption withProductType :validations="validations" :okButtonText="getTranslation('I00.00049030', 'Add & save')" />
+			<ModalDialog :class="{ maximize: maximizeModal, minimize: !maximizeModal }" :additionalClass="{ maximize: maximizeModal, minimize: !maximizeModal }" v-if="showAddProductModal" :title="getTranslation('I00.00049020', 'Add to inventory')" :withFooter="true" @close="showAddProductModal = false">
+				<InventoryAdd @maximize="maximizeModal = !maximizeModal" @productPicked="addProduct" @cancel="showAddProductModal = false" :withFooter="true" :addedProductsIds="getAddedProductIds()" withConsumption withProductType :validations="validations" :okButtonText="getTranslation('I00.00049030', 'Add & save')" />
 			</ModalDialog>
 		</template>
 	</Reports>
@@ -48,7 +48,8 @@ export default {
       perPage: 20,
       renderComponent: true,
       loadingProduct: false,
-      filterChangedValue: false
+      filterChangedValue: false,
+      maximizeModal: false
     };
   },
   methods: {

@@ -1,0 +1,19 @@
+.#{$namespace}-alert {
+    display: inline-block;
+    position: absolute;
+    padding: vr(1, 2) vr(2, 3);
+    left: 50%;
+    transform: translateX(-50%);
+    @include font-size(16);
+    color: $color-white;
+    @include border-radius(vr(1, 6));
+
+
+    &--success {
+        background-color: $color-success;
+    }
+
+    &--error {
+        background-color: $color-error;
+    }
+}

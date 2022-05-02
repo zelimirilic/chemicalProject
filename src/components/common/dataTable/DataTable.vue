@@ -7,6 +7,7 @@
 			<template v-if="tableData.length > 0">
 				<div class="headTtl d-flex justify-content-between align-items-center p-4 borderB" v-if="!propToBool(noHeader)">
 					<h6 class="mb-0">{{ title }}</h6>
+					<slot name="additionalRight"></slot>
 				</div>
 				<div class="modalInner d-flex justify-content-between align-items-center px-4 pt-4 pb-3" v-if="!propToBool(noSearch)">
 					<div class="specialType input-group wp-200 mr-2" alwaysOn>
@@ -118,7 +119,7 @@
 <script>
 import Pagination from './Pagination';
 import { getAllChildrens, perPageItems, getBrowser, hashCode } from '../../../libraries/common';
-import { exportToExcel } from '../../../libraries/exportToExcel';
+import { exportAllToExcel } from '../../../libraries/exportToExcel';
 import { propToBool, propToFnc } from '../../../libraries/vue';
 import { nodeNamePath } from '../../../libraries/tree';
 
@@ -148,7 +149,8 @@ export default {
     isSearchResult: {},
     hasOuterSearchWord: {},
     showProtectionSymbols: {},
-    orgProtectionSymbols: {}
+    orgProtectionSymbols: {},
+    hasAdvancedFilter: {}
   },
   components: {
     Pagination,
@@ -169,7 +171,8 @@ export default {
       isDataTable: true,
       perPageItems: perPageItems(),
       browserName: getBrowser().name,
-      filterChanged: false
+      filterChanged: false,
+      exportDisabled: false,
     };
   },
   methods: {
@@ -221,10 +224,27 @@ export default {
 
       return excelData;
     },
-    exportToExcel() {
-      var title = propToBool(this.excelTitle) === true ? nodeNamePath(this.sideTree.getSelectedNode()) : this.excelTitle;
-      exportToExcel(this.excelHeaders(), this.excelDataFnc(this.sortedData), title);
-    },
+		exportToExcel() {
+			var headers = JSON.stringify(this.excelHeaders());
+			var title = propToBool(this.excelTitle) === true ? nodeNamePath(this.sideTree.getSelectedNode()) : this.excelTitle;
+			var message = this.getTranslation('I00.00048970', 'Please wait while the document is being created.');
+			var excelData = [
+				{
+					headers: headers,
+					data: this.excelDataFnc(this.sortedData),
+					title: title
+				}
+			];
+
+			this.exportDisabled = true;
+      // call func from exportToExcel.js
+			exportAllToExcel(
+				excelData.map(f => f.headers),
+				excelData.map(f => JSON.stringify(f.data)),
+				excelData.map(f => f.title),
+				message
+			).then(() => (this.exportDisabled = false));
+		},
     calculateFilteredData() {
       if (this.tableData) {
         this.selectedPage = 1;
@@ -418,7 +438,7 @@ export default {
         options.push({ name: f.item.name, text: f.text });
       });
     }
-
+		this.getTranslation('I00.00048970', 'Please wait while the document is being created.');
     if (process.env.NODE_ENV === 'development') window['thisDataTable'] = this;
     this.calculateFilteredData();
     this.$emit('filteredTableData', this.filteredData);

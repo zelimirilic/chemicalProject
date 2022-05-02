@@ -199,6 +199,15 @@ export const parseSelectedColumns = selectedColumns => {
 	}
 	return ret;
 }
+
+export const getOrganisationPathValues = function (product) {
+	return product['departmentInfo'].departmentPath;
+}
+
+export const getOrganisationName = function (product) {
+	return product['departmentInfo'].tableName;
+}
+
 export const getSds = productId => {
 	ticker.removeMessage(Vue.prototype.getTranslation('I00.00020510', 'SDS missing'));
 	axios.post('/MainDocument/ShowDocument', { productId: productId.id, productMdbId: productId.id_mdbID, clvid: productId.clvid })

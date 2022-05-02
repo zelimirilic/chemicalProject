@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.0000" tests="2" failures="0">
+  <testsuite name="Root Suite" timestamp="2022-04-28T14:00:43" tests="0" file="cypress/integration/4-Navigation/chemsoft-navigation.js" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="Validate Chemsoft home page links" timestamp="2022-04-28T14:00:43" tests="2" time="45.9820" failures="0">
+    <testcase name="Validate Chemsoft home page links Confirm links redirect to the correct pages - Chemsoft NG" time="25.4660" classname="Confirm links redirect to the correct pages - Chemsoft NG">
+    </testcase>
+    <testcase name="Validate Chemsoft home page links Confirm links redirect to the correct pages - iChemistry" time="20.4800" classname="Confirm links redirect to the correct pages - iChemistry">
+    </testcase>
+  </testsuite>
+</testsuites>

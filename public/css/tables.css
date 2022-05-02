@@ -14,6 +14,7 @@ td a {color:#152935;}
 .tblWrap.hp-375 {max-height:375px;}
 .tblWrap.hp-400 {max-height:400px;}
 .headTtl ~ .tblWrap {max-height:55vh;}
+.headTtl + .modalInner ~ .tblWrap {max-height:52vh;}
 .actionMenu + .pageWrapper .dataTablesWrapper .tblWrap, .filterSpecial + .dataTablesWrapper .tblWrap {max-height:56vh;}
 .filterSpecial .title {border-right:1px solid #ccd4df; font-weight:500; line-height:25px;}
 .filterSpecial .title span {color:#152935;}
@@ -40,6 +41,89 @@ td a {color:#152935;}
 
 .addTbl .table td {vertical-align:middle; cursor:pointer;}
 .addTbl .table tr.selectedRow td, tr.selectedRow td {background-color:#e8f6f5;}
+@media screen and (max-height: 4096px) {
+	.addTbl .tabcontent, .addTbl .tabcontent .tblWrap {height:51vh;}
+	.maximize .addTbl .tabcontent, .maximize .addTbl .tabcontent .tblWrap {height:87vh;}
+	.maximize .simpleAdd .addTbl .tabcontent, .maximize .simpleAdd .addTbl .tabcontent .tblWrap {height:91vh;}
+}
+@media screen and (max-height: 3840px) {
+	.maximize .addTbl .tabcontent, .maximize .addTbl .tabcontent .tblWrap {height:86vh;}
+}
+@media screen and (max-height: 2880px) {
+	.maximize .addTbl .tabcontent, .maximize .addTbl .tabcontent .tblWrap {height:82vh;}
+	.maximize .simpleAdd .addTbl .tabcontent, .maximize .simpleAdd .addTbl .tabcontent .tblWrap {height:88vh;}
+}
+@media screen and (max-height: 2304px) {
+	.maximize .addTbl .tabcontent, .maximize .addTbl .tabcontent .tblWrap {height:77vh;}
+	.maximize .simpleAdd .addTbl .tabcontent, .maximize .simpleAdd .addTbl .tabcontent .tblWrap {height:85vh;}
+}
+@media screen and (max-height: 2160px) {
+	.maximize .addTbl .tabcontent, .maximize .addTbl .tabcontent .tblWrap {height:74vh;}
+	.maximize .simpleAdd .addTbl .tabcontent, .maximize .simpleAdd .addTbl .tabcontent .tblWrap {height:83vh;}
+}
+@media screen and (max-height: 2000px) {
+	.maximize .simpleAdd .addTbl .tabcontent, .maximize .simpleAdd .addTbl .tabcontent .tblWrap {height:82vh;}
+}
+@media screen and (max-height: 1920px) {
+	.maximize .addTbl .tabcontent, .maximize .addTbl .tabcontent .tblWrap {height:73vh;}
+}
+@media screen and (max-height: 1800px) {
+	.maximize .addTbl .tabcontent, .maximize .addTbl .tabcontent .tblWrap {height:71vh;}
+	.maximize .simpleAdd .addTbl .tabcontent, .maximize .simpleAdd .addTbl .tabcontent .tblWrap {height:81vh;}
+}
+@media (max-height: 1600px) {
+	.addTbl .tabcontent, .addTbl .tabcontent .tblWrap {height:48vh;}
+	.maximize .addTbl .tabcontent, .maximize .addTbl .tabcontent .tblWrap {height:68vh;}
+	.maximize .simpleAdd .addTbl .tabcontent, .maximize .simpleAdd .addTbl .tabcontent .tblWrap {height:79vh;}
+}
+@media screen and (max-height: 1440px) {
+	.addTbl .tabcontent, .addTbl .tabcontent .tblWrap {height:45vh;}
+	.maximize .addTbl .tabcontent, .maximize .addTbl .tabcontent .tblWrap {height:64vh;}
+	.maximize .simpleAdd .addTbl .tabcontent, .maximize .simpleAdd .addTbl .tabcontent .tblWrap {height:77vh;}
+}
+@media screen and (max-height: 1366px) {
+	.addTbl .tabcontent, .addTbl .tabcontent .tblWrap {height:42vh;}
+	.maximize .addTbl .tabcontent, .maximize .addTbl .tabcontent .tblWrap {height:62vh;}
+	.maximize .simpleAdd .addTbl .tabcontent, .maximize .simpleAdd .addTbl .tabcontent .tblWrap {height:75vh;}
+}
+@media screen and (max-height: 1280px) {
+	.addTbl .tabcontent, .addTbl .tabcontent .tblWrap {height:40vh;}
+	.maximize .addTbl .tabcontent, .maximize .addTbl .tabcontent .tblWrap {height:60vh;}
+	.maximize .simpleAdd .addTbl .tabcontent, .maximize .simpleAdd .addTbl .tabcontent .tblWrap {height:74vh;}
+}
+@media screen and (max-height: 1200px) {
+	.addTbl .tabcontent, .addTbl .tabcontent .tblWrap {height:39vh;}
+	.maximize .addTbl .tabcontent, .maximize .addTbl .tabcontent .tblWrap {height:57vh;}
+	.maximize .simpleAdd .addTbl .tabcontent, .maximize .simpleAdd .addTbl .tabcontent .tblWrap {height:72vh;}
+}
+@media screen and (max-height: 1100px) {
+	.maximize .addTbl .tabcontent, .maximize .addTbl .tabcontent .tblWrap {height:52vh;}
+	.maximize .simpleAdd .addTbl .tabcontent, .maximize .simpleAdd .addTbl .tabcontent .tblWrap {height:69vh;}
+}
+@media screen and (max-height: 1020px) {
+	.addTbl .tabcontent, .addTbl .tabcontent .tblWrap {height:38vh;}
+	.maximize .addTbl .tabcontent, .maximize .addTbl .tabcontent .tblWrap {height:45vh;}
+	.maximize .simpleAdd .addTbl .tabcontent, .maximize .simpleAdd .addTbl .tabcontent .tblWrap {height:64vh;}
+}
+@media screen and (max-height: 900px) {
+	.addTbl .tabcontent, .addTbl .tabcontent .tblWrap, .maximize .addTbl .tabcontent, .maximize .addTbl .tabcontent .tblWrap {height:42vh;}
+	.maximize .simpleAdd .addTbl .tabcontent, .maximize .simpleAdd .addTbl .tabcontent .tblWrap {height:43vh;}
+}
+@media screen and (max-height: 800px) {
+	.addTbl .tabcontent, .addTbl .tabcontent .tblWrap, .maximize .addTbl .tabcontent, .maximize .addTbl .tabcontent .tblWrap {height:36vh;}
+	.maximize .simpleAdd .addTbl .tabcontent, .maximize .simpleAdd .addTbl .tabcontent .tblWrap {height:58vh;}
+}
+@media screen and (max-height: 768px) {
+	.addTbl .tabcontent, .addTbl .tabcontent .tblWrap, .maximize .addTbl .tabcontent, .maximize .addTbl .tabcontent .tblWrap {height:33vh;}
+	.maximize .simpleAdd .addTbl .tabcontent, .maximize .simpleAdd .addTbl .tabcontent .tblWrap {height:57vh;}
+}
+@media screen and (max-height: 720px) {
+	.addTbl .tabcontent, .addTbl .tabcontent .tblWrap, .maximize .addTbl .tabcontent, .maximize .addTbl .tabcontent .tblWrap {height:calc(80Vh - 230px);}
+	.maximize .simpleAdd .addTbl .tabcontent, .maximize .simpleAdd .addTbl .tabcontent .tblWrap {height:calc(80Vh - 190px);}
+}
+@media screen and (max-height: 600px) {
+	.maximize .simpleAdd .addTbl .tabcontent, .maximize .simpleAdd .addTbl .tabcontent .tblWrap {height:calc(80Vh - 210px);}
+}
 
 .table.valignM td {vertical-align:middle;}
 .table .iconCol {width:40px;}
@@ -52,6 +136,7 @@ td a {color:#152935;}
 .table .prodNo .thTtl {white-space:nowrap;}
 .table .prodNo.casNo {width:125px;}
 .table .prodNo.wp-150 {width:150px;}
+.table .prodNo.w-85 {width:85%;}
 .table .consume .specialType {width:150px;}
 .table .dateCol {width:125px;}
 .table .dateCol.smallCell {width:100px;}
@@ -72,6 +157,11 @@ td a {color:#152935;}
 .productRow td {background-color:#f7f8fb; border-top:2px solid #3596b3;}
 
 .prodLst.AmountRow + .prodLst.AmountRow {margin-top:7px;}
+
+.modalCard .dataTablesWrapper.whiteCard {border:1px solid #e2e8f0; border-radius:4px;}
+.whiteCard, .whiteCard .headTtl, .whiteCard .modalInner {background:#fff;}
+.whiteCard .modalInner {padding:16px !important;}
+.whiteCard .tableInfo {border:0; border-top:1px solid #e2e8f0;}
 
  /* Empty states: No items found, Start searching, No results found */
 .emptyTxt {display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%;}

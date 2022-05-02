@@ -1,5 +1,5 @@
 <template>
-	<div class="loginMain d-flex">
+	<div class="chemsoft-login loginMain d-flex">
 		<div class="imgLarge d-flex justify-content-center align-items-center">
 			<div class="row no-gutters">
 				<div class="textIntro col">
@@ -15,7 +15,6 @@
 		</div>
 	</div>
 </template>
-
 <script>
 export default {
   props: ['welcomeMainTxt', 'welcomeSubTxt']

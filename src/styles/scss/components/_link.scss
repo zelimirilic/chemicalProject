@@ -1,0 +1,11 @@
+﻿.#{$namespace}-link {
+    @include inline-block();
+    color: $color-secondary;
+
+    &:hover {
+        color: darken($color-primary, 3%);
+    }
+
+    font-size: calc(1rem / $ratio);
+    line-height: calc($rhythm / 1.25);
+}

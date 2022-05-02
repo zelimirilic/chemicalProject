@@ -34,7 +34,7 @@
 
 html, body {height:100%;}
 body {background:#fafbfb; font-family:"Roboto",sans-serif; font-size:14px; color:#5d6a7e; line-height:1.3;}
-.backdrop {position:fixed; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,.2); z-index:100;}
+.backdrop {position:fixed; left:0; top:0; width:100%; height:100%; padding:24px; background-color:rgba(0,0,0,.2); z-index:1000;}
 .mainBox {position:relative; height:100%;}
 .hiddenColumn {display:none;}
 .sticky {position:fixed; margin-top:30px; z-index:10;}
@@ -89,7 +89,6 @@ body {background:#fafbfb; font-family:"Roboto",sans-serif; font-size:14px; color
 .hp-80 {height:80px;}
 .hp-100 {height:100px;}
 .hp-200 {height:200px;}
-.hp-240 {height:240px;}
 .hp-280 {height:280px;}
 .hp-300 {height:300px;}
 .hp-400 {height:400px;}
@@ -97,7 +96,9 @@ body {background:#fafbfb; font-family:"Roboto",sans-serif; font-size:14px; color
 .mhp-20 {min-height:20px;}
 .mxhp-80 {max-height:80px;}
 .mxhp-142 {max-height:142px;}
+.mxhp-158 {max-height:158px;}
 .mxhp-190 {max-height:190px;}
+.mxhp-225 {max-height:225px;}
 .mxhp-260 {max-height:260px;}
 .mxhp-400 {max-height:400px;}
 .mxvh-38 {max-height:38vh;}
@@ -350,11 +351,21 @@ ul.unstyled {margin:0; padding-left:20px;}
 .cards .card label sup {top:-.3em;}
 
 /************ Dialog ************/
-.modalCard {position:relative; display:-webkit-box; display:-webkit-flex; display:-ms-flexbox; display:flex; -webkit-flex-wrap:wrap; -ms-flex-wrap:wrap; flex-wrap:wrap; margin-top:75px;}
-.modalCard > .card {min-height:150px; margin:0 auto; border:1px solid rgba(0,0,0,.18);}
-.modalCard .card-header {display:-webkit-box; display:-webkit-flex; display:-ms-flexbox; display:flex; -webkit-box-align:start; -ms-flex-align:start; align-items:flex-start; -webkit-box-pack:justify; -webkit-justify-content:space-between; -ms-flex-pack:justify; justify-content:space-between;}
-.modalCard > .card .card-body {max-height:80vh; background-color:#f9f9fa; overflow:hidden; overflow-y:auto;}
-.modalCard > .card.customHeight .card-body {max-height:80vh;}
+.modalCard {position:relative; width:auto;}
+.maximize .modalCard {height:100%;}
+.modalCard > .card {min-height:200px; margin:0 auto; border:1px solid rgba(0,0,0,.18);}
+.modalCard > .card.minimize {width:85vw;}
+.modalCard > .card.maximize {width:100%; height:100%;}
+.modalCard .card-header {display:-webkit-box; display:-webkit-flex; display:flex; justify-content:space-between;}
+.modalCard .cardCont {position:relative; display:flex; flex-direction:column; width:100%; height:100%;}
+.modalCard > .card .card-body {background-color:#f9f9fa; overflow:hidden; overflow-y:auto;}
+.modalCard > .card:not(.maximize) .card-body {max-height:80vh;}
+.modalCard > .card.maximize .card-body {height:calc(80vh - 61px);}
+@media screen and (max-height: 720px) {
+	.mainimize .modalCard {height:100%;}
+	.modalCard > .card.minimize {width:90vw; height:calc(100vh - 100px);}
+	.modalCard > .card.maximize .card-body {height:calc(80vh - 61px);}
+}
 
 .modalCard .widthTbl .card-body {padding-top:0;}
 .modalCard > .card.maxvh-50 .eqtree-default {max-height:50vh; overflow:auto;}
@@ -381,7 +392,7 @@ ul.unstyled {margin:0; padding-left:20px;}
 .nav.nav-tabs.smallTabs .nav-link {font-size:14px;}
 .tab .tablinks.active span {color:#3596b3;}
 .tabcontent {display:none;}
-.tabcontent.active {display:block; width:100%;}
+.tabcontent.active {display:flex; flex-direction:column; width:100%;}
 .tabcontent .table {border-width:0 0 1px;}
 .tabWrapper .actionLink {margin-right:24px;}
 .tabWrapper.tab-content, .scrollWrap {max-height:79vh; overflow-x:hidden; overflow-y:auto;}

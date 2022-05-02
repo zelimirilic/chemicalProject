@@ -4,7 +4,7 @@
 			<tr>
 				<Th class="iconCol skipForSorting skipColumn ignoreInExportToExcel"></Th>
 				<Th class="prodNo" prop="artNum" sort export :placeholder="getTranslation('I00.00002880', 'Prod. No.')">{{ getTranslation('I00.00002880', 'Prod. No.') }}</Th>
-				<Th class="prodName" prop="name" sort export defaultSort :placeholder="getTranslation('I00.00033260', 'Current tradename')">{{ getTranslation('I00.00033260', 'Current tradename') }}</Th>
+				<Th class="prodName" prop="name" sort export :placeholder="getTranslation('I00.00033260', 'Current tradename')">{{ getTranslation('I00.00033260', 'Current tradename') }}</Th>
 				<Th class="prodNo smallCell" prop="productType" sort export :placeholder="getTranslation('I00.00012550', 'Product type')">{{ getTranslation('I00.00012550', 'Product type') }}</Th>
 				<Th class="consume" :prop="getValueUnits('consumption')" :sort="getValues('consumption')" :export="getValues('consumption')" :placeholder="getTranslation('I00.00005480', 'Annual consumption')">{{ getTranslation('I00.00005480', 'Annual consumption') }}</Th>
 				<Th :export="getUnits('consumption')" v-show="false">{{ getTranslation('I00.00027360', 'Unit') }}</Th>
@@ -15,6 +15,7 @@
 				<Th class="statusCell" prop="wasserKlass" sort export v-if="isGerman" :placeholder="getTranslation('I00.00014630', 'Water class')">{{ getTranslation('I00.00014630', 'Water class') }}</Th>
 				<Th class="statusCell" prop="ewc" sort export v-if="isGerman" :placeholder="'EWC'">EWC</Th>
 				<Th class="prodNo smallCell" prop="deleted" sort export :placeholder="getTranslation('I00.00026750', 'Deprecated')">{{ getTranslation('I00.00026750', 'Deprecated') }}</Th>
+				<Th v-if="isPerDepartments" :prop="f => getOrganisationName(f)" name="departmentPath" sort defaultSort="desc" :export="f => getOrganisationPathValues(f)">{{ getTranslation('I00.00002940', 'Department') }}</Th>
 				<Th class="IconColumn" prop="trafficLightStatusName" name="trafficLightStatusName" sort :export="trafficLightStatusName" v-if="!appSettings.hideTrafficLight">{{ getTranslation('I00.00049950', 'Trafic lights') }}</Th>
 			</tr>
 			<tr class="secondHead">
@@ -31,7 +32,8 @@
 				<Th class="prodNo smallCell skipForSorting" :prop="getSubstanceProperty('additionalData3')" export :placeholder="getAdditionalHeaderText('additionalData3')">{{ getAdditionalHeaderText('additionalData3') }}</Th>
 				<Th class="skipForSorting" v-if="isGerman"></Th>
 				<Th class="skipForSorting" v-if="isGerman"></Th>
-				<Th class="skipForSorting"></Th>
+				<Th class="skipForSorting" v-if="isPerDepartments"></Th>
+				<Th class="skipForSorting" v-if="!appSettings.hideTrafficLight"></Th>
 			</tr>
 		</template>
 		<template #body="product">
@@ -61,6 +63,9 @@
 				<td class="statusCell" v-if="isGerman">{{ product.item.wasserKlass }}</td>
 				<td class="statusCell" v-if="isGerman">{{ product.item.ewc }}</td>
 				<td class="prodNo smallCell">{{ product.item.deleted }}</td>
+				<td v-if="isPerDepartments">
+					<span :title="product.item.departmentInfo.departmentPath">{{ product.item.departmentInfo.tableName }}</span>
+				</td>
 				<td class="IconColumn" v-if="!appSettings.hideTrafficLight">
 					<span class="trafficLight middled" :class="product.item.trafficLightStatusClass" :title="product.item.trafficLightStatusName"></span>
 				</td>
@@ -86,6 +91,8 @@
 				<td class="prodNo smallCell">{{ substance.additionalData3 }}</td>
 				<td class="wp-110" v-if="isGerman">&nbsp;</td>
 				<td class="wp-110" v-if="isGerman">&nbsp;</td>
+				<td v-if="isPerDepartments">&nbsp;</td>
+				<td v-if="!appSettings.hideTrafficLight">&nbsp;</td>
 			</tr>
 		</template>
 	</DataTable>
@@ -95,70 +102,86 @@
 import { getDangerSymbols } from '../../../libraries/reports_v3';
 import { genericDangerSymbolsResult } from '../../../libraries/exportToExcel_v3';
 import DangerSymbols from '../../../components/riskAssessment/DangerSymbols';
-import DataTable from '../../common/dataTable/DataTable_v3'
+import { getOrganisationPathValues, getOrganisationName } from '../../../libraries/reports_v3';
+import DataTable from '../../common/dataTable/DataTable_v3';
 import Th from '../../common/dataTable/Th_v3';
 
 export default {
-  components: {
-    DangerSymbols,
-    DataTable,
-    Th
-  },
-  props: ['data', 'title', 'excelTitle', 'customFieldsTitles', 'perPage', 'orgId'],
-  computed: {
-    isGerman() {
-      return this.appSettings.orgProdListLawOtherCountry == 'German';
-    },
-  },
-  methods: {
-    getValueUnits: (prop) => (product) => (product[prop] || []).map((f) => (f.value + '') + (f.unit || '')).join('\n'),
-    getValues: prop => product => product[prop].map(f => f.value).join('\n'),
-    getUnits: prop => product => product[prop].map(f => f.unit).join('\n'),
-    getReachText() {
-      var translator = {
-        german: 'Annex XVII',
-        danish: 'LOUS',
-        'non eu': 'SIN'
-      };
-      return translator[this.appSettings.orgProdListLawOtherCountry.toLowerCase()] || this.getTranslation('I00.00014460', 'REACH');
-    },
-    getCasNumber(product) {
-      return product.substances.map(f => f.casNumber + '/' + f.egnumber);
-    },
-    getCasName(product) {
-      return product.substances.map(f => f.casName);
-    },
-    getSubstanceProperty: prop => product => product.substances.map(f => f[prop]),
-    getSubstancePropertyValue: prop => product => product.substances.map(f => f[prop].map(g => g.value).join('\n')),
-    getSubstancePropertyUnit: prop => product => product.substances.map(f => f[prop].map(g => g.unit).join('\n')),
-    imageResult(product) {
-      return genericDangerSymbolsResult(["vattenfallDangerSymbols", "oldLawNotVattenfallDangerSymbols", "newLawDangerSymbols"], this.getDangerSymbols(product));
-    },
-    getAdditionalHeaderText(prop) {
-      var translator = {
-        german: {
-          additionalData2: 'SVHC',
-          additionalData3: 'ChemVerbotsV',
-        },
-        danish: {
-          additionalData2: 'Græns',
-          additionalData3: 'Vand',
-        },
-        'non eu': {
-          additionalData2: this.getTranslation('I00.00046390', 'CMR list'),
-          additionalData3: this.getTranslation('I00.00048320', 'Allergens list'),
-        },
-        default: {
-          additionalData2: 'SVHC',
-          additionalData3: this.getTranslation('I00.00011630', 'Water framework directive'),
-        }
-      };
-      return (translator[this.appSettings.orgProdListLawOtherCountry.toLowerCase()] || {})[prop] || translator['default'][prop];
-    },
-    trafficLightStatusName(item) {
-      return item.trafficLightStatusName;
-    },
-    getDangerSymbols
-  }
+	components: {
+		DangerSymbols,
+		DataTable,
+		Th
+	},
+	props: ['data', 'title', 'excelTitle', 'customFieldsTitles', 'perPage', 'orgId'],
+	data() {
+		return {
+			isPerDepartments: this.data.find(x => x.departmentInfo)
+		};
+	},
+	computed: {
+		isGerman() {
+			return this.appSettings.orgProdListLawOtherCountry == 'German';
+		}
+	},
+	methods: {
+		getOrganisationPathValues: getOrganisationPathValues,
+		getOrganisationName: getOrganisationName,
+		getValueUnits: prop => product => (product[prop] || []).map(f => f.value + '' + (f.unit || '')).join('\n'),
+		getValues: prop => product => product[prop].map(f => f.value).join('\n'),
+		getUnits: prop => product => product[prop].map(f => f.unit).join('\n'),
+		getReachText() {
+			var translator = {
+				german: 'Annex XVII',
+				danish: 'LOUS',
+				'non eu': 'SIN'
+			};
+			return translator[this.appSettings.orgProdListLawOtherCountry.toLowerCase()] || this.getTranslation('I00.00014460', 'REACH');
+		},
+		getCasNumber(product) {
+			return product.substances.map(f => f.casNumber + '/' + f.egnumber);
+		},
+		getCasName(product) {
+			return product.substances.map(f => f.casName);
+		},
+		getSubstanceProperty: prop => product => product.substances.map(f => f[prop]),
+		getSubstancePropertyValue: prop => product => product.substances.map(f => f[prop].map(g => g.value).join('\n')),
+		getSubstancePropertyUnit: prop => product => product.substances.map(f => f[prop].map(g => g.unit).join('\n')),
+		imageResult(product) {
+			return genericDangerSymbolsResult(['vattenfallDangerSymbols', 'oldLawNotVattenfallDangerSymbols', 'newLawDangerSymbols'], this.getDangerSymbols(product));
+		},
+		getAdditionalHeaderText(prop) {
+			var translator = {
+				german: {
+					additionalData2: 'SVHC',
+					additionalData3: 'ChemVerbotsV'
+				},
+				danish: {
+					additionalData2: 'Græns',
+					additionalData3: 'Vand'
+				},
+				'non eu': {
+					additionalData2: this.getTranslation('I00.00046390', 'CMR list'),
+					additionalData3: this.getTranslation('I00.00048320', 'Allergens list')
+				},
+				eu: {
+					additionalData2: 'SVHC',
+					additionalData3: this.getTranslation('I00.00011630', 'Water framework directive')
+				},
+				swedish: {
+					additionalData2: this.getTranslation('I00.00010910', 'PRIO'),
+					additionalData3: this.getTranslation('I00.00011630', 'Water framework directive')
+				},
+				default: {
+					additionalData2: this.getTranslation('I00.00010910', 'PRIO'),
+					additionalData3: this.getTranslation('I00.00011630', 'Water framework directive')
+				}
+			};
+			return (translator[this.appSettings.orgProdListLawOtherCountry.toLowerCase()] || {})[prop] || translator['default'][prop];
+		},
+		trafficLightStatusName(item) {
+			return item.trafficLightStatusName;
+		},
+		getDangerSymbols
+	}
 };
 </script>

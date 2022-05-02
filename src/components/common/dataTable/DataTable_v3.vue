@@ -7,7 +7,7 @@
 			<template v-if="tableData.length">
 				<div class="mainGrayBoxTtl d-flex align-items-center justify-content-center" v-if="!propToBool(noHeader)">
 					<h5 class="">{{ title }}</h5>
-					<a href="#:" class="icons excIcon excel-export-icon ml-auto HideOnPrint" v-if="!propToBool(accordion)" @click="exportToExcel()" :title="getTranslation('I00.00018680', 'Export to excel')"></a>
+					<a href="#:" class="icons excIcon excel-export-icon ml-auto HideOnPrint" :class="{ disabled: tableData == null || exportDisabled }" v-if="!propToBool(accordion)" @click="exportToExcel()" :title="getTranslation('I00.00018680', 'Export to excel')"></a>
 				</div>
 				<div class="mainGrayBoxTbl">
 					<div :class="tableWrapClass">
@@ -34,8 +34,12 @@
 											</template>
 										</template>
 										<!-- <span class="icons" :class="{ 'icon-columnedit': !isEditing, 'icon-columncheck': isEditing }" @click="toggleIsEditing" v-if="this.hiddenColumns" /> -->
-										<button class="btn icons icon-filter mr-2" :class="{ active: showColumnSearch }" type="button" @click="toggleSubSearch"></button>
-										<a href="#:" class="icons excIcon excel-export-icon ml-4 HideOnPrint" v-if="propToBool(accordion)" @click="exportToExcel()" :title="getTranslation('I00.00018680', 'Export to excel')"></a>
+										<button class="btn icons icon-filter mr-3" :class="{ active: showColumnSearch }" type="button" @click="toggleSubSearch"></button>
+										<button class="btn grayBtn" type="button" @click="$emit('openAdvancedFilter', firstHeadChildren)" v-if="propToBool(hasAdvancedFilter)" :title="getTranslation('I00.00057500', 'Advanced filter')">
+											<span class="icons icon-filteradv mr-2"></span>
+											<b>{{ getTranslation('I00.00056960', 'Filter') }}</b>
+										</button>
+										<a href="#:" class="icons excIcon excel-export-icon ml-4 HideOnPrint" :class="{ disabled: tableData == null || exportDisabled }" v-if="propToBool(accordion)" @click="exportToExcel()" :title="getTranslation('I00.00018680', 'Export to excel')"></a>
 									</div>
 								</template>
 							</div>
@@ -83,7 +87,7 @@
 					<h5 class="">{{ title }}</h5>
 				</div>
 				<div class="tblWrap" :class="tableWrapClass">
-					<table class="table table-hover dataTable" :class="tableClass" v-if="propToBool(showHeadersWhenEmpty)">
+					<table class="ResultTable table dataTable mb-0" :class="tableClass" v-if="propToBool(showHeadersWhenEmpty)">
 						<thead ref="head">
 							<slot name="head"></slot>
 						</thead>
@@ -121,24 +125,24 @@ import Pagination from './Pagination_v3';
 import { propToBool } from '../../../libraries/vue';
 
 export default {
-  extends: DataTable,
-  name: 'DataTable',
-  components: {
-    Pagination,
-  },
-  methods: {
-    // getHeadChildren() {
-    //   var els = getAllChildrens(this.$refs.head).filter(f => f.tagName === 'TH');
-    //   return this.$children.mapMany(f => f.$children).filter(f => els.indexOf(f.$el) > -1);
-    // },
-    // sort(child, fnc) {
-    //   var thEls = Array.from(child.$el.parentNode.children);
-    //   var ths = this.$children.mapMany(f => f.$children).filter(f => f !== child && thEls.indexOf(f.$el) > -1);
-    //   ths.forEach(f => f.reset());
-    //   this.selectedPage = 1;
-    //   this.sortFnc = fnc;
-    // },
-    propToBool
-  }
-}
+	extends: DataTable,
+	name: 'DataTable',
+	components: {
+		Pagination
+	},
+	methods: {
+		// getHeadChildren() {
+		//   var els = getAllChildrens(this.$refs.head).filter(f => f.tagName === 'TH');
+		//   return this.$children.mapMany(f => f.$children).filter(f => els.indexOf(f.$el) > -1);
+		// },
+		// sort(child, fnc) {
+		//   var thEls = Array.from(child.$el.parentNode.children);
+		//   var ths = this.$children.mapMany(f => f.$children).filter(f => f !== child && thEls.indexOf(f.$el) > -1);
+		//   ths.forEach(f => f.reset());
+		//   this.selectedPage = 1;
+		//   this.sortFnc = fnc;
+		// },
+		propToBool
+	}
+};
 </script>

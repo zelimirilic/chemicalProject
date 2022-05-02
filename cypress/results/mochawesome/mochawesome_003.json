@@ -1,14 +1,14 @@
 {
   "stats": {
     "suites": 1,
-    "tests": 1,
-    "passes": 1,
+    "tests": 2,
+    "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2022-03-23T14:16:35.684Z",
-    "end": "2022-03-23T14:17:00.949Z",
-    "duration": 25265,
-    "testsRegistered": 1,
+    "start": "2022-04-28T13:55:52.117Z",
+    "end": "2022-04-28T13:56:38.929Z",
+    "duration": 46812,
+    "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
     "other": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "c34e0d5c-b21d-466e-9191-e8fd12be35d3",
+      "uuid": "82cf90ef-8d67-44c0-ba62-ee9621b591e2",
       "title": "",
       "fullFile": "cypress/integration/4-Navigation/chemsoft-navigation.js",
       "file": "cypress/integration/4-Navigation/chemsoft-navigation.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "10d49c5b-3b43-4cb7-9429-8b8632adef04",
+          "uuid": "9c643517-feaf-4363-97d3-aa8317426fc0",
           "title": "Validate Chemsoft home page links",
           "fullFile": "",
           "file": "",
@@ -35,32 +35,51 @@
           "afterHooks": [],
           "tests": [
             {
-              "title": "Confirm links redirect to the correct pages",
-              "fullTitle": "Validate Chemsoft home page links Confirm links redirect to the correct pages",
+              "title": "Confirm links redirect to the correct pages - Chemsoft NG",
+              "fullTitle": "Validate Chemsoft home page links Confirm links redirect to the correct pages - Chemsoft NG",
               "timedOut": null,
-              "duration": 25199,
+              "duration": 25454,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.visit(\"https://dev04/system/login/chemsofttest\");\ncy.url().should('include', 'chemsofttest');\ncy.get('.username > .form-control').type(\"miljan\");\ncy.get('.btn').contains('Sign in').click();\ncy.url().should('include', 'system');\ncy.wait(10000);\ncy.go('back');\ncy.url().should('include', 'chemsofttest');\ncy.reload();\ncy.url().should('include', 'https://dev04/system/login/chemsofttest');\ncy.get('.username > .form-control').type(\"miljan\");\ncy.get('.btn').contains('Sign in').click();\ncy.url().should('include', 'system');\ncy.wait(10000);\ncy.go('back');\ncy.get('[name=\"user\"]').click();\ncy.get('.username > .form-control').type(\"wrongUserName\");\ncy.get('.btn').contains('Sign in').click();\ncy.get('.alerts').should('have.text', '\\n\\tWrong user name or password\\n');",
+              "code": "cy.visit(\"https://dev04/system/login/chemsofttest\");\ncy.url().should('include', 'chemsofttest');\ncy.get('.username > .form-control').type(\"miljan\");\ncy.get('.btn').contains('Sign in').click();\ncy.url().should('include', 'system');\ncy.wait(10000);\ncy.go('back');\ncy.url().should('include', 'chemsofttest');\ncy.reload();\ncy.url().should('include', 'https://dev04/system/login/chemsofttest');\ncy.get('.username > .form-control').type(\"miljan\");\ncy.get('.btn').contains('Sign in').click();\ncy.url().should('include', 'system');\ncy.wait(10000);\ncy.go('back');\ncy.get('[name=\"user\"]').click();\ncy.get('.username > .form-control').type(\"wrongUserName\");\ncy.get('.btn').contains('Sign in').click();\ncy.get('.alerts').should('have.text', 'Wrong username or password×');",
               "err": {},
-              "uuid": "fd79bdda-b35b-45aa-8969-1ac6bfacffd1",
-              "parentUUID": "10d49c5b-3b43-4cb7-9429-8b8632adef04",
+              "uuid": "6884e372-2c63-480a-b0a5-b739e6e15457",
+              "parentUUID": "9c643517-feaf-4363-97d3-aa8317426fc0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Confirm links redirect to the correct pages - iChemistry",
+              "fullTitle": "Validate Chemsoft home page links Confirm links redirect to the correct pages - iChemistry",
+              "timedOut": null,
+              "duration": 21298,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"https://dev04/main/storaenso\");\ncy.get('#user').type(\"miljan\");\ncy.get('#pswd').type(\"hirsl666\");\ncy.get('.ichemistry-button').contains('Sign in').click();\ncy.url().should('include', '~master/application.aspx');\ncy.go('back');\ncy.reload();\ncy.url().should('include', 'https://dev04/main/storaenso');\ncy.get('#user').type(\"miljan\");\ncy.get('#pswd').type(\"hirsl666\");\ncy.get('.ichemistry-button').contains('Sign in').click();\ncy.url().should('include', '~master/application.aspx');\ncy.go('back');\ncy.get('#user').type(\"miljan\");\ncy.get('.ichemistry-button').contains('Sign in').click();\ncy.get('#passErrMsg').should('contain.text', 'The password field is required');\ncy.get('#pswd').type(\"wrongUserName\");\ncy.get('.ichemistry-button').contains('Sign in').click();\ncy.get('.ichemistry-alert').should('contain.text', 'Wrong username or password');",
+              "err": {},
+              "uuid": "b0168d1e-d61a-48dd-b483-143aa9580e8b",
+              "parentUUID": "9c643517-feaf-4363-97d3-aa8317426fc0",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "fd79bdda-b35b-45aa-8969-1ac6bfacffd1"
+            "6884e372-2c63-480a-b0a5-b739e6e15457",
+            "b0168d1e-d61a-48dd-b483-143aa9580e8b"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 25199,
+          "duration": 46752,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

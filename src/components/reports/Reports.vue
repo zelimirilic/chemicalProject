@@ -2,13 +2,13 @@
 	<TabsWithMenu class="card pageWrapper" :value="selectedIndex" :tabs="tabs" @input="tabChanged">
 		<template #menu>
 			<span class="icons icon-plus" @click="$emit('addProduct')" v-tooltip="getTranslation('I00.00010750', 'Add product')" v-if="showAddProduct"></span>
+      <span class="icons icon-excel" :class="{ disabled: prodData == null || exportAllDisabled }" @click="exportAllToExcel()" :title="getTranslation('I00.00045690', 'Export All')" v-if="selectedIndex === 1"></span>
 			<template v-if="appSettings.useReportsAdditionalColumns && selectedColumns">
 				<span class="icons icon-columns" :class="{ disabledTooltip: !($store.getters.state.reportsAdditionalColumns || []).length }" @click="($store.getters.state.reportsAdditionalColumns || []).length ? (showAdditionalColumns = true) : ''" v-tooltip="getTranslation('I00.00048130', 'Add columns')"></span>
-				<span class="icons icon-save" :class="{ disabledTooltip: disableSaveOnFireAndADR }" @click="!disableSaveOnFireAndADR ? (customReport ? saveCustomReport(customReport) : modalOpen()) : ''" v-tooltip="getTranslation('I00.00004810', 'Save')"></span>
+				<span class="icons icon-save" :class="{ disabledTooltip: disableSaveOnFireAndADR || !isReportChanged }" @click="!disableSaveOnFireAndADR ? (customReport ? saveCustomReport(customReport) : modalOpen()) : ''" v-tooltip="getTranslation('I00.00004810', 'Save')"></span>
 				<span class="icons icon-saveas" @click="modalOpen()" v-tooltip="getTranslation('I00.00047590', 'Save as')"></span>
 				<span v-if="isForDelete" class="icons icon-delete" @click="showDeleteCustomReport = true" v-tooltip="getTranslation('I00.00054690', 'Delete custom report')"></span>
 			</template>
-			<span class="icons icon-excel" :class="{ disabledTooltip: prodData == null || exportAllDisabled }" @click="!(prodData == null || exportAllDisabled) ? exportAllToExcel() : ''" v-tooltip="getTranslation('I00.00045690', 'Export All')" v-if="selectedIndex === 1"></span>
 		</template>
 		<slot name="filterSlot"></slot>
 		<template v-if="prodData && !isSaving">
@@ -111,26 +111,34 @@ export default {
     getAllDataTables() {
       return getAllChildren(this).filter(f => f.isDataTable);
     },
-    exportAllToExcel() {
-      var dts = this.getAllDataTables();
+		exportAllToExcel() {
+			var dts = this.getAllDataTables();
 
-      var headers = JSON.stringify(dts[0].excelHeaders());
-      var excelData = dts.map(dt => ({
-        headers: headers,
-        data: dt.excelDataFnc(dt.sortedData),
-        title: dt.excelTitle,
-      })).pushMany(this.prodData
-        .takeFromTo(dts.length, this.prodData.length)
-        .map(data => ({
-          headers: headers,
-          data: dts[0].excelDataFnc(data.products),
-          title: nodeNamePath(data.department),
-        })));
+			var headers = JSON.stringify(dts[0].excelHeaders());
+			var message = this.getTranslation('I00.00048970', 'Please wait while the document is being created.');
+			var excelData = dts
+				.map(dt => ({
+					headers: headers,
+					data: dt.excelDataFnc(dt.sortedData),
+					title: dt.excelTitle
+				}))
+				.pushMany(
+					this.prodData.takeFromTo(dts.length, this.prodData.length).map(data => ({
+						headers: headers,
+						data: dts[0].excelDataFnc(data.products),
+						title: nodeNamePath(data.department)
+					}))
+				);
 
-      this.exportAllDisabled = true;
-      exportAllToExcel(excelData.map(f => f.headers), excelData.map(f => JSON.stringify(f.data)), excelData.map(f => f.title))
-        .then(() => this.exportAllDisabled = false);
-    },
+			this.exportAllDisabled = true;
+      // call func from exportToExcel.js
+			exportAllToExcel(
+				excelData.map(f => f.headers),
+				excelData.map(f => JSON.stringify(f.data)),
+				excelData.map(f => f.title),
+				message
+			).then(() => (this.exportAllDisabled = false));
+		},
     columnsChanged(event) {
       this.showAdditionalColumns = false;
       this.$emit('columnsChanged', event);
@@ -205,6 +213,7 @@ export default {
               Object.assign(existingReport, report);
               this.$store.state.savedNewReportFlag = false;
             }
+
             this.$store.state.subSearches = [];
             this.$store.state.filledSubSearches = this.$store.state.subSearches;
             this.$emit('fillFilters', report.filterObject.filterQuery);
@@ -263,9 +272,9 @@ export default {
         });
 
         isChanged = (hashCode([report.additionalColumns.map(f => ({ id: f.id, name: f.name })), report.hiddenColumns]) !== hashCode([this.selectedColumns.map(f => ({ id: f.id, name: f.name })), this.hiddenColumns])
-          || this.filterChangedValue) && !this.$store.state.savedNewReportFlag;
+          || this.filterChangedValue);
       } else
-        isChanged = this.selectedColumns ? (this.selectedColumns.concat(this.hiddenColumns).length || this.filterChangedValue) && !this.$store.state.savedNewReportFlag : false;
+        isChanged = this.selectedColumns ? (this.selectedColumns.concat(this.hiddenColumns).length || this.filterChangedValue) : false;
 
       return isChanged
     },
@@ -282,6 +291,7 @@ export default {
     },
     isReportChanged() {
       this.$store.getters.state.saveStatus = this.isReportChanged;
+      if (this.$route.query.id && this.isReportChanged) this.$store.state.savedNewReportFlag = false;
     }
   },
   beforeMount() {
@@ -290,7 +300,6 @@ export default {
   },
   mounted() {
     this.reportRoute = this.$route;
-    this.$store.state.savedNewReportFlag = false;
     this.$store.getters.state.saveStatus = false;
   },
   translationsLoaded() {

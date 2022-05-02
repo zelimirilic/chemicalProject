@@ -5,7 +5,6 @@
 				<template v-if="appSettings.useReportsAdditionalColumns && selectedColumns">
 					<span class="icons icon-columns" :class="{ disabled: !($store.getters.state.reportsAdditionalColumns || []).length }" :title="getTranslation('I00.00048130', 'Add columns')" @click="($store.getters.state.reportsAdditionalColumns || []).length ? (showAdditionalColumns = true) : ''"></span>
 				</template>
-				<span class="icons icon-excel" :class="{ disabled: prodData == null || exportAllDisabled }" @click="exportAllToExcel()" :title="getTranslation('I00.00045690', 'Export All')" v-if="selectedIndex === 1"></span>
 			</template>
 			<slot name="filterSlot"></slot>
 			<template v-if="prodData && !isSaving">
@@ -32,8 +31,7 @@ import SmallLoader from '../common/loaders/SmallLoader_v3';
 import AdditionalColumnsPicker from './components/AdditionalColumnsPicker_v3';
 import TabsWithMenu from '../common/tabs/TabsWithMenu_v3';
 import { nodeNameWithParent, nodeNamePath } from '../../libraries/tree_v3';
-import { getAllChildren } from '../../libraries/vue';
-import { exportAllToExcel } from '../../libraries/exportToExcel';
+import { getAllChildren, propToBool } from '../../libraries/vue';
 import axios from '../../axios';
 import { camelCaseObj, perPageItems } from '../../libraries/common';
 
@@ -43,7 +41,7 @@ export default {
     AdditionalColumnsPicker,
     TabsWithMenu
   },
-  props: ['prodData', 'selectedColumns', 'hiddenColumns', 'perPage'],
+  props: ['prodData', 'selectedColumns', 'hiddenColumns', 'perPage', 'withOutSummarise'],
   data() {
     return {
       displayedTables: 0,
@@ -60,6 +58,7 @@ export default {
     };
   },
   methods: {
+    propToBool,
     backToTop() {
       document.getElementById('MainContDiv').scroll({ top: 0, behavior: "smooth" });
     },
@@ -96,31 +95,11 @@ export default {
     nodeNamePath: nodeNamePath,
     getAllDataTables() {
       return getAllChildren(this).filter(f => f.isDataTable);
-    },
-    exportAllToExcel() {
-      var dts = this.getAllDataTables();
-
-      var headers = JSON.stringify(dts[0].excelHeaders());
-      var excelData = dts.map(dt => ({
-        headers: headers,
-        data: dt.excelDataFnc(dt.sortedData),
-        title: dt.excelTitle,
-      })).pushMany(this.prodData
-        .takeFromTo(dts.length, this.prodData.length)
-        .map(data => ({
-          headers: headers,
-          data: dts[0].excelDataFnc(data.products),
-          title: nodeNamePath(data.department),
-        })));
-
-      this.exportAllDisabled = true;
-      exportAllToExcel(excelData.map(f => f.headers), excelData.map(f => JSON.stringify(f.data)), excelData.map(f => f.title))
-        .then(() => this.exportAllDisabled = false);
-    },
+    }
   },
   computed: {
     tabs() {
-      return [this.getTranslation('I00.00008460', 'Selected dep.'), this.getTranslation('I00.00007150', 'Departments'), this.getTranslation('I00.00007050', 'Summarise')];
+      return !propToBool(this.withOutSummarise) ? [this.getTranslation('I00.00008460', 'Selected dep.'), this.getTranslation('I00.00007150', 'Departments'), this.getTranslation('I00.00007050', 'Summarise')] : [this.getTranslation('I00.00008460', 'Selected dep.'), this.getTranslation('I00.00007150', 'Departments')] ;
     },
     showAddProduct() {
       return this.$listeners.addProduct;

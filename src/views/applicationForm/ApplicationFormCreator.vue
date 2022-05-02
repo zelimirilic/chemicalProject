@@ -264,7 +264,7 @@ export default {
       };
     },
     findMouseOnElement(nodes, event) {
-      var filtered = nodes.filterAny(f => {
+      var filtered = nodes.children[this.activeTab].filterAny(f => {
         if (!f.item.htmlElement) return false;
         var bnd = f.item.htmlElement() != null ? f.item.htmlElement().getBoundingClientRect() : null;
         return bnd != null ? isBetween(event.clientX, bnd.left, bnd.right) && isBetween(event.clientY, bnd.top, bnd.bottom) : false;
