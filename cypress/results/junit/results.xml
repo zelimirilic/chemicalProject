@@ -1,47 +1,77 @@
 <?xml version="1.0"?>
 <testsuites>
-<testsuite name="Root Suite" timestamp="2022-03-23T14:15:52" tests="0" file="cypress/integration/3-alerts/js-alerts.js" time="0.0000" failures="0"></testsuite>
-<testsuite name="Handle JS alerts" timestamp="2022-03-23T14:15:52" tests="3" time="36.3560" failures="0">
+<testsuite name="Root Suite" timestamp="2022-05-04T06:18:33" tests="0" file="cypress/integration/6-Drop-down lists/drop-down.js" time="0.0000" failures="0"></testsuite>
+<testsuite name="Interact with drop-down list" timestamp="2022-05-04T06:18:33" tests="3" time="40.0140" failures="0">
   
-  <testcase name="Handle JS alerts Confirm JS alerts contains the correct text" time="12.5020" classname="Confirm JS alerts contains the correct text"></testcase>
+  <testcase name="Interact with drop-down list Find specific values in drop-down Process category list on Handling step in Chemsoft" time="12.2600" classname="Find specific values in drop-down Process category list on Handling step in Chemsoft"></testcase>
   
-  <testcase name="Handle JS alerts Validate confirm alert box works correctly when user clicks OK" time="12.2550" classname="Validate confirm alert box works correctly when user clicks OK"></testcase>
+  <testcase name="Interact with drop-down list Select specific values in drop-down Ventilation list on Handling step in Chemsoft" time="12.1150" classname="Select specific values in drop-down Ventilation list on Handling step in Chemsoft"></testcase>
   
-  <testcase name="Handle JS alerts Validate confirm alert box works correctly when user clicks Cancel" time="11.4300" classname="Validate confirm alert box works correctly when user clicks Cancel"></testcase>
-  
-</testsuite>
-
-<testsuite name="Root Suite" timestamp="2022-03-23T14:15:24" tests="0" file="cypress/integration/1-login-started/log-in.js" time="0.0000" failures="0"></testsuite>
-<testsuite name="Test Login form via Chemsoft NG" timestamp="2022-03-23T14:15:24" tests="3" time="11.8110" failures="0">
-  
-  <testcase name="Test Login form via Chemsoft NG Should be able to log in via Login form" time="5.0150" classname="Should be able to log in via Login form"></testcase>
-  
-  <testcase name="Test Login form via Chemsoft NG Should not be able to log in via Login form" time="4.4610" classname="Should not be able to log in via Login form"></testcase>
-  
-  <testcase name="Test Login form via Chemsoft NG Should not be able to log in via Login form - wrong user name" time="2.2860" classname="Should not be able to log in via Login form - wrong user name"></testcase>
+  <testcase name="Interact with drop-down list Select specific values in drop-down Handling type list on Handling step in Chemsoft" time="15.5250" classname="Select specific values in drop-down Handling type list on Handling step in Chemsoft"></testcase>
   
 </testsuite>
 
-<testsuite name="Root Suite" timestamp="2022-03-23T14:15:40" tests="0" file="cypress/integration/2-iterate-over-elements/iterate-over-elements.js" time="0.0000" failures="0"></testsuite>
-<testsuite name="Iterate over elements" timestamp="2022-03-23T14:15:40" tests="1" time="6.6850" failures="0">
+<testsuite name="Root Suite" timestamp="2022-05-04T06:15:22" tests="0" file="cypress/integration/1-Login started/log-in.js" time="0.0000" failures="0"></testsuite>
+<testsuite name="Test Login form via Chemsoft NG" timestamp="2022-05-04T06:15:22" tests="3" time="13.3280" failures="0">
   
-  <testcase name="Iterate over elements Log information of product" time="6.6570" classname="Log information of product"></testcase>
+  <testcase name="Test Login form via Chemsoft NG Should be able to log in via Login form" time="5.8790" classname="Should be able to log in via Login form"></testcase>
   
-</testsuite>
-
-<testsuite name="Root Suite" timestamp="2022-03-23T14:16:35" tests="0" file="cypress/integration/4-Navigation/chemsoft-navigation.js" time="0.0000" failures="0"></testsuite>
-<testsuite name="Validate Chemsoft home page links" timestamp="2022-03-23T14:16:35" tests="1" time="25.2440" failures="0">
+  <testcase name="Test Login form via Chemsoft NG Should not be able to log in via Login form" time="4.9310" classname="Should not be able to log in via Login form"></testcase>
   
-  <testcase name="Validate Chemsoft home page links Confirm links redirect to the correct pages" time="25.1990" classname="Confirm links redirect to the correct pages"></testcase>
+  <testcase name="Test Login form via Chemsoft NG Should not be able to log in via Login form - wrong user name" time="2.4800" classname="Should not be able to log in via Login form - wrong user name"></testcase>
   
 </testsuite>
 
-<testsuite name="Root Suite" timestamp="2022-03-23T14:17:07" tests="0" file="cypress/integration/5-Verify checkboxes/checkboxes.js" time="0.0000" failures="0"></testsuite>
-<testsuite name="Move, copy and delete product in chemsoft" timestamp="2022-03-23T14:17:07" tests="3" time="16.3830" failures="0">
+<testsuite name="Root Suite" timestamp="2022-05-04T06:19:20" tests="0" file="cypress/integration/7-Mouse actions/mouse-action.js" time="0.0000" failures="0"></testsuite>
+<testsuite name="Test mouse actions" timestamp="2022-05-04T06:19:20" tests="1" time="6.1740" failures="0">
   
-  <testcase name="Move, copy and delete product in chemsoft Check product and move it on desired department" time="9.1600" classname="Check product and move it on desired department"></testcase>
+  <testcase name="Test mouse actions Scroll element into view" time="6.1700" classname="Scroll element into view"></testcase>
   
-  <testcase name="Move, copy and delete product in chemsoft Check product and copy it on desired department" time="7.1700" classname="Check product and copy it on desired department"></testcase>
+</testsuite>
+
+<testsuite name="Root Suite" timestamp="2022-05-04T06:16:37" tests="0" file="cypress/integration/3-Alerts/js-alerts.js" time="0.0000" failures="0"></testsuite>
+<testsuite name="Handle JS alerts" timestamp="2022-05-04T06:16:37" tests="3" time="35.8200" failures="0">
+  
+  <testcase name="Handle JS alerts Confirm JS alerts contains the correct text" time="12.0820" classname="Confirm JS alerts contains the correct text"></testcase>
+  
+  <testcase name="Handle JS alerts Validate confirm alert box works correctly when user clicks OK" time="11.9420" classname="Validate confirm alert box works correctly when user clicks OK"></testcase>
+  
+  <testcase name="Handle JS alerts Validate confirm alert box works correctly when user clicks Cancel" time="11.7260" classname="Validate confirm alert box works correctly when user clicks Cancel"></testcase>
+  
+</testsuite>
+
+<testsuite name="Root Suite" timestamp="2022-05-04T06:18:12" tests="0" file="cypress/integration/5-Verify checkboxes/checkboxes.js" time="0.0000" failures="0"></testsuite>
+<testsuite name="Move, copy and delete product in chemsoft" timestamp="2022-05-04T06:18:12" tests="3" time="17.0140" failures="0">
+  
+  <testcase name="Move, copy and delete product in chemsoft Check product and move it on desired department" time="9.4350" classname="Check product and move it on desired department"></testcase>
+  
+  <testcase name="Move, copy and delete product in chemsoft Check product and copy it on desired department" time="7.5310" classname="Check product and copy it on desired department"></testcase>
+  
+</testsuite>
+
+<testsuite name="Root Suite" timestamp="2022-05-04T06:15:40" tests="0" file="cypress/integration/2-Iterate-over-elements/iterate-over-elements.js" time="0.0000" failures="0"></testsuite>
+<testsuite name="Iterate over elements" timestamp="2022-05-04T06:15:40" tests="6" time="50.5810" failures="0">
+  
+  <testcase name="Iterate over elements Log information of product" time="8.9050" classname="Log information of product"></testcase>
+  
+  <testcase name="Iterate over elements Validate a first specific product" time="7.8200" classname="Validate a first specific product"></testcase>
+  
+  <testcase name="Iterate over elements Validate a second specific produc" time="7.0870" classname="Validate a second specific produc"></testcase>
+  
+  <testcase name="Iterate over elements Validate a third specific produc" time="10.1190" classname="Validate a third specific produc"></testcase>
+  
+  <testcase name="Iterate over elements Validate a fourth specific produc" time="9.6020" classname="Validate a fourth specific produc"></testcase>
+  
+  <testcase name="Iterate over elements Validate a fifth specific produc" time="6.8610" classname="Validate a fifth specific produc"></testcase>
+  
+</testsuite>
+
+<testsuite name="Root Suite" timestamp="2022-05-04T06:17:19" tests="0" file="cypress/integration/4-Navigation/chemsoft-navigation.js" time="0.0000" failures="0"></testsuite>
+<testsuite name="Validate Chemsoft home page links" timestamp="2022-05-04T06:17:19" tests="2" time="46.2560" failures="0">
+  
+  <testcase name="Validate Chemsoft home page links Confirm links redirect to the correct pages - Chemsoft NG" time="25.4360" classname="Confirm links redirect to the correct pages - Chemsoft NG"></testcase>
+  
+  <testcase name="Validate Chemsoft home page links Confirm links redirect to the correct pages - iChemistry" time="20.7830" classname="Confirm links redirect to the correct pages - iChemistry"></testcase>
   
 </testsuite>
 

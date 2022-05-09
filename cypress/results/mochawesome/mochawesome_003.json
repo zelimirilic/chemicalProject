@@ -5,9 +5,9 @@
     "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2022-04-28T13:55:52.117Z",
-    "end": "2022-04-28T13:56:38.929Z",
-    "duration": 46812,
+    "start": "2022-05-04T06:17:19.489Z",
+    "end": "2022-05-04T06:18:05.759Z",
+    "duration": 46270,
     "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "82cf90ef-8d67-44c0-ba62-ee9621b591e2",
+      "uuid": "ec005b7e-d737-4105-8110-33a438753a81",
       "title": "",
       "fullFile": "cypress/integration/4-Navigation/chemsoft-navigation.js",
       "file": "cypress/integration/4-Navigation/chemsoft-navigation.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "9c643517-feaf-4363-97d3-aa8317426fc0",
+          "uuid": "335b40f1-9683-4d77-bc5c-9d29f1eb6771",
           "title": "Validate Chemsoft home page links",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Confirm links redirect to the correct pages - Chemsoft NG",
               "fullTitle": "Validate Chemsoft home page links Confirm links redirect to the correct pages - Chemsoft NG",
               "timedOut": null,
-              "duration": 25454,
+              "duration": 25436,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,8 +47,8 @@
               "context": null,
               "code": "cy.visit(\"https://dev04/system/login/chemsofttest\");\ncy.url().should('include', 'chemsofttest');\ncy.get('.username > .form-control').type(\"miljan\");\ncy.get('.btn').contains('Sign in').click();\ncy.url().should('include', 'system');\ncy.wait(10000);\ncy.go('back');\ncy.url().should('include', 'chemsofttest');\ncy.reload();\ncy.url().should('include', 'https://dev04/system/login/chemsofttest');\ncy.get('.username > .form-control').type(\"miljan\");\ncy.get('.btn').contains('Sign in').click();\ncy.url().should('include', 'system');\ncy.wait(10000);\ncy.go('back');\ncy.get('[name=\"user\"]').click();\ncy.get('.username > .form-control').type(\"wrongUserName\");\ncy.get('.btn').contains('Sign in').click();\ncy.get('.alerts').should('have.text', 'Wrong username or password×');",
               "err": {},
-              "uuid": "6884e372-2c63-480a-b0a5-b739e6e15457",
-              "parentUUID": "9c643517-feaf-4363-97d3-aa8317426fc0",
+              "uuid": "8e58a1a3-b2cb-4292-825b-4c54f44be093",
+              "parentUUID": "335b40f1-9683-4d77-bc5c-9d29f1eb6771",
               "isHook": false,
               "skipped": false
             },
@@ -56,7 +56,7 @@
               "title": "Confirm links redirect to the correct pages - iChemistry",
               "fullTitle": "Validate Chemsoft home page links Confirm links redirect to the correct pages - iChemistry",
               "timedOut": null,
-              "duration": 21298,
+              "duration": 20783,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -65,21 +65,21 @@
               "context": null,
               "code": "cy.visit(\"https://dev04/main/storaenso\");\ncy.get('#user').type(\"miljan\");\ncy.get('#pswd').type(\"hirsl666\");\ncy.get('.ichemistry-button').contains('Sign in').click();\ncy.url().should('include', '~master/application.aspx');\ncy.go('back');\ncy.reload();\ncy.url().should('include', 'https://dev04/main/storaenso');\ncy.get('#user').type(\"miljan\");\ncy.get('#pswd').type(\"hirsl666\");\ncy.get('.ichemistry-button').contains('Sign in').click();\ncy.url().should('include', '~master/application.aspx');\ncy.go('back');\ncy.get('#user').type(\"miljan\");\ncy.get('.ichemistry-button').contains('Sign in').click();\ncy.get('#passErrMsg').should('contain.text', 'The password field is required');\ncy.get('#pswd').type(\"wrongUserName\");\ncy.get('.ichemistry-button').contains('Sign in').click();\ncy.get('.ichemistry-alert').should('contain.text', 'Wrong username or password');",
               "err": {},
-              "uuid": "b0168d1e-d61a-48dd-b483-143aa9580e8b",
-              "parentUUID": "9c643517-feaf-4363-97d3-aa8317426fc0",
+              "uuid": "70cf783c-c039-418b-8e00-83e65c81708a",
+              "parentUUID": "335b40f1-9683-4d77-bc5c-9d29f1eb6771",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "6884e372-2c63-480a-b0a5-b739e6e15457",
-            "b0168d1e-d61a-48dd-b483-143aa9580e8b"
+            "8e58a1a3-b2cb-4292-825b-4c54f44be093",
+            "70cf783c-c039-418b-8e00-83e65c81708a"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 46752,
+          "duration": 46219,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

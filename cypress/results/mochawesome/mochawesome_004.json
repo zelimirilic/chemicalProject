@@ -5,9 +5,9 @@
     "passes": 2,
     "pending": 1,
     "failures": 0,
-    "start": "2022-04-28T13:56:45.831Z",
-    "end": "2022-04-28T13:57:03.850Z",
-    "duration": 18019,
+    "start": "2022-05-04T06:18:12.512Z",
+    "end": "2022-05-04T06:18:29.538Z",
+    "duration": 17026,
     "testsRegistered": 3,
     "passPercent": 100,
     "pendingPercent": 33.33333333333333,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "53b31ab7-2a16-4083-9010-f663520c8239",
+      "uuid": "3535b03e-6304-4c96-863b-35002bcd21e7",
       "title": "",
       "fullFile": "cypress/integration/5-Verify checkboxes/checkboxes.js",
       "file": "cypress/integration/5-Verify checkboxes/checkboxes.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "d82b5085-636a-44ac-96e9-73a57f0f31da",
+          "uuid": "2852710f-4aa7-4f0f-8259-60582ffb963b",
           "title": "Move, copy and delete product in chemsoft",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Check product and move it on desired department",
               "fullTitle": "Move, copy and delete product in chemsoft Check product and move it on desired department",
               "timedOut": null,
-              "duration": 8541,
+              "duration": 9435,
               "state": "passed",
               "speed": "medium",
               "pass": true,
@@ -47,8 +47,8 @@
               "context": null,
               "code": "cy.get('[href=\"/system/chemicals/inventory\"]').click();\ncy.get('.d-flex > :nth-child(2) > .icon-move').click({\n  force: true\n});\ncy.get(':nth-child(2) > .d-flex > :nth-child(2) > .icons').click({\n  force: true\n});\ncy.get('.eqtree-children > :nth-child(2) > span > a').click({\n  force: true\n});\ncy.get('[title=\"OK\"]').click({\n  force: true\n}); //cy.get('.tickerWrap > :nth-child(2) > div').should('have.text', 'We\\'re sorry to inform you that something went wrong processing your request.'); - the bug is reproduced and catched\ncy.get('.title > span').should('have.text', 'Last modified:');\ncy.url().should('include', 'chemicals/inventory');",
               "err": {},
-              "uuid": "59557f0f-5e4d-48eb-a58d-95af5de77873",
-              "parentUUID": "d82b5085-636a-44ac-96e9-73a57f0f31da",
+              "uuid": "78524925-6055-46d3-9907-c5da5da8b4dd",
+              "parentUUID": "2852710f-4aa7-4f0f-8259-60582ffb963b",
               "isHook": false,
               "skipped": false
             },
@@ -56,7 +56,7 @@
               "title": "Check product and copy it on desired department",
               "fullTitle": "Move, copy and delete product in chemsoft Check product and copy it on desired department",
               "timedOut": null,
-              "duration": 9420,
+              "duration": 7531,
               "state": "passed",
               "speed": "medium",
               "pass": true,
@@ -65,8 +65,8 @@
               "context": null,
               "code": "cy.get('[href=\"/system/chemicals/inventory\"]').click();\ncy.get('.d-flex > :nth-child(2) > .icon-move').click({\n  force: true\n});\ncy.get('.mainTtl > :nth-child(1) > .d-flex > :nth-child(2)').click({\n  force: true\n});\ncy.get('.eqtree-open > .eqtree-children > :nth-child(2) > span > a').click({\n  multiple: true\n});\ncy.get('[title=\"OK\"]').click({\n  force: true\n}); //cy.get('.tickerWrap > :nth-child(2) > div').should('not.have.text', 'We\\'re sorry to inform you that something went wrong processing your request.'); - the bug is reproduced and catched\ncy.get('.title > span').should('have.text', 'Last modified:');\ncy.url().should('include', 'chemicals/inventory');",
               "err": {},
-              "uuid": "d79566e8-d6ce-4211-9985-3bc349d4f015",
-              "parentUUID": "d82b5085-636a-44ac-96e9-73a57f0f31da",
+              "uuid": "8c79224d-0ccd-4fb8-afc7-7b28072f9e58",
+              "parentUUID": "2852710f-4aa7-4f0f-8259-60582ffb963b",
               "isHook": false,
               "skipped": false
             },
@@ -83,23 +83,23 @@
               "context": null,
               "code": "",
               "err": {},
-              "uuid": "9a002489-dd11-4a3a-8257-8431ee4dcb85",
-              "parentUUID": "d82b5085-636a-44ac-96e9-73a57f0f31da",
+              "uuid": "283d046f-6802-457f-9905-4e2b3bb9cbc7",
+              "parentUUID": "2852710f-4aa7-4f0f-8259-60582ffb963b",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "59557f0f-5e4d-48eb-a58d-95af5de77873",
-            "d79566e8-d6ce-4211-9985-3bc349d4f015"
+            "78524925-6055-46d3-9907-c5da5da8b4dd",
+            "8c79224d-0ccd-4fb8-afc7-7b28072f9e58"
           ],
           "failures": [],
           "pending": [
-            "9a002489-dd11-4a3a-8257-8431ee4dcb85"
+            "283d046f-6802-457f-9905-4e2b3bb9cbc7"
           ],
           "skipped": [],
-          "duration": 17961,
+          "duration": 16966,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

@@ -12,7 +12,7 @@ describe("Test mouse actions", () => {
         cy.get('.dropdown-item').contains('Form Creator').click();
     });
 
-    it.only("Scroll element into view", () => {
+    it("Scroll element into view", () => {
 
         cy.get('.nav > :nth-child(2) > .nav-link').click();
         cy.get('.icon-usagegroup').scrollIntoView().click({ force: true });
@@ -21,7 +21,7 @@ describe("Test mouse actions", () => {
 
     });
 
-    it("Drag and drop a draggable item on Form creator feature", () => {
+    it("Drag and drop a draggable item on Form creator feature - Product type", () => {
 
 
         cy.get('.nav > :nth-child(2) > .nav-link').click();
@@ -32,6 +32,21 @@ describe("Test mouse actions", () => {
         cy.get(':nth-child(2) > .form-group > label').should('have.class', 'form-control-label');
 
         cy.get('.form-control-label').should('contain.text', 'Product type');
+
+
+    });
+
+    it("Drag and drop a draggable item on Form creator feature - Attach document", () => {
+
+
+        cy.get('.nav > :nth-child(2) > .nav-link').click();
+        cy.get(':nth-child(5) > .bigIcn').should('have.attr', 'title', 'Attach document');
+        cy.get(':nth-child(5) > .bigIcn').trigger('mousedown');
+        cy.get('.pt-3 >').trigger('mousemove').trigger('mouseup', { force: true });
+
+        cy.get(':nth-child(2) > .form-group > label').should('have.class', 'form-control-label');
+
+        cy.get('.form-control-label').should('contain.text', 'Attach document');
 
 
     });

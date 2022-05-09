@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.0000" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2022-05-04T06:19:20" tests="0" file="cypress/integration/7-Mouse actions/mouse-action.js" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="Test mouse actions" timestamp="2022-05-04T06:19:20" tests="1" time="6.1740" failures="0">
+    <testcase name="Test mouse actions Scroll element into view" time="6.1700" classname="Scroll element into view">
+    </testcase>
+  </testsuite>
+</testsuites>
