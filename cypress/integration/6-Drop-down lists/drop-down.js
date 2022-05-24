@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-import Homepage_PO from '../../support/pageObjects/Homepage_PO'
+import Homepage_PO from '../../support/pageObjectsModel/Homepage_POM'
 
 describe("Interact with drop-down list", () => {
 

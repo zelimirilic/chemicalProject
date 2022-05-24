@@ -1,4 +1,4 @@
-import Homepage_PO from '../../support/pageObjects/Homepage_PO';
+import Homepage_PO from '../../support/pageObjectsModel/Homepage_POM';
 
 /// <reference types="Cypress" />
 

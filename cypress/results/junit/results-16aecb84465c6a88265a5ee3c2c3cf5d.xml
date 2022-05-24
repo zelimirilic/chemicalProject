@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.0000" tests="3" failures="0">
+  <testsuite name="Root Suite" timestamp="2022-05-13T13:19:07" tests="0" file="cypress/integration/6-Drop-down lists/drop-down.js" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="Interact with drop-down list" timestamp="2022-05-13T13:19:07" tests="3" time="35.0090" failures="0">
+    <testcase name="Interact with drop-down list Find specific values in drop-down Process category list on Handling step in Chemsoft" time="11.6030" classname="Find specific values in drop-down Process category list on Handling step in Chemsoft">
+    </testcase>
+    <testcase name="Interact with drop-down list Select specific values in drop-down Ventilation list on Handling step in Chemsoft" time="11.0970" classname="Select specific values in drop-down Ventilation list on Handling step in Chemsoft">
+    </testcase>
+    <testcase name="Interact with drop-down list Select specific values in drop-down Handling type list on Handling step in Chemsoft" time="12.1820" classname="Select specific values in drop-down Handling type list on Handling step in Chemsoft">
+    </testcase>
+  </testsuite>
+</testsuites>
