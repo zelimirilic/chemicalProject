@@ -1,4 +1,4 @@
-import Homepage_PO from '../../support/pageObjects/Homepage_PO';
+import Homepage_PO from '../../support/pageObjectsModel/Homepage_POM';
 
 /// <reference types="Cypress" />
 
@@ -36,7 +36,7 @@ describe("Test Login form via Chemsoft NG", () => {
         cy.get('.username > .form-control').type("somewrongUsername");
         cy.get('.password > .form-control').type("somewrongpassword");
         cy.get('.btn').contains('Sign in').click();
-        cy.get('.alerts').should('have.html', '\n\tWrong user name or password\n');
-        cy.get('.alerts').should('have.text', '\n\tWrong user name or password\n');
+        cy.get('.alerts').should('have.html', '<div class="d-flex mr-auto">Wrong username or password</div><button type="button" class="close ml-3"><span>×</span></button>');
+        cy.get('.alerts').should('have.text', 'Wrong username or password×');
     });
 });
