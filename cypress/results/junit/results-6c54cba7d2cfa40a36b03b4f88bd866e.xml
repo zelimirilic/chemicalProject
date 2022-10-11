@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="0.0000" tests="1" failures="0">
-  <testsuite name="Root Suite" timestamp="2022-03-23T14:15:40" tests="0" file="cypress/integration/2-iterate-over-elements/iterate-over-elements.js" time="0.0000" failures="0">
-  </testsuite>
-  <testsuite name="Iterate over elements" timestamp="2022-03-23T14:15:40" tests="1" time="6.6850" failures="0">
-    <testcase name="Iterate over elements Log information of product" time="6.6570" classname="Log information of product">
-    </testcase>
-  </testsuite>
-</testsuites>

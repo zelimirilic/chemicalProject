@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="0.0000" tests="1" failures="0">
-  <testsuite name="Root Suite" timestamp="2022-03-21T16:44:06" tests="0" file="cypress/integration/4-Navigation/chemsoft-navigation.js" time="0.0000" failures="0">
-  </testsuite>
-  <testsuite name="Validate Chemsoft home page links" timestamp="2022-03-21T16:44:06" tests="1" time="26.2120" failures="0">
-    <testcase name="Validate Chemsoft home page links Confirm links redirect to the correct pages" time="25.0520" classname="Confirm links redirect to the correct pages">
-    </testcase>
-  </testsuite>
-</testsuites>
