@@ -26,7 +26,7 @@ describe("Validate Chemsoft home page links", () => {
 
     });
 
-    it("Confirm links redirect to the correct pages - iChemistry", () => {
+    it.skip("Confirm links redirect to the correct pages - iChemistry", () => {
 
         cy.visit("https://dev04/main/storaenso");
 

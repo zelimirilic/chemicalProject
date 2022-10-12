@@ -55,7 +55,7 @@ describe("Iterate over elements", () => {
 
     });
 
-    it("Validate a fifth specific produc", () => {
+    it.skip("Validate a fifth specific produc", () => {
 
         cy.get('.prodNo').eq(1).then(($headerText) => {
             const headerText = $headerText.text();

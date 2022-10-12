@@ -11,7 +11,7 @@ describe("Interact with drop-down list", () => {
         cy.get('.nav-link').contains('Tools').click();
     });
 
-    it("Find specific values in drop-down Process category list on Handling step in Chemsoft", () => {
+    it.skip("Find specific values in drop-down Process category list on Handling step in Chemsoft", () => {
 
         cy.get('.dropdown-item').contains('Risk assessment').click();
         cy.get(".prodName").eq(4).click();
@@ -49,7 +49,7 @@ describe("Interact with drop-down list", () => {
 
     });
 
-    it("Select specific values in drop-down Handling type list on Handling step in Chemsoft", () => {
+    it.skip("Select specific values in drop-down Handling type list on Handling step in Chemsoft", () => {
 
         cy.get('.dropdown-item').contains('Risk assessment').click();
         cy.get(".prodName").eq(6).click();

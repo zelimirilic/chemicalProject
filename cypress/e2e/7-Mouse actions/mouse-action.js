@@ -21,7 +21,7 @@ describe("Test mouse actions", () => {
 
     });
 
-    it("Drag and drop a draggable item on Form creator feature - Product type", () => {
+    it.skip("Drag and drop a draggable item on Form creator feature - Product type", () => {
 
 
         cy.get('.nav > :nth-child(2) > .nav-link').click();
@@ -36,7 +36,7 @@ describe("Test mouse actions", () => {
 
     });
 
-    it("Drag and drop a draggable item on Form creator feature - Attach document", () => {
+    it.skip("Drag and drop a draggable item on Form creator feature - Attach document", () => {
 
 
         cy.get('.nav > :nth-child(2) > .nav-link').click();
