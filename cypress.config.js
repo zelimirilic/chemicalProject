@@ -1,4 +1,17 @@
-const { defineConfig } = require('cypress')
+const { defineConfig } = require("cypress");
+const fs = require('fs-extra');
+const path = require('path');
+const cucumber = require('cypress-cucumber-preprocessor').default;
+
+function getConfigurationByFile(file) {
+  const pathToConfigFile = path.resolve('cypress\\config', `${file}.json`);
+  if (!fs.existsSync(pathToConfigFile)) {
+    console.log("No custom config file found. ");
+    return {};
+  }
+  return fs.readJSON(pathToConfigFile);
+}
+
 
 module.exports = defineConfig({
   defaultCommandTimeout: 15000,
@@ -16,11 +29,13 @@ module.exports = defineConfig({
     // We've imported your old cypress plugins here.
     // You may want to clean this up later by importing these.
     setupNodeEvents(on, config) {
-      return require('./cypress/plugins/index.js')(on, config)
+      on('file:preprocessor', cucumber())
+      const file = config.env.configFile || ''
+      return getConfigurationByFile(file)
     },
     baseUrl:
       'https://dev04/system/login/chemsofttest/?name=miljan&password=hirsl666',
     excludeSpecPattern: '**/other/*',
-    specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
+    specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx,feature}',
   },
 })

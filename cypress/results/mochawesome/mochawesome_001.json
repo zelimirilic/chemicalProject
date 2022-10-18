@@ -1,0 +1,203 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 6,
+    "passes": 5,
+    "pending": 1,
+    "failures": 0,
+    "start": "2022-10-14T12:01:49.254Z",
+    "end": "2022-10-14T12:02:30.407Z",
+    "duration": 41153,
+    "testsRegistered": 6,
+    "passPercent": 100,
+    "pendingPercent": 16.666666666666664,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "9d058cbd-a7d5-41ef-bf42-066199b5970d",
+      "title": "",
+      "fullFile": "cypress\\e2e\\2-iterate-over-elements\\iterate-over-elements-page-function-model.js",
+      "file": "cypress\\e2e\\2-iterate-over-elements\\iterate-over-elements-page-function-model.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d072c290-ff0b-4287-8a65-5bae5f0973b2",
+          "title": "Iterate over elements",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Log information of product",
+              "fullTitle": "Iterate over elements Log information of product",
+              "timedOut": null,
+              "duration": 8007,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(\".prodNo\").each(function ($el, index, $list) {\n  //console.log(\"Index: \" + index + \" : \" + $el.text());\n  //cy.log(\"Index: \" + index + \" : \" + $el.text());\n});\ncy.get(\".prodNo\").eq(4).invoke('text').as('prodNo');\ncy.get('@prodNo').its('length').should('be.gt', 0);\n//cy.get('@prodNo').should('include', 'Sigma');",
+              "err": {},
+              "uuid": "8a6be3cc-6f0d-4412-b6b5-16b336bd55a8",
+              "parentUUID": "d072c290-ff0b-4287-8a65-5bae5f0973b2",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Validate a first specific product",
+              "fullTitle": "Iterate over elements Validate a first specific product",
+              "timedOut": null,
+              "duration": 6858,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(\".prodNo\").eq(1).invoke('text').as('prodNo');\ncy.get('@prodNo').its('length').should('be.gt', 0);\ncy.get('@prodNo').should('include', 'Sigma');",
+              "err": {},
+              "uuid": "3362e1ed-6be7-4ff2-955e-49c210a714fd",
+              "parentUUID": "d072c290-ff0b-4287-8a65-5bae5f0973b2",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Validate a second specific produc",
+              "fullTitle": "Iterate over elements Validate a second specific produc",
+              "timedOut": null,
+              "duration": 7065,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(\".prodNo\").eq(1).invoke('text').as('prodNo');\ncy.get('@prodNo').its('length').should('be.gt', 0);\ncy.get('@prodNo').should('include', 'Sigma 309451Test');",
+              "err": {},
+              "uuid": "00ba6ae1-565c-4450-9588-3f47a78a01c0",
+              "parentUUID": "d072c290-ff0b-4287-8a65-5bae5f0973b2",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Validate a third specific produc",
+              "fullTitle": "Iterate over elements Validate a third specific produc",
+              "timedOut": null,
+              "duration": 9712,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.tablinks').contains('Assembled').click();\ncy.get(\".prodName\").eq(2).invoke('text').as('prodName');\ncy.get('@prodName').its('length').should('be.gt', 0);\ncy.get('@prodName').should('include', \"(-)-3',5'-O-(1,1,3,3-TETRAISOPROPYL-1,3-\");",
+              "err": {},
+              "uuid": "f2d8f884-c8ec-4f0f-bd98-3d8529bbb1ce",
+              "parentUUID": "d072c290-ff0b-4287-8a65-5bae5f0973b2",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Validate a fourth specific produc",
+              "fullTitle": "Iterate over elements Validate a fourth specific produc",
+              "timedOut": null,
+              "duration": 9218,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.tablinks').contains('Assembled').click();\ncy.get(\".symbols\").as('symbol');\ncy.get('@symbol').should('have.length', 21);\ncy.get('@symbol').find(\".iconPx24\").invoke('attr', 'title').should('include', 'Xi');",
+              "err": {},
+              "uuid": "14975f9a-c80e-4ca2-9303-afeb5ed5cee9",
+              "parentUUID": "d072c290-ff0b-4287-8a65-5bae5f0973b2",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Validate a fifth specific produc",
+              "fullTitle": "Iterate over elements Validate a fifth specific produc",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "b46a3faa-3ac9-4ba9-af5d-4d3bc105498d",
+              "parentUUID": "d072c290-ff0b-4287-8a65-5bae5f0973b2",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "8a6be3cc-6f0d-4412-b6b5-16b336bd55a8",
+            "3362e1ed-6be7-4ff2-955e-49c210a714fd",
+            "00ba6ae1-565c-4450-9588-3f47a78a01c0",
+            "f2d8f884-c8ec-4f0f-bd98-3d8529bbb1ce",
+            "14975f9a-c80e-4ca2-9303-afeb5ed5cee9"
+          ],
+          "failures": [],
+          "pending": [
+            "b46a3faa-3ac9-4ba9-af5d-4d3bc105498d"
+          ],
+          "skipped": [],
+          "duration": 40860,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/results/mochawesome",
+        "quite": "true",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
