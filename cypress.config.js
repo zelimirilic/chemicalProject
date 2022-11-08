@@ -37,5 +37,6 @@ module.exports = defineConfig({
       'https://dev04/system/login/chemsofttest/?name=miljan&password=hirsl666',
     excludeSpecPattern: '**/other/*',
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx,feature}',
+    experimentalStudio: true
   },
 })
