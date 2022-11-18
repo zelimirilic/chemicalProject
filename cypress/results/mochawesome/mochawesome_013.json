@@ -1,0 +1,164 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-11-18T23:35:54.752Z",
+    "end": "2022-11-18T23:36:22.946Z",
+    "duration": 28194,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "0e6df6bf-d7e4-485f-8dd3-52c9ffd8dd6f",
+      "title": "",
+      "fullFile": "cypress\\e2e\\7-Mouse actions\\mouse-action.js",
+      "file": "cypress\\e2e\\7-Mouse actions\\mouse-action.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "31600073-07ad-46ea-ba66-571f1766a4ce",
+          "title": "Test mouse actions",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Scroll element into view",
+              "fullTitle": "Test mouse actions Scroll element into view",
+              "timedOut": null,
+              "duration": 7612,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.rightMenu > [style=\"\"] > .nav-link').click();\ncy.get('.dropdown-item').contains('Form Creator').click();\ncy.get('[href=\"/system/settings/application_form/new\"]').click();\ncy.get(':nth-child(2) > u').click({\n  force: true\n});\ncy.get('[title=\"OK\"]').click();\ncy.get(':nth-child(3) > .bigIcn').trigger('mousedown', {\n  force: true\n});\ncy.get('.col-8').trigger('mouseover').trigger('mouseup', {\n  force: true\n});\n//cy.get('.icon-usagegroup').scrollIntoView().click({ force: true });\ncy.get('.col-xl').should('be.visible');\ncy.get('[usingdash=\"true\"] > .form-inline').should('be.visible');\ncy.get(':nth-child(4) > u').contains('Publish').should('have.text', 'Publish');",
+              "err": {},
+              "uuid": "c1788e12-edf6-4aa0-85af-79ac1924e187",
+              "parentUUID": "31600073-07ad-46ea-ba66-571f1766a4ce",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Drag and drop a draggable item on Form creator feature - Product type",
+              "fullTitle": "Test mouse actions Drag and drop a draggable item on Form creator feature - Product type",
+              "timedOut": null,
+              "duration": 5932,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.rightMenu > [style=\"\"] > .nav-link').click();\ncy.get('.dropdown-item').contains('Product type').click();\ncy.get('.treeClicked > a').trigger('mousedown');\ncy.get(':nth-child(2) > .form-group > label').should('have.class', 'form-control-label');\ncy.get('.form-control-label').should('contain.text', 'System language');",
+              "err": {},
+              "uuid": "223a3be2-01a6-4185-b0ac-6a2907751fc8",
+              "parentUUID": "31600073-07ad-46ea-ba66-571f1766a4ce",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Drag and drop a draggable item on Form creator feature - Attach document",
+              "fullTitle": "Test mouse actions Drag and drop a draggable item on Form creator feature - Attach document",
+              "timedOut": null,
+              "duration": 6098,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.rightMenu > [style=\"\"] > .nav-link').click();\ncy.get('.dropdown-item').contains('Form Creator').click();\ncy.get('.nav > :nth-child(2) > .nav-link').contains('Predefined').click();\ncy.get('p').contains('Attach document').trigger('mousedown', {\n  force: true\n});\ncy.get('.col-8').trigger('mouseover').trigger('mouseup', {\n  force: true\n});\ncy.get(':nth-child(5) > .bigIcn').should('have.attr', 'title', 'Attach document');\ncy.get(':nth-child(2) > .form-group > label').should('have.class', 'form-control-label');\ncy.get('.form-control-label').should('contain.text', 'System language');",
+              "err": {},
+              "uuid": "aef42ae6-aa88-45d9-bd43-711f191f7e31",
+              "parentUUID": "31600073-07ad-46ea-ba66-571f1766a4ce",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Drag&Drop elements",
+              "fullTitle": "Test mouse actions Drag&Drop elements",
+              "timedOut": null,
+              "duration": 8388,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "/* ==== Generated with Cypress Studio ==== */\ncy.get('.rightMenu > [style=\"\"] > .nav-link').click();\ncy.get('[href=\"/system/settings/application_form/new\"]').click({\n  force: true\n});\ncy.get(':nth-child(2) > u').click({\n  force: true\n});\ncy.get('[title=\"OK\"]').click({\n  force: true\n});\ncy.get(':nth-child(3) > .bigIcn').trigger('mousedown', {\n  force: true\n});\ncy.get('.col-8').trigger('mouseover').trigger('mouseup', {\n  force: true\n});\ncy.get(':nth-child(3) > u').click({\n  force: true\n});\ncy.get('.card-body > .form-control').type('a');\ncy.get('[title=\"OK\"]').click({\n  force: true\n});\n/* ==== End Cypress Studio ==== */\n/* ==== Generated with Cypress Studio ==== */\ncy.get('.col-xl').should('have.text', '\\n\\t\\tWhere is the product to be used?\\n\\t\\t*');\ncy.get('.col-xl').should('be.visible');\ncy.get('[usingdash=\"true\"] > .form-inline').should('be.visible');\ncy.get(':nth-child(4) > u').contains('Publish').should('have.text', 'Publish');\n/* ==== End Cypress Studio ==== */",
+              "err": {},
+              "uuid": "d99fee82-ae07-448a-baa5-e75236e65a39",
+              "parentUUID": "31600073-07ad-46ea-ba66-571f1766a4ce",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "c1788e12-edf6-4aa0-85af-79ac1924e187",
+            "223a3be2-01a6-4185-b0ac-6a2907751fc8",
+            "aef42ae6-aa88-45d9-bd43-711f191f7e31",
+            "d99fee82-ae07-448a-baa5-e75236e65a39"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 28030,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/results/mochawesome",
+        "quite": "true",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

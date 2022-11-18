@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.000" tests="6" failures="1">
+  <testsuite name="Root Suite" timestamp="2022-11-18T17:24:12" tests="0" file="cypress\e2e\2-iterate-over-elements\iterate-over-elements-page-function-model.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Iterate over elements" timestamp="2022-11-18T17:24:12" tests="6" time="61.191" failures="1">
+    <testcase name="Iterate over elements Log information of product" time="8.305" classname="Log information of product">
+    </testcase>
+    <testcase name="Iterate over elements Validate a first specific product" time="6.304" classname="Validate a first specific product">
+    </testcase>
+    <testcase name="Iterate over elements Validate a second specific produc" time="7.468" classname="Validate a second specific produc">
+    </testcase>
+    <testcase name="Iterate over elements Validate a third specific produc" time="7.312" classname="Validate a third specific produc">
+    </testcase>
+    <testcase name="Iterate over elements Validate a fourth specific produc" time="9.060" classname="Validate a fourth specific produc">
+    </testcase>
+    <testcase name="Iterate over elements Validate a fifth specific produc" time="0.000" classname="Validate a fifth specific produc">
+      <failure message="Timed out retrying after 15000ms: `cy.its()` errored because your subject is: `null`. You cannot access any properties such as `length` on a `null` value.
+
+If you expect your subject to be `null`, then add an assertion such as:
+
+`cy.wrap(null).should(&apos;be.null&apos;)`
+
+https://on.cypress.io/its" type="CypressError"><![CDATA[CypressError: Timed out retrying after 15000ms: `cy.its()` errored because your subject is: `null`. You cannot access any properties such as `length` on a `null` value.
+
+If you expect your subject to be `null`, then add an assertion such as:
+
+`cy.wrap(null).should('be.null')`
+
+https://on.cypress.io/its
+    at cypressErr (https://dev04/__cypress/runner/cypress_runner.js:160831:18)
+    at Object.cypressErrByPath (https://dev04/__cypress/runner/cypress_runner.js:160837:10)
+    at subjectNullOrUndefinedErr (https://dev04/__cypress/runner/cypress_runner.js:139250:83)
+    at traverseObjectAtPath (https://dev04/__cypress/runner/cypress_runner.js:139282:26)
+    at getValue (https://dev04/__cypress/runner/cypress_runner.js:139370:11)
+    at tryCatcher (https://dev04/__cypress/runner/cypress_runner.js:11318:23)
+    at Promise.attempt.Promise.try (https://dev04/__cypress/runner/cypress_runner.js:8592:29)
+    at retryValue (https://dev04/__cypress/runner/cypress_runner.js:139410:65)
+    at tryCatcher (https://dev04/__cypress/runner/cypress_runner.js:11318:23)
+    at Promise.attempt.Promise.try (https://dev04/__cypress/runner/cypress_runner.js:8592:29)
+    at resolveValue (https://dev04/__cypress/runner/cypress_runner.js:139417:65)
+    at tryCatcher (https://dev04/__cypress/runner/cypress_runner.js:11318:23)
+    at Promise.attempt.Promise.try (https://dev04/__cypress/runner/cypress_runner.js:8592:29)
+    at whenStable (https://dev04/__cypress/runner/cypress_runner.js:152665:65)
+    at <unknown> (https://dev04/__cypress/runner/cypress_runner.js:152095:14)
+    at tryCatcher (https://dev04/__cypress/runner/cypress_runner.js:11318:23)
+    at Promise._settlePromiseFromHandler (https://dev04/__cypress/runner/cypress_runner.js:9253:31)
+    at Promise._settlePromise (https://dev04/__cypress/runner/cypress_runner.js:9310:18)
+    at Promise._settlePromise0 (https://dev04/__cypress/runner/cypress_runner.js:9355:10)
+    at Promise._settlePromises (https://dev04/__cypress/runner/cypress_runner.js:9435:18)
+    at Promise._fulfill (https://dev04/__cypress/runner/cypress_runner.js:9379:18)
+    at <unknown> (https://dev04/__cypress/runner/cypress_runner.js:10993:46)
+From Your Spec Code:
+    at Context.eval (cypress/e2e/2-iterate-over-elements/iterate-over-elements-page-function-model.js:61:45)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -1,70 +1,70 @@
 /// <reference types="Cypress" />
+//import Homepage_PO from '../../support/pageObjectsModel/Homepage_POM'
 
-import Homepage_PO from '../../support/pageObjectsModel/Homepage_POM'
+import { visitHomepage, clickOnSignIn } from "../../support/pageFunctionsModel/Homepage_PFM";
 
 describe("Interact with drop-down list", () => {
 
-    beforeEach(function () {
-        const homePage_PO = new Homepage_PO();
-        homePage_PO.visitHomepage();
-        homePage_PO.clickOnSignIn();
-        cy.get('.nav-link').contains('Tools').click();
+    beforeEach(() => {
+        visitHomepage();
+        clickOnSignIn();
+        cy.get('.nav-link').contains('List').click();
     });
 
-    it.skip("Find specific values in drop-down Process category list on Handling step in Chemsoft", () => {
+    it("Find specific values in drop-down Process category list on Handling step in Chemsoft", () => {
 
-        cy.get('.dropdown-item').contains('Risk assessment').click();
-        cy.get(".prodName").eq(4).click();
-        cy.get('.tab > :nth-child(1) > .d-flex > :nth-child(2)').click();
+        cy.get('.dropdown-item').contains('Risk assessment').click({force:true});
+        cy.get(".prodName").eq(4).click({force:true});
+        cy.get(':nth-child(1) > td.prodName > a').click();
         cy.get(".form-control > *").each(($el, index, $list) => {
             const prod = $el.text();
-            const productToSelect = "PROC21 - Low energy manipulation and handling of substances bound in/on materials or articles";
+            const productToSelect = "Svenska";
             console.log("Index: " + index + " : " + $el.text());
 
             if (prod === productToSelect) {
                 $el.trigger("click");
-                cy.contains('PROC21 - Low energy manipulation and handling of substances bound in/on materials or articles').should('have.value', '23').click({ force: true });
+                cy.contains('Svenska').should('have.value', '2').click({ force: true });
             }
         });
-        cy.get(".statements").should('contain.text', 'PROC21 - Low energy manipulation and handling of substances bound in/on materials or articles');
+        cy.get('.pt-4 > .col-3').contains("Activity");
 
     });
 
     it("Select specific values in drop-down Ventilation list on Handling step in Chemsoft", () => {
 
-        cy.get('.dropdown-item').contains('Risk assessment').click();
-        cy.get(".prodName").eq(5).click();
-        cy.get('.tab > :nth-child(1) > .d-flex > :nth-child(2)').click();
+        cy.get('.dropdown-item').contains('Risk assessment').click({force:true});
+        cy.get(".prodName").eq(5).click({force:true});
+        cy.get(':nth-child(2) > .prodName > a').click();
         cy.get(".form-control > *").each(($el, index, $list) => {
             const prod = $el.text();
-            const productToSelect = "Small and non-ventilated room";
+            const productToSelect = "";
             console.log("Index: " + index + " : " + $el.text());
 
             if (prod === productToSelect) {
                 $el.trigger("click");
-                cy.contains('Small and non-ventilated room').should('have.value', '2').click({ force: true });
+                cy.contains('Svenska').should('have.value', '2').click({ force: true });
             }
         });
-        cy.get('.row > :nth-child(1) > :nth-child(3) > .input-group > .form-control').should('contain.text', 'Small and non-ventilated room');
+        cy.get(':nth-child(1) > .align-items-center > .col-3').contains("Department");
 
     });
 
-    it.skip("Select specific values in drop-down Handling type list on Handling step in Chemsoft", () => {
+    it("Select specific values in drop-down Handling type list on Handling step in Chemsoft", () => {
 
-        cy.get('.dropdown-item').contains('Risk assessment').click();
-        cy.get(".prodName").eq(6).click();
-        cy.get('.tab > :nth-child(1) > .d-flex > :nth-child(2)').click();
+        cy.get('.dropdown-item').contains('Risk assessment').click({ force: true });
+        cy.get(".prodName").eq(6).click({ force: true });
+        cy.get(':nth-child(1) > td.prodName > a').click();
         cy.get(".form-control > *").each(($el, index, $list) => {
             const prod = $el.text();
-            const productToSelect = "Handling in small scale";
+            const productToSelect = "";
             console.log("Index: " + index + " : " + $el.text());
 
             if (prod === productToSelect) {
                 $el.trigger("click");
-                cy.contains('Handling in small scale').should('have.value', '2').click({ force: true });
+                cy.contains('Svenska').should('have.value', '2').click({ force: true });
             }
         });
-        cy.get(':nth-child(2) > :nth-child(1) > .row > :nth-child(2) > .form-group > .input-group > .form-control').should('contain.text', 'Handling in small scale');
+        cy.get(':nth-child(1) > :nth-child(4) > .col-3').contains("Additional sources of risk:");
 
     });
 });

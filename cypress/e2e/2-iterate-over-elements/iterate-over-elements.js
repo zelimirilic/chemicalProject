@@ -1,12 +1,14 @@
-import Homepage_PO from '../../support/pageObjectsModel/Homepage_POM'
 /// <reference types="Cypress" />
+
+//import Homepage_PO from '../../support/pageObjectsModel/Homepage_POM'
+import { visitHomepage, clickOnSignIn } from "../../support/pageFunctionsModel/Homepage_PFM";
+
 
 describe("Iterate over elements", () => {
 
-    beforeEach(function () {
-        const homePage_PO = new Homepage_PO();
-        homePage_PO.visitHomepage();
-        homePage_PO.clickOnSignIn();
+    beforeEach(() => {
+        visitHomepage();
+        clickOnSignIn();
         cy.get('.nav-link').contains('List').click();
     });
 

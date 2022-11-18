@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.000" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2022-11-18T17:27:04" tests="0" file="cypress\e2e\features\login.feature" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Test Login form via Chemsoft NG" timestamp="2022-11-18T17:27:04" tests="1" time="4.304" failures="0">
+    <testcase name="Test Login form via Chemsoft NG Should be able to log in via Login form" time="4.275" classname="Should be able to log in via Login form">
+    </testcase>
+  </testsuite>
+</testsuites>

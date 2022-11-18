@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.000" tests="3" failures="0" skipped="1">
+  <testsuite name="Root Suite" timestamp="2022-11-18T17:25:56" tests="0" file="cypress\e2e\5-Verify checkboxes\checkboxes.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Move, copy and delete product in chemsoft" timestamp="2022-11-18T17:25:56" tests="3" time="13.483" failures="0">
+    <testcase name="Move, copy and delete product in chemsoft Check product and move it on desired department" time="6.583" classname="Check product and move it on desired department">
+    </testcase>
+    <testcase name="Move, copy and delete product in chemsoft Check product and copy it on desired department" time="6.830" classname="Check product and copy it on desired department">
+    </testcase>
+  </testsuite>
+</testsuites>

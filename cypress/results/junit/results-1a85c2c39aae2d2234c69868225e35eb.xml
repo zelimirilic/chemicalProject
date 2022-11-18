@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.000" tests="4" failures="0">
+  <testsuite name="Root Suite" timestamp="2022-11-18T23:31:38" tests="0" file="cypress\e2e\1-Login started\log-in.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Test Login form via Chemsoft NG" timestamp="2022-11-18T23:31:38" tests="2" time="9.579" failures="0">
+    <testcase name="Test Login form via Chemsoft NG Should be able to log in via Login form" time="5.043" classname="Should be able to log in via Login form">
+    </testcase>
+    <testcase name="Test Login form via Chemsoft NG Should not be able to log in via Login form" time="4.512" classname="Should not be able to log in via Login form">
+    </testcase>
+  </testsuite>
+  <testsuite name="Test Login form via Chemsoft NG - failed login" timestamp="2022-11-18T23:31:48" tests="2" time="5.042" failures="0">
+    <testcase name="Test Login form via Chemsoft NG - failed login Should not be able to log in via Login form - wrong user name" time="2.180" classname="Should not be able to log in via Login form - wrong user name">
+    </testcase>
+    <testcase name="Test Login form via Chemsoft NG - failed login Login via wrong Username and password" time="2.805" classname="Login via wrong Username and password">
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -26,13 +26,13 @@ describe("Validate Chemsoft home page links", () => {
 
     });
 
-    it.skip("Confirm links redirect to the correct pages - iChemistry", () => {
+    it("Confirm links redirect to the correct pages - iChemistry", () => {
 
         cy.visit("https://dev04/main/storaenso");
 
         cy.get('#user').type("miljan");
         cy.get('#pswd').type("hirsl666");
-        cy.get('.ichemistry-button').contains('Sign in').click();
+        cy.get('.ichemistry-btn').contains('Sign in').click({ force: true });
         cy.url().should('include', '~master/application.aspx');
 
         cy.go('back');
@@ -42,16 +42,16 @@ describe("Validate Chemsoft home page links", () => {
 
         cy.get('#user').type("miljan");
         cy.get('#pswd').type("hirsl666");
-        cy.get('.ichemistry-button').contains('Sign in').click();
+        cy.get('.ichemistry-btn').contains('Sign in').click({ force: true });
         cy.url().should('include', '~master/application.aspx');
 
         cy.go('back');
 
         cy.get('#user').type("miljan");
-        cy.get('.ichemistry-button').contains('Sign in').click();
+        cy.get('.ichemistry-btn').contains('Sign in').click();
         cy.get('#passErrMsg').should('contain.text', 'The password field is required');
         cy.get('#pswd').type("wrongUserName");
-        cy.get('.ichemistry-button').contains('Sign in').click();
+        cy.get('.ichemistry-btn').contains('Sign in').click();
         cy.get('.ichemistry-alert').should('contain.text', 'Wrong username or password');
 
     });

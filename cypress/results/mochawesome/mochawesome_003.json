@@ -1,0 +1,146 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 2,
+    "pending": 1,
+    "failures": 0,
+    "start": "2022-11-18T17:25:56.720Z",
+    "end": "2022-11-18T17:26:10.219Z",
+    "duration": 13499,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 33.33333333333333,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "63ddf61e-3d8e-4083-a28c-13d785f86a96",
+      "title": "",
+      "fullFile": "cypress\\e2e\\5-Verify checkboxes\\checkboxes.js",
+      "file": "cypress\\e2e\\5-Verify checkboxes\\checkboxes.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "1d9287ed-8b91-408c-b19f-83e9d6858b6f",
+          "title": "Move, copy and delete product in chemsoft",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Check product and move it on desired department",
+              "fullTitle": "Move, copy and delete product in chemsoft Check product and move it on desired department",
+              "timedOut": null,
+              "duration": 6583,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('[href=\"/system/chemicals/inventory\"]').click();\ncy.get('.d-flex > :nth-child(2) > .icon-move').click({\n  force: true\n});\ncy.get(':nth-child(2) > .d-flex > :nth-child(2) > .icons').click({\n  force: true\n});\ncy.get('.eqtree-children > :nth-child(2) > span > a').click({\n  force: true\n});\ncy.get('[title=\"OK\"]').click({\n  force: true\n});\n//cy.get('.tickerWrap > :nth-child(2) > div').should('have.text', 'We\\'re sorry to inform you that something went wrong processing your request.'); - the bug is reproduced and catched\ncy.get('.title > span').should('have.text', 'Last modified:');\ncy.url().should('include', 'chemicals/inventory');",
+              "err": {},
+              "uuid": "7f64af0f-4398-414b-86f6-72edac127a26",
+              "parentUUID": "1d9287ed-8b91-408c-b19f-83e9d6858b6f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Check product and copy it on desired department",
+              "fullTitle": "Move, copy and delete product in chemsoft Check product and copy it on desired department",
+              "timedOut": null,
+              "duration": 6830,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('[href=\"/system/chemicals/inventory\"]').click();\ncy.get('.d-flex > :nth-child(2) > .icon-move').click({\n  force: true\n});\ncy.get('.mainTtl > :nth-child(1) > .d-flex > :nth-child(2)').click({\n  force: true\n});\ncy.get('.eqtree-open > .eqtree-children > :nth-child(2) > span > a').click({\n  multiple: true\n});\ncy.get('[title=\"OK\"]').click({\n  force: true\n});\n//cy.get('.tickerWrap > :nth-child(2) > div').should('not.have.text', 'We\\'re sorry to inform you that something went wrong processing your request.'); - the bug is reproduced and catched\ncy.get('.title > span').should('have.text', 'Last modified:');\ncy.url().should('include', 'chemicals/inventory');",
+              "err": {},
+              "uuid": "d6886cdc-6134-4aaf-b48d-28d27a1e2794",
+              "parentUUID": "1d9287ed-8b91-408c-b19f-83e9d6858b6f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Check frontEnd BUG",
+              "fullTitle": "Move, copy and delete product in chemsoft Check frontEnd BUG",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "acbbb05e-3d95-4dc8-bef9-8b5e5976a36b",
+              "parentUUID": "1d9287ed-8b91-408c-b19f-83e9d6858b6f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "7f64af0f-4398-414b-86f6-72edac127a26",
+            "d6886cdc-6134-4aaf-b48d-28d27a1e2794"
+          ],
+          "failures": [],
+          "pending": [
+            "acbbb05e-3d95-4dc8-bef9-8b5e5976a36b"
+          ],
+          "skipped": [],
+          "duration": 13413,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/results/mochawesome",
+        "quite": "true",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
