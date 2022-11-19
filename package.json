@@ -26,7 +26,8 @@
 		"cypress-regression-pack": "npm run delete-results && npm run delete-mochawesome-report && npm run triggerAllTests-headless && npm run junit-merge && npm run mochawesome-merge",
 		"delete-all-reports": "rimraf cypress/results/junit/results.xml && rimraf cypress/results/* || true && rimraf mochawesome-report || true",
 		"delete-mochawesome-json-file": "rimraf mochawesome.json",
-		"delete-all-videos": "rimraf cypress/support/videos/*"
+		"delete-all-videos": "rimraf cypress/videos/*",
+		"delete-all-screenshots": "rimraf cypress/screenshots/*"
 	},
 	"dependencies": {
 		"@tinymce/tinymce-vue": "^3.2.8",
