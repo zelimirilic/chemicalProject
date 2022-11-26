@@ -28,7 +28,7 @@
 		"delete-mochawesome-json-file": "rimraf mochawesome.json",
 		"delete-all-videos": "rimraf cypress/videos/*",
 		"delete-all-screenshots": "rimraf cypress/screenshots/*",
-		"delete-all-test-records": "rimraf mochawesome.json && rimraf cypress/videos/* && rimraf cypress/screenshots/* && rimraf cypress/results/junit/results.xml && rimraf cypress/results/* || true && rimraf mochawesome-report || true"
+		"delete-all-test-records": "rimraf mochawesome-report || true && rimraf mochawesome.json && rimraf cypress/videos/* && rimraf cypress/screenshots/* && rimraf cypress/results/junit/results.xml && rimraf cypress/results/* || true "
 	},
 	"dependencies": {
 		"@tinymce/tinymce-vue": "^3.2.8",
