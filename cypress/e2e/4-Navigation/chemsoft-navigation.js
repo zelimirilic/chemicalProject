@@ -1,4 +1,6 @@
 /// <reference types="Cypress" />
+import { raTitles } from "../../support/pageObjects/riskAssessmentListPage";
+
 
 describe("Validate Chemsoft home page links", () => {
     it("Confirm links redirect to the correct pages - Chemsoft NG", () => {
@@ -53,6 +55,29 @@ describe("Validate Chemsoft home page links", () => {
         cy.get('#pswd').type("wrongUserName");
         cy.get('.ichemistry-btn').contains('Sign in').click();
         cy.get('.ichemistry-alert').should('contain.text', 'Wrong username or password');
+
+    });
+
+    it.only("Check data-test atributes on - iChemistry_Tools button", () => {
+
+        cy.visit("https://localhost/iChemistry/main/intersolia/nextgen/control_with_options");
+
+        cy.get('#user').type("zelimir.ilic");
+        cy.get('#pswd').type("Belgrade1234!");
+        cy.get('.ichemistry-btn').contains('Sign in').click({ force: true });
+        cy.url().should('include', '~master/application.aspx');
+
+        cy.get('#SubmenuButtonAdminTools > .dropdownToggle > .topMenuTxt').click({force:true});
+        
+        //cy.getByData(raTitles.pageToolsTitleRiskAssessment).should('have.attr', 'data-test', 'ButtonRiskAss_v3Evaluation');
+        cy.get(5000)
+        //cy.getByData(raTitles.pageToolsTitleRiskAssessment).click();
+        cy.get('.dropdown-item').then($iframe => {
+            const body = $iframe.contents().find(body)
+            cy.wrap(body).as('iframe')
+          })
+          
+          cy.get('@iframe').contains('Risk assessment').click();
 
     });
 });

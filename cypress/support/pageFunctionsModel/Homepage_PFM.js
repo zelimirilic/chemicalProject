@@ -5,7 +5,8 @@ export function visitHomepage() {
 
 export function clickOnSignIn() {
     cy.get('[name="user"]').click();
-    cy.get('.username > .form-control').type("miljan");
+    cy.get('.username > .form-control').type("userdev");
+    cy.get('.password > .form-control').type("hirsl666");
     cy.get('.btn').contains('Sign in').click();
 }
 
